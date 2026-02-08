@@ -1,20 +1,29 @@
-﻿using System;
+﻿using greenlife_organic_system.Models;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace greenlife_organic_system.Models
 {
-    public partial class Order : Form
+    public class Order
     {
+        public string OrderId { get; set; }
+        public string CustomerId { get; set; }
+        public DateTime OrderDate { get; set; }
+        public string Status { get; set; } // Pending, Shipped, Delivered
+        public List<OrderItem> Items { get; set; }
+
         public Order()
         {
-            InitializeComponent();
+            OrderId = Guid.NewGuid().ToString();
+            OrderDate = DateTime.Now;
+            Status = "Pending";
+            Items = new List<OrderItem>();
+        }
+
+        public decimal CalculateTotal()
+        {
+            return Items.Sum(i => i.GetSubtotal());
         }
     }
 }

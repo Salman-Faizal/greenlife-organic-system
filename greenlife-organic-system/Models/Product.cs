@@ -1,20 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace greenlife_organic_system.Models
 {
-    public partial class Product : Form
+    public class Product
     {
+        public string ProductId { get; set; }
+        public string Name { get; set; }
+        public string Category { get; set; }
+        public decimal Price { get; set; }
+        public int Stock { get; set; }
+        public string Supplier { get; set; }
+        public double DiscountPercentage { get; set; }
+
         public Product()
         {
-            InitializeComponent();
+            ProductId = System.Guid.NewGuid().ToString();
+        }
+
+        public decimal GetDiscountedPrice()
+        {
+            return Price - (Price * (decimal)(DiscountPercentage / 100));
         }
     }
 }

@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace greenlife_organic_system.Models
 {
-    public partial class OrderItem : Form
+    public class OrderItem
     {
-        public OrderItem()
+        public Product Product { get; set; }
+        public int Quantity { get; set; }
+
+        public decimal GetSubtotal()
         {
-            InitializeComponent();
+            return Product.GetDiscountedPrice() * Quantity;
         }
     }
 }

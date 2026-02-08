@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace greenlife_organic_system.Models
 {
-    public partial class Product : Form
+    public class Admin : User
     {
-        public Product()
+        public Admin()
         {
-            InitializeComponent();
         }
+
+        public string Role => "Admin";
     }
 }
