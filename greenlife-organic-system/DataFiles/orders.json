@@ -1,1 +1,94 @@
-[]
+[
+  {
+    "OrderId": "O1001",
+    "CustomerId": "C001",
+    "OrderDate": "2025-12-01T10:30:00",
+    "Status": "Delivered",
+    "Items": [
+      {
+        "Product": {
+          "ProductId": "P001",
+          "Name": "Organic Rice",
+          "Category": "Grains",
+          "Price": 450.00,
+          "Stock": 20,
+          "Supplier": "GreenFarm Lanka",
+          "DiscountPercentage": 5
+        },
+        "Quantity": 2
+      },
+      {
+        "Product": {
+          "ProductId": "P002",
+          "Name": "Organic Coconut Oil",
+          "Category": "Oils",
+          "Price": 1200.00,
+          "Stock": 8,
+          "Supplier": "Eco Harvest",
+          "DiscountPercentage": 10
+        },
+        "Quantity": 1
+      }
+    ]
+  },
+  {
+    "OrderId": "O1002",
+    "CustomerId": "C002",
+    "OrderDate": "2025-12-03T15:45:00",
+    "Status": "Delivered",
+    "Items": [
+      {
+        "Product": {
+          "ProductId": "P004",
+          "Name": "Organic Honey",
+          "Category": "Sweeteners",
+          "Price": 950.00,
+          "Stock": 15,
+          "Supplier": "BeePure Lanka",
+          "DiscountPercentage": 8
+        },
+        "Quantity": 3
+      }
+    ]
+  },
+  {
+    "OrderId": "O1003",
+    "CustomerId": "C001",
+    "OrderDate": "2025-12-05T11:10:00",
+    "Status": "Shipped",
+    "Items": [
+      {
+        "Product": {
+          "ProductId": "P003",
+          "Name": "Herbal Tea Pack",
+          "Category": "Beverages",
+          "Price": 750.00,
+          "Stock": 4,
+          "Supplier": "Nature Leaf",
+          "DiscountPercentage": 0
+        },
+        "Quantity": 1
+      }
+    ]
+  },
+  {
+    "OrderId": "O1004",
+    "CustomerId": "C002",
+    "OrderDate": "2025-12-07T09:20:00",
+    "Status": "Pending",
+    "Items": [
+      {
+        "Product": {
+          "ProductId": "P001",
+          "Name": "Organic Rice",
+          "Category": "Grains",
+          "Price": 450.00,
+          "Stock": 20,
+          "Supplier": "GreenFarm Lanka",
+          "DiscountPercentage": 5
+        },
+        "Quantity": 5
+      }
+    ]
+  }
+]

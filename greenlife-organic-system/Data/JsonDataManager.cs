@@ -18,7 +18,10 @@ namespace greenlife_organic_system.Data
                 return new List<T>();
 
             string json = File.ReadAllText(filePath);
-            return JsonConvert.DeserializeObject<List<T>>(json);
+            if (string.IsNullOrWhiteSpace(json))
+                return new List<T>();
+
+            return JsonConvert.DeserializeObject<List<T>>(json) ?? new List<T>();
         }
     }
 }

@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "UserId": "A001",
+    "Username": "admin",
+    "Password": "admin123",
+    "FullName": "System Administrator",
+    "Email": "admin@greenlife.com"
+  }
+]

@@ -1,1 +1,38 @@
-[]
+[
+  {
+    "ProductId": "P001",
+    "Name": "Organic Rice",
+    "Category": "Grains",
+    "Price": 450.00,
+    "Stock": 20,
+    "Supplier": "GreenFarm Lanka",
+    "DiscountPercentage": 5
+  },
+  {
+    "ProductId": "P002",
+    "Name": "Organic Coconut Oil",
+    "Category": "Oils",
+    "Price": 1200.00,
+    "Stock": 8,
+    "Supplier": "Eco Harvest",
+    "DiscountPercentage": 10
+  },
+  {
+    "ProductId": "P003",
+    "Name": "Herbal Tea Pack",
+    "Category": "Beverages",
+    "Price": 750.00,
+    "Stock": 4,
+    "Supplier": "Nature Leaf",
+    "DiscountPercentage": 0
+  },
+  {
+    "ProductId": "P004",
+    "Name": "Organic Honey",
+    "Category": "Sweeteners",
+    "Price": 950.00,
+    "Stock": 15,
+    "Supplier": "BeePure Lanka",
+    "DiscountPercentage": 8
+  }
+]

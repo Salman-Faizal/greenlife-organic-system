@@ -1,6 +1,6 @@
 ﻿namespace greenlife_organic_system.Views
 {
-    partial class AdminReportsForm
+    public partial class AdminReportsForm : Form
     {
         /// <summary>
         /// Required designer variable.
@@ -71,7 +71,7 @@
             // 
             // btnExport
             // 
-            btnExport.Location = new Point(679, 81);
+            btnExport.Location = new Point(707, 40);
             btnExport.Name = "btnExport";
             btnExport.Size = new Size(94, 29);
             btnExport.TabIndex = 3;
@@ -91,7 +91,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             chartSales.Series.Add(series1);
-            chartSales.Size = new Size(375, 375);
+            chartSales.Size = new Size(613, 375);
             chartSales.TabIndex = 4;
             chartSales.Text = "chart1";
             // 
@@ -101,15 +101,16 @@
             chartStock.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
             chartStock.Legends.Add(legend2);
-            chartStock.Location = new Point(452, 240);
+            chartStock.Location = new Point(691, 253);
             chartStock.Name = "chartStock";
             series2.ChartArea = "ChartArea1";
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             chartStock.Series.Add(series2);
-            chartStock.Size = new Size(375, 375);
+            chartStock.Size = new Size(557, 375);
             chartStock.TabIndex = 5;
             chartStock.Text = "chart2";
+            chartStock.Click += chartStock_Click;
             // 
             // label1
             // 
@@ -133,7 +134,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1037, 657);
+            ClientSize = new Size(1287, 657);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(chartStock);
@@ -161,5 +162,6 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chartStock;
         private Label label1;
         private Label label2;
+
     }
 }

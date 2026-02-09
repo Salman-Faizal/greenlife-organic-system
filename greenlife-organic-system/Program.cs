@@ -1,3 +1,5 @@
+using greenlife_organic_system.Views;
+
 namespace greenlife_organic_system
 {
     internal static class Program
@@ -11,7 +13,10 @@ namespace greenlife_organic_system
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.Run(new AdminReportsForm());
+            var productService = new Services.ProductService();
+            var orderService = new Services.OrderService(productService);
+            Application.Run(new Views.AdminReportsForm(productService, orderService));
         }
     }
 }

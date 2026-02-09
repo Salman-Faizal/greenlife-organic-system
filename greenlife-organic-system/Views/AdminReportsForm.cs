@@ -18,6 +18,14 @@ namespace greenlife_organic_system.Views
         public AdminReportsForm()
         {
             InitializeComponent();
+            _productService = new ProductService();
+            _orderService = new OrderService(_productService);
+            _reportService = new ReportService();
+            _exportService = new ExportService();
+
+            ConfigureCharts();
+            btnGenerate.Click += btnGenerate_Click;
+
         }
 
         private void AdminReportsForm_Load(object sender, EventArgs e)
@@ -42,31 +50,52 @@ namespace greenlife_organic_system.Views
             _exportService = new ExportService();
 
             ConfigureCharts();
+            btnGenerate.Click += btnGenerate_Click;
         }
 
         private void ConfigureCharts()
         {
-            // Sales chart
+            // ---------- SALES CHART ----------
             chartSales.Series.Clear();
             chartSales.ChartAreas.Clear();
-            chartSales.ChartAreas.Add(new ChartArea("SalesArea"));
 
-            Series salesSeries = new Series("Sales")
+            ChartArea salesArea = new ChartArea("SalesArea");
+            salesArea.AxisX.Title = "Date";
+            salesArea.AxisY.Title = "Sales Amount";
+            salesArea.AxisX.Interval = 1;
+            salesArea.AxisX.LabelStyle.Angle = -45;
+            salesArea.AxisX.MajorGrid.Enabled = false;
+
+            chartSales.ChartAreas.Add(salesArea);
+
+            Series salesSeries = new Series("Daily Sales")
             {
                 ChartType = SeriesChartType.Line,
-                BorderWidth = 3
+                BorderWidth = 3,
+                XValueType = ChartValueType.Date
             };
+
             chartSales.Series.Add(salesSeries);
 
-            // Stock chart
+            // ---------- STOCK CHART ----------
             chartStock.Series.Clear();
             chartStock.ChartAreas.Clear();
-            chartStock.ChartAreas.Add(new ChartArea("StockArea"));
 
-            Series stockSeries = new Series("Stock")
+            ChartArea stockArea = new ChartArea("StockArea");
+            stockArea.AxisX.Title = "Product";
+            stockArea.AxisY.Title = "Stock Quantity";
+            stockArea.AxisX.Interval = 1;
+            stockArea.AxisX.LabelStyle.Angle = -45;
+            stockArea.AxisX.MajorGrid.Enabled = false;
+
+            chartStock.ChartAreas.Add(stockArea);
+
+            Series stockSeries = new Series("Stock Levels")
             {
-                ChartType = SeriesChartType.Column
+                ChartType = SeriesChartType.Column,
+                XValueType = ChartValueType.String
             };
+
             chartStock.Series.Add(stockSeries);
         }
 
@@ -98,12 +127,24 @@ namespace greenlife_organic_system.Views
 
             foreach (var entry in dailySales.OrderBy(d => d.Key))
             {
-                series.Points.AddXY(entry.Key.ToShortDateString(), entry.Value);
+                DataPoint point = new DataPoint
+                {
+                    XValue = entry.Key.ToOADate(),
+                    YValues = new[] { (double)entry.Value }
+                };
+
+                series.Points.Add(point);
             }
+
+            chartSales.ChartAreas[0].RecalculateAxesScale();
         }
+
 
         private void DrawStockChart()
         {
+            MessageBox.Show(
+    $"Products loaded: {_productService.Products.Count}");
+
             var stockLevels = _reportService.GetStockLevels(_productService.Products);
 
             Series series = chartStock.Series[0];
@@ -113,7 +154,10 @@ namespace greenlife_organic_system.Views
             {
                 series.Points.AddXY(item.Key, item.Value);
             }
+
+            chartStock.ChartAreas[0].RecalculateAxesScale();
         }
+
 
         private void btnExport_Click(object sender, EventArgs e)
         {
@@ -137,6 +181,11 @@ namespace greenlife_organic_system.Views
                 filteredOrders, dialog.FileName, from, to);
 
             MessageBox.Show("Report exported successfully.");
+        }
+
+        private void chartStock_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
