@@ -85,7 +85,7 @@ namespace greenlife_organic_system.Services
 
         /* ------------------ Persistence ------------------ */
 
-        private void SaveOrders()
+        public void SaveOrders()
         {
             JsonDataManager.SaveToFile(OrderFile, Orders);
         }

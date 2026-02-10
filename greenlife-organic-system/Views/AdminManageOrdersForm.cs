@@ -10,13 +10,16 @@ namespace greenlife_organic_system.Views
     {
         private readonly OrderService _orderService;
         private Order _selectedOrder;
-        private Customer _customerService;
+        private readonly UserService _userService;
 
-        public AdminManageOrdersForm(OrderService orderService)
+        public AdminManageOrdersForm(
+            OrderService orderService,
+            UserService userService)
         {
             InitializeComponent();
 
             _orderService = orderService;
+            _userService = userService;
 
             ConfigureGrids();
             LoadOrders();
@@ -51,11 +54,13 @@ namespace greenlife_organic_system.Views
                 }).ToList();
 
             dgvOrders.Columns["OrderId"].Visible = false;
+            dgvOrders.Columns["CustomerId"].Visible = false;
+            dgvOrders.Columns["Customer"].HeaderText = "Phone";
         }
 
         private string GetCustomerPhone(string customerId)
         {
-            var customer = _customerService.GetById(customerId);
+            var customer = _userService.GetById(customerId);
             return customer?.PhoneNumber ?? "Unknown";
         }
 

@@ -134,6 +134,7 @@
             Controls.Add(txtPassword);
             Name = "LoginForm";
             Text = "Login Page";
+            Load += LoginForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

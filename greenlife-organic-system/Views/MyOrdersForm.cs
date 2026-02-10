@@ -122,6 +122,85 @@ namespace greenlife_organic_system.Views
             //    Subtotal = i.GetSubtotal()
             //}).ToList();
 
+            flpReviewActions.Controls.Clear();
+
+            if (order.Status != "Delivered")
+                return;
+
+            foreach (var item in order.Items)
+            {
+                if (item.IsReviewed)
+                    continue;
+
+                GroupBox grp = new GroupBox
+                {
+                    Text = $"Review: {item.Product.Name}",
+                    Width = flpReviewActions.Width - 25,
+                    Height = 140
+                };
+
+                NumericUpDown numRating = new NumericUpDown
+                {
+                    Minimum = 1,
+                    Maximum = 5,
+                    Value = 5,
+                    Left = 10,
+                    Top = 25
+                };
+
+                TextBox txtComment = new TextBox
+                {
+                    Left = 10,
+                    Top = 55,
+                    Width = grp.Width - 20,
+                    Height = 40,
+                    Multiline = true,
+                    PlaceholderText = "Optional review..."
+                };
+
+                Button btnSubmit = new Button
+                {
+                    Text = "Submit Review",
+                    Left = 10,
+                    Top = 100
+                };
+
+                btnSubmit.Click += (s, e) =>
+                {
+                    Review review = new Review
+                    {
+                        CustomerId = _customer.UserId,
+                        CustomerName = _customer.FullName,
+                        Rating = (int)numRating.Value,
+                        Comment = txtComment.Text.Trim(),
+                        Date = DateTime.Now
+                    };
+
+                    bool success = _productService.AddReview(
+                        item.Product.ProductId,
+                        review);
+
+                    if (!success)
+                    {
+                        MessageBox.Show("Unable to submit review.");
+                        return;
+                    }
+
+                    item.IsReviewed = true;
+                    _orderService.SaveOrders();
+
+                    MessageBox.Show("Thank you for your review!");
+
+                    LoadOrderItems(order); // refresh UI
+                };
+
+                grp.Controls.Add(numRating);
+                grp.Controls.Add(txtComment);
+                grp.Controls.Add(btnSubmit);
+
+                flpReviewActions.Controls.Add(grp);
+            }
+
         }
 
         private void dgvOrderItems_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

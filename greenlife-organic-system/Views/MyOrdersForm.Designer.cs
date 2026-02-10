@@ -32,6 +32,7 @@
             dgvOrderItems = new DataGridView();
             lblOrdersTitle = new Label();
             lblOrderDetails = new Label();
+            flpReviewActions = new FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)dgvOrders).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvOrderItems).BeginInit();
             SuspendLayout();
@@ -75,11 +76,20 @@
             lblOrderDetails.Text = "Order Details";
             lblOrderDetails.Click += lblOrderDetails_Click;
             // 
+            // flpReviewActions
+            // 
+            flpReviewActions.AutoScroll = true;
+            flpReviewActions.Location = new Point(529, 287);
+            flpReviewActions.Name = "flpReviewActions";
+            flpReviewActions.Size = new Size(505, 125);
+            flpReviewActions.TabIndex = 4;
+            // 
             // MyOrdersForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1070, 450);
+            Controls.Add(flpReviewActions);
             Controls.Add(lblOrderDetails);
             Controls.Add(lblOrdersTitle);
             Controls.Add(dgvOrderItems);
@@ -99,5 +109,6 @@
         private DataGridView dgvOrderItems;
         private Label lblOrdersTitle;
         private Label lblOrderDetails;
+        private FlowLayoutPanel flpReviewActions;
     }
 }

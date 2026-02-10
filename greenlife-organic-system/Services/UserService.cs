@@ -63,6 +63,11 @@ namespace greenlife_organic_system.Services
             return true;
         }
 
+        public Customer GetById(string customerId)
+        {
+            return Customers.FirstOrDefault(c => c.UserId == customerId);
+        }
+
         private void SaveAdmins()
         {
             JsonDataManager.SaveToFile(AdminFile, Admins);

@@ -16,18 +16,22 @@ namespace greenlife_organic_system.Views
         private readonly ProductService _productService;
         private readonly OrderService _orderService;
         private readonly NotificationService _notificationService;
+        private readonly UserService _userService;
 
         public AdminDashboardForm(
             ProductService productService,
-            OrderService orderService)
+            OrderService orderService,
+            UserService userService)
         {
             InitializeComponent();
 
             _productService = productService;
             _orderService = orderService;
             _notificationService = new NotificationService();
+            _userService = userService;
 
             LoadDashboardData();
+            _userService = userService;
         }
 
         private void LoadDashboardData()
@@ -62,7 +66,7 @@ namespace greenlife_organic_system.Views
         private void btnOrders_Click(object sender, EventArgs e)
         {
             AdminManageOrdersForm form =
-                new AdminManageOrdersForm(_orderService);
+                new AdminManageOrdersForm(_orderService, _userService);
 
             form.ShowDialog();
         }

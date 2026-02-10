@@ -111,11 +111,32 @@ namespace greenlife_organic_system.Services
             return true;
         }
 
-        /* ------------------ Persistence ------------------ */
+        /* ------------------ Ensuring data consistency ------------------ */
 
         public void Save()
         {
             JsonDataManager.SaveToFile(ProductFile, Products);
+        }
+
+        /* ------------------ Add Review functionality ------------------ */
+
+        public bool AddReview(string productId, Review review)
+        {
+            Product product = Products
+                .FirstOrDefault(p => p.ProductId == productId);
+
+            if (product == null)
+                return false;
+
+            product.Rating =
+                (int)((product.Rating * product.RatingCount + review.Rating)
+                / (product.RatingCount + 1));
+
+            product.RatingCount++;
+            product.Reviews.Add(review);
+
+            Save();
+            return true;
         }
     }
 }

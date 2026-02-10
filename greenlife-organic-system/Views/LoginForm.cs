@@ -54,7 +54,7 @@ namespace greenlife_organic_system.Views
             if (user is Admin)
             {
                 AdminDashboardForm adminForm =
-                    new AdminDashboardForm(_productService, _orderService);
+                    new AdminDashboardForm(_productService, _orderService, _userService);
                 adminForm.Show();
             }
             else if (user is Customer customer)
@@ -71,6 +71,11 @@ namespace greenlife_organic_system.Views
             registerForm.ShowDialog();
 
             _userService.ReloadCustomers();
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
