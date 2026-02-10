@@ -5,6 +5,7 @@ using System;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace greenlife_organic_system.Views
 {
@@ -12,13 +13,18 @@ namespace greenlife_organic_system.Views
     {
         private readonly Customer _customer;
         private readonly OrderService _orderService;
+        private readonly ProductService _productService;
 
-        public MyOrdersForm(Customer customer, OrderService orderService)
+        public MyOrdersForm(
+            Customer customer,
+            OrderService orderService,
+            ProductService productService)
         {
             InitializeComponent();
 
             _customer = customer;
             _orderService = orderService;
+            _productService = productService;
 
             ConfigureGrids();
             LoadOrders();
@@ -124,13 +130,24 @@ namespace greenlife_organic_system.Views
 
             flpReviewActions.Controls.Clear();
 
-            if (order.Status != "Delivered")
+            if (!string.Equals(order.Status, "Delivered", StringComparison.OrdinalIgnoreCase))
                 return;
 
             foreach (var item in order.Items)
             {
-                if (item.IsReviewed)
+                Product matchingProduct = _productService.Products
+                    .FirstOrDefault(p => p.ProductId == item.Product.ProductId);
+
+                bool alreadyReviewedForThisOrder = matchingProduct?.Reviews?.Any(r =>
+                    r.CustomerId == _customer.UserId
+                    && r.OrderId == order.OrderId
+                    && r.ProductId == item.Product.ProductId) == true;
+
+                if (item.IsReviewed || alreadyReviewedForThisOrder)
+                {
+                    item.IsReviewed = true;
                     continue;
+                }
 
                 GroupBox grp = new GroupBox
                 {
@@ -171,6 +188,8 @@ namespace greenlife_organic_system.Views
                     {
                         CustomerId = _customer.UserId,
                         CustomerName = _customer.FullName,
+                        OrderId = order.OrderId,
+                        ProductId = item.Product.ProductId,
                         Rating = (int)numRating.Value,
                         Comment = txtComment.Text.Trim(),
                         Date = DateTime.Now
@@ -218,6 +237,16 @@ namespace greenlife_organic_system.Views
         }
 
         private void MyOrdersForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvOrderItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

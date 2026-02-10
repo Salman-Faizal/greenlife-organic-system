@@ -212,9 +212,9 @@ namespace greenlife_organic_system.Views
             }
 
             // ---------- RATING ----------
-            lblRating.Text = product.Rating == 0
+            lblRating.Text = product.RatingCount == 0
                 ? "No ratings yet"
-                : $"Rating: {product.Rating}/5";
+                : $"Rating: {product.Rating}/5 ({product.RatingCount} ratings)";
 
             // ---------- REVIEWS ----------
             LoadReviews(product);
@@ -250,14 +250,16 @@ namespace greenlife_organic_system.Views
 
                 Label header = new Label
                 {
-                    Text = $"{review.CustomerName} • {review.Date:d}",
+                    Text = $"{review.CustomerName} • {review.Date:d} • {review.Rating}/5",
                     Font = new Font("Segoe UI", 9F, FontStyle.Bold),
                     AutoSize = true
                 };
 
                 Label comment = new Label
                 {
-                    Text = review.Comment,
+                    Text = string.IsNullOrWhiteSpace(review.Comment)
+                        ? "No written review."
+                        : review.Comment,
                     AutoSize = true,
                     MaximumSize = new Size(panel.Width - 10, 0),
                     Top = header.Bottom + 6

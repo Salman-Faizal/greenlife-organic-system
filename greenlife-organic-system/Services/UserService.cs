@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using greenlife_organic_system.Data;
 using greenlife_organic_system.Models;
-using greenlife_organic_system.Data;
+using Microsoft.VisualBasic.ApplicationServices;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace greenlife_organic_system.Services
 {
@@ -60,6 +61,30 @@ namespace greenlife_organic_system.Services
 
             Customers.Add(customer);
             SaveCustomers();
+            return true;
+        }
+
+        public bool UpdateCustomerProfile(Customer updatedCustomer)
+        {
+            Customer existing = Users
+                .OfType<Customer>()
+                .FirstOrDefault(c => c.UserId == updatedCustomer.UserId);
+
+            if (existing == null)
+                return false;
+
+            existing.FullName = updatedCustomer.FullName;
+            existing.PhoneNumber = updatedCustomer.PhoneNumber;
+            existing.Email = updatedCustomer.Email;
+            existing.Address = updatedCustomer.Address;
+
+            // Password update (only if user entered one)
+            if (!string.IsNullOrWhiteSpace(updatedCustomer.Password))
+            {
+                existing.Password = updatedCustomer.Password;
+            }
+
+            Save();
             return true;
         }
 

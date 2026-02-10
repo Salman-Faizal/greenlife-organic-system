@@ -48,15 +48,17 @@ namespace greenlife_organic_system.Views
         private void btnOrders_Click(object sender, EventArgs e)
         {
             MyOrdersForm ordersForm =
-                new MyOrdersForm(_customer, _orderService);
+                new MyOrdersForm(_customer, _orderService, _productService);
 
             ordersForm.ShowDialog();
         }
 
-
         private void btnProfile_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Customer profile screen will open here.");
+            btnBack form =
+                new ViewProfileForm(_customer, _userService);
+
+            form.ShowDialog();
         }
 
         private void btnLogout_Click(object sender, EventArgs e)

@@ -122,18 +122,43 @@ namespace greenlife_organic_system.Services
 
         public bool AddReview(string productId, Review review)
         {
+            if (review == null
+                || string.IsNullOrWhiteSpace(review.CustomerId)
+                || string.IsNullOrWhiteSpace(review.OrderId)
+                || review.Rating < 1
+                || review.Rating > 5)
+            {
+                return false;
+            }
+
             Product product = Products
                 .FirstOrDefault(p => p.ProductId == productId);
 
             if (product == null)
                 return false;
 
-            product.Rating =
-                (int)((product.Rating * product.RatingCount + review.Rating)
-                / (product.RatingCount + 1));
+            product.Reviews ??= new List<Review>();
 
-            product.RatingCount++;
+            bool alreadyReviewed = product.Reviews.Any(r =>
+                r.CustomerId == review.CustomerId
+                && r.OrderId == review.OrderId
+                && r.ProductId == productId);
+
+            if (alreadyReviewed)
+                return false;
+
+            review.ProductId = productId;
             product.Reviews.Add(review);
+
+            var validRatings = product.Reviews
+                .Where(r => r.Rating >= 1 && r.Rating <= 5)
+                .Select(r => r.Rating)
+                .ToList();
+
+            product.RatingCount = validRatings.Count;
+            product.Rating = product.RatingCount == 0
+                ? 0
+                : (int)System.Math.Round(validRatings.Average());
 
             Save();
             return true;
