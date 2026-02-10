@@ -35,7 +35,6 @@
             btnProfile = new Button();
             btnLogout = new Button();
             btnViewCart = new Button();
-            SuspendLayout();
             // 
             // lblTitle
             // 

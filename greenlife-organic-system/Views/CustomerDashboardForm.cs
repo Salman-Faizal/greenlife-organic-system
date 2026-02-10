@@ -23,13 +23,21 @@ namespace greenlife_organic_system.Views
         public CustomerDashboardForm(
             Customer customer,
             ProductService productService,
+            OrderService orderService)
+           : this (customer, productService, orderService, new UserService())
+        {
+        }
+
+        public CustomerDashboardForm(
+            Customer customer,
+            ProductService productService,
             OrderService orderService,
             UserService userService)
         {
             InitializeComponent();
 
             _customer = customer;
-            _userService = userService;
+            _userService = userService ?? new UserService();
             _productService = productService;
             _orderService = orderService;
             _cart = new Cart();
@@ -59,7 +67,7 @@ namespace greenlife_organic_system.Views
 
         private void btnProfile_Click(object sender, EventArgs e)
         {
-            CustomerProfileForm profileForm = new CustomerProfileForm(_customer, _userService);
+            ViewProfileForm profileForm = new ViewProfileForm(_customer, _userService);
             DialogResult result = profileForm.ShowDialog();
 
             if (result == DialogResult.OK)
