@@ -15,6 +15,10 @@ namespace greenlife_organic_system.Models
         public int Stock { get; set; }
         public string Supplier { get; set; }
         public double DiscountPercentage { get; set; }
+        public int Rating { get; set; } = 0;   // 0 = no ratings yet
+        public string ImagePath { get; set; }  // relative path
+        public List<Review> Reviews { get; set; } = new();
+        public int RatingCount { get; set; } = 0;
 
         public Product()
         {

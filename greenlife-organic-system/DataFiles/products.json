@@ -6,7 +6,30 @@
     "Price": 450.00,
     "Stock": 20,
     "Supplier": "GreenFarm Lanka",
-    "DiscountPercentage": 5
+    "DiscountPercentage": 5,
+    "Rating": 4,
+    "RatingCount": 10,
+    "ImagePath": "Images/image1.jpg",
+    "Reviews": [
+      {
+        "CustomerName": "Kevin",
+        "Comment": "Good",
+        "Rating": 0,
+        "Date": "2025-12-01T10:30:00"
+      },
+      {
+        "CustomerName": "Anonymous",
+        "Comment": "Satisfied",
+        "Rating": 4,
+        "Date": "2025-12-01T10:30:00"
+      },
+      {
+        "CustomerName": "Test User",
+        "Comment": "Not bad",
+        "Rating": 2,
+        "Date": "2025-12-01T10:30:00"
+      }
+    ]
   },
   {
     "ProductId": "P002",
@@ -15,7 +38,11 @@
     "Price": 1200.00,
     "Stock": 8,
     "Supplier": "Eco Harvest",
-    "DiscountPercentage": 10
+    "DiscountPercentage": 10,
+    "Rating": 0,
+    "RatingCount": 0,
+    "ImagePath": "",
+    "Reviews": []
   },
   {
     "ProductId": "P003",
@@ -24,7 +51,11 @@
     "Price": 750.00,
     "Stock": 4,
     "Supplier": "Nature Leaf",
-    "DiscountPercentage": 0
+    "DiscountPercentage": 0,
+    "Rating": 0,
+    "RatingCount": 0,
+    "ImagePath": "",
+    "Reviews": []
   },
   {
     "ProductId": "P004",
@@ -33,6 +64,10 @@
     "Price": 950.00,
     "Stock": 15,
     "Supplier": "BeePure Lanka",
-    "DiscountPercentage": 8
+    "DiscountPercentage": 8,
+    "Rating": 0,
+    "RatingCount": 0,
+    "ImagePath": "",
+    "Reviews": []
   }
 ]

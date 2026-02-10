@@ -93,7 +93,8 @@ namespace greenlife_organic_system.Views
             Series stockSeries = new Series("Stock Levels")
             {
                 ChartType = SeriesChartType.Column,
-                XValueType = ChartValueType.String
+                XValueType = ChartValueType.String,
+                IsXValueIndexed = true
             };
 
             chartStock.Series.Add(stockSeries);
@@ -142,9 +143,6 @@ namespace greenlife_organic_system.Views
 
         private void DrawStockChart()
         {
-            MessageBox.Show(
-    $"Products loaded: {_productService.Products.Count}");
-
             var stockLevels = _reportService.GetStockLevels(_productService.Products);
 
             Series series = chartStock.Series[0];
@@ -184,6 +182,11 @@ namespace greenlife_organic_system.Views
         }
 
         private void chartStock_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
         {
 
         }

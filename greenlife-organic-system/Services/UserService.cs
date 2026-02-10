@@ -11,7 +11,7 @@ namespace greenlife_organic_system.Services
         private const string CustomerFile = @"DataFiles\customers.json";
 
         public List<Admin> Admins { get; private set; }
-        public List<Customer> Customers { get; private set; }
+        public List<Customer> Customers { get; set; }
 
         public UserService()
         {
@@ -72,5 +72,11 @@ namespace greenlife_organic_system.Services
         {
             JsonDataManager.SaveToFile(CustomerFile, Customers);
         }
+
+        public void ReloadCustomers()
+        {
+            Customers = JsonDataManager.LoadFromFile<Customer>(CustomerFile);
+        }
+
     }
 }

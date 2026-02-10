@@ -14,6 +14,7 @@
     <None Remove="DataFiles\customers.json" />
     <None Remove="DataFiles\orders.json" />
     <None Remove="DataFiles\products.json" />
+    <None Remove="Images\image1.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +29,9 @@
     </Content>
     <Content Include="DataFiles\products.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\image1.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
