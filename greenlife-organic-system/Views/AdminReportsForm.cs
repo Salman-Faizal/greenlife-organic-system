@@ -63,8 +63,13 @@ namespace greenlife_organic_system.Views
             salesArea.AxisX.Title = "Date";
             salesArea.AxisY.Title = "Sales Amount";
             salesArea.AxisX.Interval = 1;
+            salesArea.AxisX.IntervalType = DateTimeIntervalType.Days;
+            salesArea.AxisX.LabelStyle.Format = "dd MMM";
             salesArea.AxisX.LabelStyle.Angle = -45;
             salesArea.AxisX.MajorGrid.Enabled = false;
+            salesArea.AxisX.ScaleView.Zoomable = true;
+            salesArea.CursorX.IsUserEnabled = true;
+            salesArea.CursorX.IsUserSelectionEnabled = true;
 
             chartSales.ChartAreas.Add(salesArea);
 
@@ -137,9 +142,26 @@ namespace greenlife_organic_system.Views
                 series.Points.Add(point);
             }
 
+            AdjustSalesAxisForDataDensity(series.Points.Count);
+
             chartSales.ChartAreas[0].RecalculateAxesScale();
         }
 
+        private void AdjustSalesAxisForDataDensity(int pointCount)
+        {
+            ChartArea area = chartSales.ChartAreas[0];
+
+            if (pointCount == 0)
+            {
+                area.AxisX.Interval = 1;
+                return;
+            }
+
+            // Target around 10 labels on screen to avoid x-axis clutter.
+            int interval = Math.Max(1, (int)Math.Ceiling(pointCount / 10.0));
+            area.AxisX.Interval = interval;
+            area.AxisX.IntervalType = DateTimeIntervalType.Days;
+        }
 
         private void DrawStockChart()
         {

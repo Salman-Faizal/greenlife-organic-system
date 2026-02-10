@@ -47,8 +47,12 @@ namespace greenlife_organic_system.Views
 
         private void btnOrders_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Customer order history screen will open here.");
+            MyOrdersForm ordersForm =
+                new MyOrdersForm(_customer, _orderService);
+
+            ordersForm.ShowDialog();
         }
+
 
         private void btnProfile_Click(object sender, EventArgs e)
         {
