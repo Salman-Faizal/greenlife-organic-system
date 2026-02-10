@@ -64,7 +64,6 @@
             lblProducts.Size = new Size(110, 20);
             lblProducts.TabIndex = 2;
             lblProducts.Text = "Total Products: ";
-            lblProducts.Click += lblProducts_Click;
             // 
             // lblLowStock
             // 
@@ -83,7 +82,7 @@
             btnProducts.TabIndex = 4;
             btnProducts.Text = "Manage Products";
             btnProducts.UseVisualStyleBackColor = true;
-            btnProducts.Click += btnProducts_Click_1;
+            btnProducts.Click += btnProducts_Click;
             // 
             // btnOrders
             // 
@@ -93,7 +92,7 @@
             btnOrders.TabIndex = 5;
             btnOrders.Text = "Manage Orders";
             btnOrders.UseVisualStyleBackColor = true;
-            btnOrders.Click += btnOrders_Click_1;
+            btnOrders.Click += btnOrders_Click;
             // 
             // btnReports
             // 
@@ -103,7 +102,7 @@
             btnReports.TabIndex = 6;
             btnReports.Text = "Generate Reports";
             btnReports.UseVisualStyleBackColor = true;
-            btnReports.Click += btnReports_Click_1;
+            btnReports.Click += btnReports_Click;
             // 
             // btnLogout
             // 
@@ -113,7 +112,7 @@
             btnLogout.TabIndex = 7;
             btnLogout.Text = "Logout";
             btnLogout.UseVisualStyleBackColor = true;
-            btnLogout.Click += btnLogout_Click_1;
+            btnLogout.Click += btnLogout_Click;
             // 
             // AdminDashboardForm
             // 

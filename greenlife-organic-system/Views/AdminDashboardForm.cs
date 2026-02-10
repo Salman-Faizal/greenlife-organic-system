@@ -69,30 +69,5 @@ namespace greenlife_organic_system.Views
             this.Close();
             Application.Restart();
         }
-
-        private void lblProducts_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnProducts_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnOrders_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnReports_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnLogout_Click_1(object sender, EventArgs e)
-        {
-
-        }
     }
 }

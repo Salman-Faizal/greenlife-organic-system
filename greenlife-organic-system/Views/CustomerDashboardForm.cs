@@ -36,7 +36,11 @@ namespace greenlife_organic_system.Views
 
         private void btnBrowse_Click(object sender, EventArgs e)
         {
-            BrowseProductsForm browseForm = new BrowseProductsForm(_productService, _cart);
+            BrowseProductsForm browseForm = new BrowseProductsForm(
+                _productService,
+                _cart,
+                _customer,
+                _orderService);
             browseForm.ShowDialog();
 
         }

@@ -16,10 +16,10 @@ namespace greenlife_organic_system.Views
         public CartForm(Cart cart, ProductService productService, Customer customer, OrderService orderService)
         {
             InitializeComponent();
-            _cart = cart;
-            _productService = productService;
-            _customer = customer;
-            _orderService = orderService;
+            _cart = cart ?? throw new ArgumentNullException(nameof(cart));
+            _productService = productService ?? throw new ArgumentNullException(nameof(productService));
+            _customer = customer ?? throw new ArgumentNullException(nameof(customer));
+            _orderService = orderService ?? throw new ArgumentNullException(nameof(orderService));
 
             ConfigureGrid();
             LoadCart();

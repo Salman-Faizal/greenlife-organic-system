@@ -21,12 +21,18 @@ namespace greenlife_organic_system.Views
         private readonly Customer _customer;
 
 
-        public BrowseProductsForm(ProductService productService, Cart cart)
+        public BrowseProductsForm(
+            ProductService productService,
+            Cart cart,
+            Customer customer,
+            OrderService orderService)
         {
             InitializeComponent();
 
             _productService = productService;
             _cart = cart;
+            _customer = customer;
+            _orderService = orderService;
 
             ConfigureGrid();
             ClearProductDetails();
