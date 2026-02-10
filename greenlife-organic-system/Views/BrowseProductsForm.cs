@@ -57,9 +57,10 @@ namespace greenlife_organic_system.Views
 
             flpReviews.Controls.Clear();
 
-            numQuantity.Enabled = false;
-            btnAddToCart.Enabled = false;
-            lblReviews.Enabled = false;
+            lblReviews.Visible = false;
+            numQuantity.Visible = false;
+            btnAddToCart.Visible = false;
+            lblCartTotal.Visible = false;
         }
 
         // ---------------- CATEGORY ----------------
@@ -156,6 +157,10 @@ namespace greenlife_organic_system.Views
             lblName.Text = product.Name;
             lblDescription.Text = $"Category: {product.Category}";
             lblPrice.Text = $"Price: {product.GetDiscountedPrice():0.00} LKR";
+            lblReviews.Visible = true;
+            numQuantity.Visible = true;
+            btnAddToCart.Visible = true;
+            lblCartTotal.Visible = true;
 
             // ---------- STOCK & QUANTITY (SAFE) ----------
             numQuantity.Minimum = 0;
@@ -261,9 +266,16 @@ namespace greenlife_organic_system.Views
                 return;
 
             int quantity = (int)numQuantity.Value;
+            if (!_productService.ReduceStock(_selectedProduct.ProductId, quantity))
+            {
+                MessageBox.Show("Unable to add item due to insufficient stock.");
+                return;
+            }
 
+            _selectedProduct.Stock = Math.Max(0, _selectedProduct.Stock - quantity);
             _cart.AddItem(_selectedProduct, quantity);
             UpdateCartTotal();
+            DisplayProductDetails(_selectedProduct);
 
             MessageBox.Show("Product added to cart.");
         }
@@ -271,6 +283,11 @@ namespace greenlife_organic_system.Views
         private void UpdateCartTotal()
         {
             lblCartTotal.Text = $"Cart Total: {_cart.GetTotal():0.00} LKR";
+        }
+
+        private void BrowseProductsForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

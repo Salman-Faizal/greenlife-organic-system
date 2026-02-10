@@ -227,6 +227,7 @@
             Controls.Add(pnlDetails);
             Name = "BrowseProductsForm";
             Text = "Products";
+            Load += BrowseProductsForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvProducts).EndInit();
             ((System.ComponentModel.ISupportInitialize)numQuantity).EndInit();
             pnlDetails.ResumeLayout(false);
