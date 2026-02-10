@@ -22,7 +22,7 @@ namespace greenlife_organic_system.Views
             InitializeComponent();
 
             _productService = productService;
-            _cart = new Cart();
+            _cart = cart;
 
             ConfigureGrid();
             ClearProductDetails();
@@ -30,7 +30,7 @@ namespace greenlife_organic_system.Views
             LoadCategories();
             LoadProducts(_productService.Products);
 
-            // IMPORTANT: form is now fully initialized
+            // Fully initializaign the form
             _isFormReady = true;
         }
 
@@ -277,14 +277,20 @@ namespace greenlife_organic_system.Views
             UpdateCartTotal();
             DisplayProductDetails(_selectedProduct);
 
-            BrowseProductsForm browse = new BrowseProductsForm(_productService, _cart);
-            browse.ShowDialog();
+            MessageBox.Show("Product added to cart.");
         }
 
         private void UpdateCartTotal()
         {
             lblCartTotal.Text = $"Cart Total: {_cart.GetTotal():0.00} LKR";
         }
+
+        private void btnViewCart_Click(object sender, EventArgs e)
+        {
+            CartForm cartForm = new CartForm(_cart);
+            cartForm.ShowDialog();
+        }
+
 
         private void BrowseProductsForm_Load(object sender, EventArgs e)
         {

@@ -119,6 +119,7 @@
             Controls.Add(lblTitle);
             Name = "CustomerDashboardForm";
             Text = "Dashboard";
+            Load += CustomerDashboardForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

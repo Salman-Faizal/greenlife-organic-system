@@ -36,6 +36,7 @@
             btnAddToCart = new Button();
             lblCartTotal = new Label();
             pnlDetails = new Panel();
+            btnViewCart = new Button();
             lblReviews = new Label();
             flpReviews = new FlowLayoutPanel();
             lblStock = new Label();
@@ -122,6 +123,7 @@
             // 
             // pnlDetails
             // 
+            pnlDetails.Controls.Add(btnViewCart);
             pnlDetails.Controls.Add(lblReviews);
             pnlDetails.Controls.Add(flpReviews);
             pnlDetails.Controls.Add(lblCartTotal);
@@ -137,6 +139,16 @@
             pnlDetails.Name = "pnlDetails";
             pnlDetails.Size = new Size(323, 697);
             pnlDetails.TabIndex = 7;
+            // 
+            // btnViewCart
+            // 
+            btnViewCart.Location = new Point(185, 631);
+            btnViewCart.Name = "btnViewCart";
+            btnViewCart.Size = new Size(94, 29);
+            btnViewCart.TabIndex = 13;
+            btnViewCart.Text = "> To Cart";
+            btnViewCart.UseVisualStyleBackColor = true;
+            btnViewCart.Click += btnViewCart_Click;
             // 
             // lblReviews
             // 
@@ -256,5 +268,6 @@
         private Label label1;
         private FlowLayoutPanel flpReviews;
         private Label lblReviews;
+        private Button btnViewCart;
     }
 }
