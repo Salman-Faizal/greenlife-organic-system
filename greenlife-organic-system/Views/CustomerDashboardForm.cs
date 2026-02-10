@@ -18,20 +18,24 @@ namespace greenlife_organic_system.Views
         private readonly ProductService _productService;
         private readonly OrderService _orderService;
         private readonly Cart _cart;
+        private readonly UserService _userService;
 
         public CustomerDashboardForm(
             Customer customer,
             ProductService productService,
-            OrderService orderService)
+            OrderService orderService,
+            UserService userService)
         {
             InitializeComponent();
 
             _customer = customer;
+            _userService = userService;
             _productService = productService;
             _orderService = orderService;
             _cart = new Cart();
 
             lblWelcome.Text = $"Welcome, {_customer.FullName}";
+            _userService = userService;
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -55,10 +59,13 @@ namespace greenlife_organic_system.Views
 
         private void btnProfile_Click(object sender, EventArgs e)
         {
-            btnBack form =
-                new ViewProfileForm(_customer, _userService);
+            CustomerProfileForm profileForm = new CustomerProfileForm(_customer, _userService);
+            DialogResult result = profileForm.ShowDialog();
 
-            form.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                lblWelcome.Text = $"Welcome, {_customer.FullName}";
+            }
         }
 
         private void btnLogout_Click(object sender, EventArgs e)

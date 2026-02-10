@@ -60,7 +60,7 @@ namespace greenlife_organic_system.Views
             else if (user is Customer customer)
             {
                 CustomerDashboardForm customerForm =
-                    new CustomerDashboardForm(customer, _productService, _orderService);
+                    new CustomerDashboardForm(customer, _userService, _productService, _orderService);
                 customerForm.Show();
             }
         }
