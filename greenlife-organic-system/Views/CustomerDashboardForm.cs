@@ -17,6 +17,7 @@ namespace greenlife_organic_system.Views
         private readonly Customer _customer;
         private readonly ProductService _productService;
         private readonly OrderService _orderService;
+        private readonly Cart _cart;
 
         public CustomerDashboardForm(
             Customer customer,
@@ -28,6 +29,7 @@ namespace greenlife_organic_system.Views
             _customer = customer;
             _productService = productService;
             _orderService = orderService;
+            _cart = new Cart();
 
             lblWelcome.Text = $"Welcome, {_customer.FullName}";
         }
@@ -53,6 +55,12 @@ namespace greenlife_organic_system.Views
         {
             this.Close();
             Application.Restart();
+        }
+
+        private void btnViewCart_Click(object sender, EventArgs e)
+        {
+            CartForm cartForm = new CartForm(_cart);
+            cartForm.ShowDialog();
         }
     }
 }

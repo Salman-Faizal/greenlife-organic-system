@@ -34,6 +34,7 @@
             btnOrders = new Button();
             btnProfile = new Button();
             btnLogout = new Button();
+            btnViewCart = new Button();
             SuspendLayout();
             // 
             // lblTitle
@@ -56,7 +57,7 @@
             // 
             // btnBrowse
             // 
-            btnBrowse.Location = new Point(103, 168);
+            btnBrowse.Location = new Point(21, 168);
             btnBrowse.Name = "btnBrowse";
             btnBrowse.Size = new Size(145, 29);
             btnBrowse.TabIndex = 2;
@@ -66,7 +67,7 @@
             // 
             // btnOrders
             // 
-            btnOrders.Location = new Point(304, 168);
+            btnOrders.Location = new Point(415, 168);
             btnOrders.Name = "btnOrders";
             btnOrders.Size = new Size(145, 29);
             btnOrders.TabIndex = 3;
@@ -76,7 +77,7 @@
             // 
             // btnProfile
             // 
-            btnProfile.Location = new Point(516, 168);
+            btnProfile.Location = new Point(615, 168);
             btnProfile.Name = "btnProfile";
             btnProfile.Size = new Size(145, 29);
             btnProfile.TabIndex = 4;
@@ -94,11 +95,22 @@
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += btnLogout_Click;
             // 
+            // btnViewCart
+            // 
+            btnViewCart.Location = new Point(224, 168);
+            btnViewCart.Name = "btnViewCart";
+            btnViewCart.Size = new Size(133, 29);
+            btnViewCart.TabIndex = 6;
+            btnViewCart.Text = "View Cart";
+            btnViewCart.UseVisualStyleBackColor = true;
+            btnViewCart.Click += btnViewCart_Click;
+            // 
             // CustomerDashboardForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnViewCart);
             Controls.Add(btnLogout);
             Controls.Add(btnProfile);
             Controls.Add(btnOrders);
@@ -106,7 +118,7 @@
             Controls.Add(lblWelcome);
             Controls.Add(lblTitle);
             Name = "CustomerDashboardForm";
-            Text = "Form1";
+            Text = "Dashboard";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -119,5 +131,6 @@
         private Button btnOrders;
         private Button btnProfile;
         private Button btnLogout;
+        private Button btnViewCart;
     }
 }

@@ -277,7 +277,8 @@ namespace greenlife_organic_system.Views
             UpdateCartTotal();
             DisplayProductDetails(_selectedProduct);
 
-            MessageBox.Show("Product added to cart.");
+            BrowseProductsForm browse = new BrowseProductsForm(_productService, _cart);
+            browse.ShowDialog();
         }
 
         private void UpdateCartTotal()
