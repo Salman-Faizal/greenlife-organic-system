@@ -95,7 +95,7 @@
             // 
             // numQuantity
             // 
-            numQuantity.Location = new Point(58, 585);
+            numQuantity.Location = new Point(32, 562);
             numQuantity.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numQuantity.Name = "numQuantity";
             numQuantity.Size = new Size(51, 27);
@@ -105,9 +105,9 @@
             // btnAddToCart
             // 
             btnAddToCart.Enabled = false;
-            btnAddToCart.Location = new Point(106, 585);
+            btnAddToCart.Location = new Point(80, 562);
             btnAddToCart.Name = "btnAddToCart";
-            btnAddToCart.Size = new Size(94, 29);
+            btnAddToCart.Size = new Size(141, 29);
             btnAddToCart.TabIndex = 5;
             btnAddToCart.Text = "Add to Cart";
             btnAddToCart.UseVisualStyleBackColor = true;
@@ -116,7 +116,7 @@
             // lblCartTotal
             // 
             lblCartTotal.AutoSize = true;
-            lblCartTotal.Location = new Point(49, 640);
+            lblCartTotal.Location = new Point(32, 608);
             lblCartTotal.Name = "lblCartTotal";
             lblCartTotal.Size = new Size(0, 20);
             lblCartTotal.TabIndex = 6;
@@ -139,21 +139,22 @@
             pnlDetails.Name = "pnlDetails";
             pnlDetails.Size = new Size(323, 697);
             pnlDetails.TabIndex = 7;
+            pnlDetails.Paint += pnlDetails_Paint;
             // 
             // btnViewCart
             // 
-            btnViewCart.Location = new Point(185, 631);
+            btnViewCart.Location = new Point(32, 631);
             btnViewCart.Name = "btnViewCart";
-            btnViewCart.Size = new Size(94, 29);
+            btnViewCart.Size = new Size(189, 29);
             btnViewCart.TabIndex = 13;
-            btnViewCart.Text = "> To Cart";
+            btnViewCart.Text = "> Proceed To Cart";
             btnViewCart.UseVisualStyleBackColor = true;
             btnViewCart.Click += btnViewCart_Click;
             // 
             // lblReviews
             // 
             lblReviews.AutoSize = true;
-            lblReviews.Location = new Point(49, 405);
+            lblReviews.Location = new Point(25, 376);
             lblReviews.Name = "lblReviews";
             lblReviews.Size = new Size(62, 20);
             lblReviews.TabIndex = 0;
@@ -163,16 +164,16 @@
             // 
             flpReviews.AutoScroll = true;
             flpReviews.FlowDirection = FlowDirection.TopDown;
-            flpReviews.Location = new Point(49, 428);
+            flpReviews.Location = new Point(25, 399);
             flpReviews.Name = "flpReviews";
-            flpReviews.Size = new Size(230, 130);
+            flpReviews.Size = new Size(230, 108);
             flpReviews.TabIndex = 12;
             flpReviews.WrapContents = false;
             // 
             // lblStock
             // 
             lblStock.AutoSize = true;
-            lblStock.Location = new Point(49, 347);
+            lblStock.Location = new Point(25, 318);
             lblStock.Name = "lblStock";
             lblStock.Size = new Size(0, 20);
             lblStock.TabIndex = 11;
@@ -180,7 +181,7 @@
             // lblDescription
             // 
             lblDescription.AutoSize = true;
-            lblDescription.Location = new Point(49, 242);
+            lblDescription.Location = new Point(25, 213);
             lblDescription.Name = "lblDescription";
             lblDescription.Size = new Size(0, 20);
             lblDescription.TabIndex = 10;
@@ -188,7 +189,7 @@
             // lblRating
             // 
             lblRating.AutoSize = true;
-            lblRating.Location = new Point(49, 314);
+            lblRating.Location = new Point(25, 285);
             lblRating.Name = "lblRating";
             lblRating.Size = new Size(0, 20);
             lblRating.TabIndex = 9;
@@ -196,7 +197,7 @@
             // lblPrice
             // 
             lblPrice.AutoSize = true;
-            lblPrice.Location = new Point(49, 277);
+            lblPrice.Location = new Point(25, 248);
             lblPrice.Name = "lblPrice";
             lblPrice.Size = new Size(0, 20);
             lblPrice.TabIndex = 8;
@@ -204,14 +205,14 @@
             // lblName
             // 
             lblName.AutoSize = true;
-            lblName.Location = new Point(49, 29);
+            lblName.Location = new Point(25, 0);
             lblName.Name = "lblName";
             lblName.Size = new Size(0, 20);
             lblName.TabIndex = 7;
             // 
             // picProduct
             // 
-            picProduct.Location = new Point(49, 73);
+            picProduct.Location = new Point(25, 44);
             picProduct.Name = "picProduct";
             picProduct.Size = new Size(230, 152);
             picProduct.TabIndex = 6;

@@ -2,17 +2,24 @@
 using System.Linq;
 using System.Windows.Forms;
 using greenlife_organic_system.Models;
+using greenlife_organic_system.Services;
 
 namespace greenlife_organic_system.Views
 {
     public partial class CartForm : Form
     {
         private readonly Cart _cart;
+        private readonly ProductService _productService;
+        private readonly Customer _customer;
+        private readonly OrderService _orderService;
 
-        public CartForm(Cart cart)
+        public CartForm(Cart cart, ProductService productService, Customer customer, OrderService orderService)
         {
             InitializeComponent();
             _cart = cart;
+            _productService = productService;
+            _customer = customer;
+            _orderService = orderService;
 
             ConfigureGrid();
             LoadCart();
@@ -51,45 +58,57 @@ namespace greenlife_organic_system.Views
             lblTotal.Text = $"Total: {_cart.GetTotal():0.00} LKR";
         }
 
+        private bool TryGetSelectedCartItem(out OrderItem item)
+        {
+            item = null;
+
+            DataGridViewRow selectedRow = dgvCart.SelectedRows
+                .Cast<DataGridViewRow>()
+                .FirstOrDefault(r => !r.IsNewRow);
+
+            if (selectedRow == null && dgvCart.CurrentCell != null)
+                selectedRow = dgvCart.Rows[dgvCart.CurrentCell.RowIndex];
+
+            if (selectedRow == null)
+                return false;
+
+            object value = selectedRow.Cells["ProductId"].Value;
+            string productId = value?.ToString();
+
+            if (string.IsNullOrWhiteSpace(productId))
+                return false;
+
+            item = _cart.Items.FirstOrDefault(i => i.Product.ProductId == productId);
+            return item != null;
+        }
+
         // ---------------- INCREASE QTY ----------------
         private void btnIncreaseQty_Click(object sender, EventArgs e)
         {
-            if (dgvCart.CurrentRow == null)
+            if (!TryGetSelectedCartItem(out OrderItem item))
                 return;
 
-            string productId =
-                dgvCart.CurrentRow.Cells["ProductId"].Value.ToString();
-
-            OrderItem item = _cart.Items
-                .First(i => i.Product.ProductId == productId);
-
-            if (item.Quantity < item.Product.Stock)
-            {
-                item.Quantity++;
-                LoadCart();
-            }
-            else
+            if (!_productService.ReduceStock(item.Product.ProductId, 1))
             {
                 MessageBox.Show("Not enough stock available.");
+                return;
             }
+
+            item.Quantity++;
+            LoadCart();
         }
 
         // ---------------- DECREASE QTY ----------------
         private void btnDecreaseQty_Click(object sender, EventArgs e)
         {
-            if (dgvCart.CurrentRow == null)
+            if (!TryGetSelectedCartItem(out OrderItem item))
                 return;
 
-            string productId =
-                dgvCart.CurrentRow.Cells["ProductId"].Value.ToString();
-
-            OrderItem item = _cart.Items
-                .First(i => i.Product.ProductId == productId);
-
             item.Quantity--;
+            _productService.IncreaseStock(item.Product.ProductId, 1);
 
             if (item.Quantity <= 0)
-                _cart.RemoveItem(productId);
+                _cart.RemoveItem(item.Product.ProductId);
 
             LoadCart();
         }
@@ -97,21 +116,57 @@ namespace greenlife_organic_system.Views
         // ---------------- REMOVE ITEM ----------------
         private void btnRemoveItem_Click(object sender, EventArgs e)
         {
-            if (dgvCart.CurrentRow == null)
+            if (!TryGetSelectedCartItem(out OrderItem item))
                 return;
 
-            string productId =
-                dgvCart.CurrentRow.Cells["ProductId"].Value.ToString();
-
-            _cart.RemoveItem(productId);
+            _productService.IncreaseStock(item.Product.ProductId, item.Quantity);
+            _cart.RemoveItem(item.Product.ProductId);
             LoadCart();
         }
 
-        // ---------------- CHECKOUT (NEXT STEP) ----------------
+        // ---------------- CHECKOUT ----------------
         private void btnCheckout_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Checkout will be implemented next.");
+            if (_cart.Items.Count == 0)
+            {
+                MessageBox.Show("Your cart is empty.");
+                return;
+            }
+
+            DialogResult confirm = MessageBox.Show(
+                $"Confirm checkout?\n\nYour total is {_cart.GetTotal():0.00} LKR\nPayment will be collected upon delivery.",
+                "Confirm Order",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (confirm != DialogResult.Yes)
+                return;
+
+            bool success = _orderService.PlaceOrder(_customer, _cart);
+
+            if (!success)
+            {
+                MessageBox.Show(
+                    "Order could not be placed due to insufficient stock.",
+                    "Checkout Failed",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                return;
+            }
+
+            LoadCart(); // cart is now empty
+            MessageBox.Show(
+                "Order placed successfully!\n\nYour order is now pending.",
+                "Success",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
+
+            this.Close();
         }
+
 
         private void lblTotal_Click(object sender, EventArgs e)
         {

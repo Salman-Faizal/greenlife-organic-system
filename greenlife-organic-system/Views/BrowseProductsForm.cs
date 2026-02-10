@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using greenlife_organic_system.Models;
 using greenlife_organic_system.Services;
 
+
 namespace greenlife_organic_system.Views
 {
     public partial class BrowseProductsForm : Form
@@ -16,8 +17,11 @@ namespace greenlife_organic_system.Views
         private readonly ProductService _productService;
         private readonly Cart _cart;
         private Product _selectedProduct;
+        private readonly OrderService _orderService;
+        private readonly Customer _customer;
 
-        public BrowseProductsForm(ProductService productService)
+
+        public BrowseProductsForm(ProductService productService, Cart cart)
         {
             InitializeComponent();
 
@@ -272,7 +276,6 @@ namespace greenlife_organic_system.Views
                 return;
             }
 
-            _selectedProduct.Stock = Math.Max(0, _selectedProduct.Stock - quantity);
             _cart.AddItem(_selectedProduct, quantity);
             UpdateCartTotal();
             DisplayProductDetails(_selectedProduct);
@@ -287,12 +290,17 @@ namespace greenlife_organic_system.Views
 
         private void btnViewCart_Click(object sender, EventArgs e)
         {
-            CartForm cartForm = new CartForm(_cart);
+            CartForm cartForm = new CartForm(_cart, _productService, _customer, _orderService);
             cartForm.ShowDialog();
         }
 
 
         private void BrowseProductsForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnlDetails_Paint(object sender, PaintEventArgs e)
         {
 
         }

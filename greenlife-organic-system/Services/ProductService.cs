@@ -98,6 +98,19 @@ namespace greenlife_organic_system.Services
             return true;
         }
 
+        public bool IncreaseStock(string productId, int quantity)
+        {
+            Product product = Products
+                .FirstOrDefault(p => p.ProductId == productId);
+
+            if (product == null || quantity <= 0)
+                return false;
+
+            product.Stock += quantity;
+            Save();
+            return true;
+        }
+
         /* ------------------ Persistence ------------------ */
 
         public void Save()

@@ -59,7 +59,7 @@ namespace greenlife_organic_system.Views
 
         private void btnViewCart_Click(object sender, EventArgs e)
         {
-            CartForm cartForm = new CartForm(_cart);
+            CartForm cartForm = new CartForm(_cart, _productService, _customer, _orderService);
             cartForm.ShowDialog();
         }
 

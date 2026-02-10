@@ -46,7 +46,7 @@
             dgvCart.ReadOnly = true;
             dgvCart.RowHeadersWidth = 51;
             dgvCart.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCart.Size = new Size(535, 258);
+            dgvCart.Size = new Size(547, 258);
             dgvCart.TabIndex = 0;
             // 
             // btnIncreaseQty
