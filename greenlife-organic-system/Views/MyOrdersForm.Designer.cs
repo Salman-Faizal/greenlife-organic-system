@@ -42,17 +42,19 @@
             dgvOrders.Location = new Point(33, 90);
             dgvOrders.Name = "dgvOrders";
             dgvOrders.RowHeadersWidth = 51;
-            dgvOrders.Size = new Size(509, 322);
+            dgvOrders.Size = new Size(426, 322);
             dgvOrders.TabIndex = 0;
+            dgvOrders.SelectionChanged += dgvOrders_SelectionChanged;
             // 
             // dgvOrderItems
             // 
             dgvOrderItems.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvOrderItems.Location = new Point(689, 90);
+            dgvOrderItems.Location = new Point(529, 90);
             dgvOrderItems.Name = "dgvOrderItems";
             dgvOrderItems.RowHeadersWidth = 51;
-            dgvOrderItems.Size = new Size(318, 322);
+            dgvOrderItems.Size = new Size(505, 153);
             dgvOrderItems.TabIndex = 1;
+            dgvOrderItems.CellFormatting += dgvOrderItems_CellFormatting;
             // 
             // lblOrdersTitle
             // 
@@ -66,23 +68,25 @@
             // lblOrderDetails
             // 
             lblOrderDetails.AutoSize = true;
-            lblOrderDetails.Location = new Point(689, 53);
+            lblOrderDetails.Location = new Point(529, 53);
             lblOrderDetails.Name = "lblOrderDetails";
             lblOrderDetails.Size = new Size(97, 20);
             lblOrderDetails.TabIndex = 3;
             lblOrderDetails.Text = "Order Details";
+            lblOrderDetails.Click += lblOrderDetails_Click;
             // 
             // MyOrdersForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1039, 450);
+            ClientSize = new Size(1070, 450);
             Controls.Add(lblOrderDetails);
             Controls.Add(lblOrdersTitle);
             Controls.Add(dgvOrderItems);
             Controls.Add(dgvOrders);
             Name = "MyOrdersForm";
             Text = "My Orders";
+            Load += MyOrdersForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvOrders).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvOrderItems).EndInit();
             ResumeLayout(false);

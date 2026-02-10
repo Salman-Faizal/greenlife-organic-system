@@ -129,6 +129,7 @@
             Controls.Add(lblTitle);
             Name = "AdminDashboardForm";
             Text = "Form1";
+            Load += AdminDashboardForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

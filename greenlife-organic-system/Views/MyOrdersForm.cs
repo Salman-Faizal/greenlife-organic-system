@@ -1,8 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Windows.Forms;
+﻿using BrightIdeasSoftware;
 using greenlife_organic_system.Models;
 using greenlife_organic_system.Services;
+using System;
+using System.Data;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace greenlife_organic_system.Views
 {
@@ -71,13 +73,74 @@ namespace greenlife_organic_system.Views
         // ---------------- LOAD ORDER ITEMS ----------------
         private void LoadOrderItems(Order order)
         {
-            dgvOrderItems.DataSource = order.Items.Select(i => new
+            var fields = new[] { "Product", "Price", "Quantity", "Subtotal" };
+
+            DataTable dtInverted = new DataTable();
+            dtInverted.Columns.Add("Field Name"); // The left-hand labels
+
+            for (int i = 0; i < order.Items.Count; i++)
             {
-                Product = i.Product.Name,
-                Price = i.Product.GetDiscountedPrice(),
-                Quantity = i.Quantity,
-                Subtotal = i.GetSubtotal()
-            }).ToList();
+                dtInverted.Columns.Add("Item " + (i + 1));
+            }
+
+            foreach (var field in fields)
+            {
+                DataRow row = dtInverted.NewRow();
+                row[0] = field; // e.g., "Product"
+
+                for (int i = 0; i < order.Items.Count; i++)
+                {
+                    var item = order.Items[i];
+                    // Assign the correct value based on the field label
+                    row[i + 1] = field switch
+                    {
+                        "Product" => item.Product.Name,
+                        "Price" => item.Product.GetDiscountedPrice().ToString("C"),
+                        "Quantity" => item.Quantity.ToString(),
+                        "Subtotal" => item.GetSubtotal().ToString("C"),
+                        _ => ""
+                    };
+                }
+                dtInverted.Rows.Add(row);
+            }
+
+            // Styling the grid view to look like a key-value pair display
+            dgvOrderItems.ColumnHeadersVisible = false;
+            dgvOrderItems.RowHeadersVisible = false;
+            dgvOrderItems.DefaultCellStyle.SelectionBackColor = dgvOrderItems.DefaultCellStyle.BackColor;
+            dgvOrderItems.DefaultCellStyle.SelectionForeColor = dgvOrderItems.DefaultCellStyle.ForeColor;
+            dgvOrderItems.ClearSelection();
+
+
+            dgvOrderItems.DataSource = dtInverted;
+
+            //dgvOrderItems.DataSource = order.Items.Select(i => new
+            //{
+            //    Product = i.Product.Name,
+            //    Price = i.Product.GetDiscountedPrice(),
+            //    Quantity = i.Quantity,
+            //    Subtotal = i.GetSubtotal()
+            //}).ToList();
+
+        }
+
+        private void dgvOrderItems_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // Check if we are in the FIRST COLUMN (Index 0)
+            if (e.ColumnIndex == 0 && e.RowIndex >= 0)
+            {
+                e.CellStyle.Font = new Font(dgvOrderItems.Font, FontStyle.Bold);
+            }
+        }
+
+        private void lblOrderDetails_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MyOrdersForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

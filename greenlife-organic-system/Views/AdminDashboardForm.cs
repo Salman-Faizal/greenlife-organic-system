@@ -61,13 +61,21 @@ namespace greenlife_organic_system.Views
 
         private void btnOrders_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Order Management screen will open here.");
+            AdminManageOrdersForm form =
+                new AdminManageOrdersForm(_orderService);
+
+            form.ShowDialog();
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.Close();
             Application.Restart();
+        }
+
+        private void AdminDashboardForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
