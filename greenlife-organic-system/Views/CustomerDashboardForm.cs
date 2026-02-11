@@ -36,14 +36,13 @@ namespace greenlife_organic_system.Views
         {
             InitializeComponent();
 
-            _customer = customer;
-            _userService = userService ?? new UserService();
-            _productService = productService;
-            _orderService = orderService;
+            _customer = customer ?? throw new ArgumentNullException(nameof(customer));
+            _productService = productService ?? throw new ArgumentNullException(nameof(productService));
+            _orderService = orderService ?? throw new ArgumentNullException(nameof(orderService));
+            _userService = userService ?? new UserService();  
             _cart = new Cart();
 
             lblWelcome.Text = $"Welcome, {_customer.FullName}";
-            _userService = userService;
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)

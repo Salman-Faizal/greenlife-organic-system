@@ -5,7 +5,7 @@ using greenlife_organic_system.Services;
 
 namespace greenlife_organic_system.Views
 {
-    public class ViewProfileForm : Form
+    partial class ViewProfileForm : Form
     {
         private readonly Customer _customer;
         private readonly UserService _userService;

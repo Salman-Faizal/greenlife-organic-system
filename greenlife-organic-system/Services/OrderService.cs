@@ -22,24 +22,25 @@ namespace greenlife_organic_system.Services
 
         public bool PlaceOrder(Customer customer, Cart cart)
         {
-            if (cart.Items.Count == 0)
+            if (customer == null || cart == null || cart.Items.Count == 0)
                 return false;
 
-            // Check stock availability
-            foreach (var item in cart.Items)
-            {
-                if (item.Product.Stock < item.Quantity)
-                    return false;
-            }
+            // Stock is already reserved when items are added to cart.
+            // Verifying that cart quantities are still valid before finalizing.
+            bool invalidCartState = cart.Items.Any(item =>
+                item == null
+                || item.Product == null
+                || item.Quantity <= 0);
 
-            // Reduce stock
-            foreach (var item in cart.Items)
-            {
-                _productService.ReduceStock(
-                    item.Product.ProductId,
-                    item.Quantity
-                );
-            }
+            if (invalidCartState)
+                return false;
+
+            // Ensuring product records still exist; checkout cannot continue otherwise.
+            bool missingProduct = cart.Items.Any(item =>
+                !_productService.Products.Any(p => p.ProductId == item.Product.ProductId));
+
+            if (missingProduct)
+                return false;
 
             Order order = new Order
             {

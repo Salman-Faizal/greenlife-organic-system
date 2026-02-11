@@ -61,16 +61,27 @@ namespace greenlife_organic_system.Services
         // Search by product name (partial match)
         public List<Product> SearchByName(string name)
         {
+            if (string.IsNullOrWhiteSpace(name))
+                return Products.ToList();
+
+            string normalized = name.Trim();
             return Products
-                .Where(p => p.Name.ToLower().Contains(name.ToLower()))
+                .Where(p => !string.IsNullOrWhiteSpace(p.Name)
+                    && p.Name.Contains(normalized, System.StringComparison.OrdinalIgnoreCase))
                 .ToList();
         }
 
         // Search by category
         public List<Product> SearchByCategory(string category)
         {
+            if (string.IsNullOrWhiteSpace(category))
+                return Products.ToList();
+
+            string normalized = category.Trim();
+
             return Products
-                .Where(p => p.Category.ToLower() == category.ToLower())
+                .Where(p => !string.IsNullOrWhiteSpace(p.Category)
+                    && p.Category.Equals(normalized, System.StringComparison.OrdinalIgnoreCase))
                 .ToList();
         }
 

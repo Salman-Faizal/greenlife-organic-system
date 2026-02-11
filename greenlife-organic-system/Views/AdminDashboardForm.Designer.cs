@@ -41,7 +41,7 @@
             // lblTitle
             // 
             lblTitle.AutoSize = true;
-            lblTitle.Location = new Point(326, 31);
+            lblTitle.Location = new Point(23, 28);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(122, 20);
             lblTitle.TabIndex = 0;
@@ -50,7 +50,7 @@
             // lblOrders
             // 
             lblOrders.AutoSize = true;
-            lblOrders.Location = new Point(274, 148);
+            lblOrders.Location = new Point(23, 126);
             lblOrders.Name = "lblOrders";
             lblOrders.Size = new Size(105, 20);
             lblOrders.TabIndex = 1;
@@ -59,7 +59,7 @@
             // lblProducts
             // 
             lblProducts.AutoSize = true;
-            lblProducts.Location = new Point(274, 100);
+            lblProducts.Location = new Point(23, 93);
             lblProducts.Name = "lblProducts";
             lblProducts.Size = new Size(110, 20);
             lblProducts.TabIndex = 2;
@@ -68,7 +68,7 @@
             // lblLowStock
             // 
             lblLowStock.AutoSize = true;
-            lblLowStock.Location = new Point(274, 203);
+            lblLowStock.Location = new Point(23, 158);
             lblLowStock.Name = "lblLowStock";
             lblLowStock.Size = new Size(123, 20);
             lblLowStock.TabIndex = 3;
@@ -76,19 +76,19 @@
             // 
             // btnProducts
             // 
-            btnProducts.Location = new Point(131, 288);
+            btnProducts.Location = new Point(23, 229);
             btnProducts.Name = "btnProducts";
-            btnProducts.Size = new Size(149, 29);
+            btnProducts.Size = new Size(197, 29);
             btnProducts.TabIndex = 4;
             btnProducts.Text = "Manage Products";
             btnProducts.UseVisualStyleBackColor = true;
-            btnProducts.Click += btnProducts_Click;
+            btnProducts.Click += btnManageProducts_Click;
             // 
             // btnOrders
             // 
-            btnOrders.Location = new Point(316, 288);
+            btnOrders.Location = new Point(23, 273);
             btnOrders.Name = "btnOrders";
-            btnOrders.Size = new Size(153, 29);
+            btnOrders.Size = new Size(197, 29);
             btnOrders.TabIndex = 5;
             btnOrders.Text = "Manage Orders";
             btnOrders.UseVisualStyleBackColor = true;
@@ -96,9 +96,9 @@
             // 
             // btnReports
             // 
-            btnReports.Location = new Point(508, 288);
+            btnReports.Location = new Point(23, 317);
             btnReports.Name = "btnReports";
-            btnReports.Size = new Size(144, 29);
+            btnReports.Size = new Size(197, 29);
             btnReports.TabIndex = 6;
             btnReports.Text = "Generate Reports";
             btnReports.UseVisualStyleBackColor = true;
@@ -106,9 +106,9 @@
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(340, 363);
+            btnLogout.Location = new Point(23, 381);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(94, 29);
+            btnLogout.Size = new Size(197, 29);
             btnLogout.TabIndex = 7;
             btnLogout.Text = "Logout";
             btnLogout.UseVisualStyleBackColor = true;
@@ -118,7 +118,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 459);
             Controls.Add(btnLogout);
             Controls.Add(btnReports);
             Controls.Add(btnOrders);

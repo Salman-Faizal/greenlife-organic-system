@@ -49,20 +49,36 @@ namespace greenlife_organic_system.Views
                 return;
             }
 
-            this.Hide();
+            Form dashboardForm = null;
 
             if (user is Admin)
             {
-                AdminDashboardForm adminForm =
-                    new AdminDashboardForm(_productService, _orderService, _userService);
-                adminForm.Show();
+                dashboardForm = new AdminDashboardForm(
+                    _productService,
+                    _orderService,
+                    _userService);
             }
             else if (user is Customer customer)
             {
-                CustomerDashboardForm customerForm =
-                    new CustomerDashboardForm(customer, _userService, _productService, _orderService);
-                customerForm.Show();
+                dashboardForm = new CustomerDashboardForm(
+                   customer,
+                   _productService,
+                   _orderService,
+                   _userService);
             }
+
+            if (dashboardForm == null)
+            {
+                lblMessage.Text = "Unable to open dashboard for this account.";
+                return;
+            }
+
+            this.Hide();
+            dashboardForm.ShowDialog();
+            this.Show();
+
+            txtPassword.Clear();
+            txtUsername.Focus(); 
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
@@ -79,4 +95,3 @@ namespace greenlife_organic_system.Views
         }
     }
 }
-

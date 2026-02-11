@@ -25,13 +25,12 @@ namespace greenlife_organic_system.Views
         {
             InitializeComponent();
 
-            _productService = productService;
-            _orderService = orderService;
+            _productService = productService ?? throw new ArgumentNullException(nameof(productService));
+            _orderService = orderService ?? throw new ArgumentNullException(nameof(orderService));
             _notificationService = new NotificationService();
-            _userService = userService;
+            _userService = userService ?? throw new ArgumentNullException(nameof(userService));
 
             LoadDashboardData();
-            _userService = userService;
         }
 
         private void LoadDashboardData()
@@ -58,10 +57,15 @@ namespace greenlife_organic_system.Views
             reportsForm.ShowDialog();
         }
 
-        private void btnProducts_Click(object sender, EventArgs e)
+        private void btnManageProducts_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Product Management screen will open here.");
+            AdminManageProductsForm form =
+                new AdminManageProductsForm(_productService);
+
+            form.ShowDialog();
+            LoadDashboardData();
         }
+
 
         private void btnOrders_Click(object sender, EventArgs e)
         {

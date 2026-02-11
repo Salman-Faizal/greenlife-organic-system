@@ -1,6 +1,6 @@
 ﻿namespace greenlife_organic_system.Views
 {
-    partial class btnBack
+    partial class ViewProfileForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,217 +28,210 @@
         /// </summary>
         private void InitializeComponent()
         {
+            lblTitle = new Label();
+            lblFullName = new Label();
+            lblEmail = new Label();
+            lblPhone = new Label();
+            lblAddress = new Label();
+            lblUsername = new Label();
+            lblPassword = new Label();
+            lblConfirmPassword = new Label();
             txtFullName = new TextBox();
-            txtAddress = new TextBox();
-            txtPhone = new TextBox();
             txtEmail = new TextBox();
+            txtPhone = new TextBox();
+            txtAddress = new TextBox();
             txtUsername = new TextBox();
             txtPassword = new TextBox();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
-            label6 = new Label();
             txtConfirmPassword = new TextBox();
-            label7 = new Label();
             btnUpdate = new Button();
-            label8 = new Label();
-            button1 = new Button();
+            btnBack = new Button();
             SuspendLayout();
+            // 
+            // lblTitle
+            // 
+            lblTitle.AutoSize = true;
+            lblTitle.Location = new Point(160, 59);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(102, 20);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "Profile Details";
+            // 
+            // lblFullName
+            // 
+            lblFullName.AutoSize = true;
+            lblFullName.Location = new Point(160, 145);
+            lblFullName.Name = "lblFullName";
+            lblFullName.Size = new Size(72, 20);
+            lblFullName.TabIndex = 1;
+            lblFullName.Text = "FullName";
+            // 
+            // lblEmail
+            // 
+            lblEmail.AutoSize = true;
+            lblEmail.Location = new Point(160, 190);
+            lblEmail.Name = "lblEmail";
+            lblEmail.Size = new Size(46, 20);
+            lblEmail.TabIndex = 2;
+            lblEmail.Text = "Email";
+            // 
+            // lblPhone
+            // 
+            lblPhone.AutoSize = true;
+            lblPhone.Location = new Point(160, 241);
+            lblPhone.Name = "lblPhone";
+            lblPhone.Size = new Size(50, 20);
+            lblPhone.TabIndex = 3;
+            lblPhone.Text = "Phone";
+            // 
+            // lblAddress
+            // 
+            lblAddress.AutoSize = true;
+            lblAddress.Location = new Point(160, 292);
+            lblAddress.Name = "lblAddress";
+            lblAddress.Size = new Size(62, 20);
+            lblAddress.TabIndex = 4;
+            lblAddress.Text = "Address";
+            // 
+            // lblUsername
+            // 
+            lblUsername.AutoSize = true;
+            lblUsername.Location = new Point(157, 344);
+            lblUsername.Name = "lblUsername";
+            lblUsername.Size = new Size(75, 20);
+            lblUsername.TabIndex = 5;
+            lblUsername.Text = "Username";
+            // 
+            // lblPassword
+            // 
+            lblPassword.AutoSize = true;
+            lblPassword.Location = new Point(160, 389);
+            lblPassword.Name = "lblPassword";
+            lblPassword.Size = new Size(70, 20);
+            lblPassword.TabIndex = 6;
+            lblPassword.Text = "Password";
+            // 
+            // lblConfirmPassword
+            // 
+            lblConfirmPassword.AutoSize = true;
+            lblConfirmPassword.Location = new Point(157, 437);
+            lblConfirmPassword.Name = "lblConfirmPassword";
+            lblConfirmPassword.Size = new Size(127, 20);
+            lblConfirmPassword.TabIndex = 7;
+            lblConfirmPassword.Text = "Confirm Password";
             // 
             // txtFullName
             // 
-            txtFullName.Location = new Point(338, 100);
+            txtFullName.Location = new Point(338, 138);
             txtFullName.Name = "txtFullName";
-            txtFullName.Size = new Size(248, 27);
-            txtFullName.TabIndex = 0;
-            // 
-            // txtAddress
-            // 
-            txtAddress.Location = new Point(338, 269);
-            txtAddress.Multiline = true;
-            txtAddress.Name = "txtAddress";
-            txtAddress.Size = new Size(248, 27);
-            txtAddress.TabIndex = 1;
-            // 
-            // txtPhone
-            // 
-            txtPhone.Location = new Point(338, 213);
-            txtPhone.Name = "txtPhone";
-            txtPhone.Size = new Size(248, 27);
-            txtPhone.TabIndex = 2;
+            txtFullName.Size = new Size(252, 27);
+            txtFullName.TabIndex = 8;
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(338, 155);
+            txtEmail.Location = new Point(338, 187);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(248, 27);
-            txtEmail.TabIndex = 3;
+            txtEmail.Size = new Size(252, 27);
+            txtEmail.TabIndex = 9;
+            // 
+            // txtPhone
+            // 
+            txtPhone.Location = new Point(338, 238);
+            txtPhone.Name = "txtPhone";
+            txtPhone.Size = new Size(252, 27);
+            txtPhone.TabIndex = 10;
+            // 
+            // txtAddress
+            // 
+            txtAddress.Location = new Point(338, 289);
+            txtAddress.Name = "txtAddress";
+            txtAddress.Size = new Size(252, 27);
+            txtAddress.TabIndex = 11;
             // 
             // txtUsername
             // 
-            txtUsername.Location = new Point(338, 328);
+            txtUsername.Location = new Point(338, 341);
             txtUsername.Name = "txtUsername";
-            txtUsername.ReadOnly = true;
-            txtUsername.Size = new Size(248, 27);
-            txtUsername.TabIndex = 4;
+            txtUsername.Size = new Size(252, 27);
+            txtUsername.TabIndex = 12;
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(338, 385);
+            txtPassword.Location = new Point(338, 386);
             txtPassword.Name = "txtPassword";
-            txtPassword.PasswordChar = '*';
-            txtPassword.Size = new Size(248, 27);
-            txtPassword.TabIndex = 5;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(170, 103);
-            label1.Name = "label1";
-            label1.Size = new Size(76, 20);
-            label1.TabIndex = 6;
-            label1.Text = "Full Name";
-            label1.Click += label1_Click;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(170, 158);
-            label2.Name = "label2";
-            label2.Size = new Size(46, 20);
-            label2.TabIndex = 7;
-            label2.Text = "Email";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(170, 272);
-            label3.Name = "label3";
-            label3.Size = new Size(62, 20);
-            label3.TabIndex = 8;
-            label3.Text = "Address";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(170, 220);
-            label4.Name = "label4";
-            label4.Size = new Size(50, 20);
-            label4.TabIndex = 9;
-            label4.Text = "Phone";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(170, 331);
-            label5.Name = "label5";
-            label5.Size = new Size(75, 20);
-            label5.TabIndex = 10;
-            label5.Text = "Username";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(170, 388);
-            label6.Name = "label6";
-            label6.Size = new Size(70, 20);
-            label6.TabIndex = 11;
-            label6.Text = "Password";
+            txtPassword.Size = new Size(252, 27);
+            txtPassword.TabIndex = 13;
             // 
             // txtConfirmPassword
             // 
-            txtConfirmPassword.Location = new Point(338, 440);
+            txtConfirmPassword.Location = new Point(338, 437);
             txtConfirmPassword.Name = "txtConfirmPassword";
-            txtConfirmPassword.PasswordChar = '*';
-            txtConfirmPassword.Size = new Size(248, 27);
-            txtConfirmPassword.TabIndex = 12;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(170, 443);
-            label7.Name = "label7";
-            label7.Size = new Size(127, 20);
-            label7.TabIndex = 13;
-            label7.Text = "Confirm Password";
+            txtConfirmPassword.Size = new Size(252, 27);
+            txtConfirmPassword.TabIndex = 14;
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(393, 507);
+            btnUpdate.Location = new Point(384, 501);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(120, 29);
-            btnUpdate.TabIndex = 14;
+            btnUpdate.Size = new Size(143, 29);
+            btnUpdate.TabIndex = 15;
             btnUpdate.Text = "Update Profile";
             btnUpdate.UseVisualStyleBackColor = true;
-            btnUpdate.Click += btnUpdate_Click;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(170, 33);
-            label8.Name = "label8";
-            label8.Size = new Size(52, 20);
-            label8.TabIndex = 15;
-            label8.Text = "Profile";
-            // 
-            // button1
-            // 
-            button1.Location = new Point(668, 12);
-            button1.Name = "button1";
-            button1.Size = new Size(120, 29);
-            button1.TabIndex = 16;
-            button1.Text = "<-- Go Back";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += btnBack_Click;
             // 
             // btnBack
             // 
+            btnBack.Location = new Point(651, 12);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(137, 29);
+            btnBack.TabIndex = 16;
+            btnBack.Text = "<-- Go Back";
+            btnBack.UseVisualStyleBackColor = true;
+            // 
+            // ViewProfileForm
+            // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 595);
-            Controls.Add(button1);
-            Controls.Add(label8);
+            ClientSize = new Size(800, 642);
+            Controls.Add(btnBack);
             Controls.Add(btnUpdate);
-            Controls.Add(label7);
             Controls.Add(txtConfirmPassword);
-            Controls.Add(label6);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
             Controls.Add(txtPassword);
             Controls.Add(txtUsername);
-            Controls.Add(txtEmail);
-            Controls.Add(txtPhone);
             Controls.Add(txtAddress);
+            Controls.Add(txtPhone);
+            Controls.Add(txtEmail);
             Controls.Add(txtFullName);
-            Name = "btnBack";
-            Text = "ViewProfileForm";
+            Controls.Add(lblConfirmPassword);
+            Controls.Add(lblPassword);
+            Controls.Add(lblUsername);
+            Controls.Add(lblAddress);
+            Controls.Add(lblPhone);
+            Controls.Add(lblEmail);
+            Controls.Add(lblFullName);
+            Controls.Add(lblTitle);
+            Name = "ViewProfileForm";
+            Text = "Profile";
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
+        private Label lblTitle;
+        private Label lblFullName;
+        private Label lblEmail;
+        private Label lblPhone;
+        private Label lblAddress;
+        private Label lblUsername;
+        private Label lblPassword;
+        private Label lblConfirmPassword;
         private TextBox txtFullName;
-        private TextBox txtAddress;
-        private TextBox txtPhone;
         private TextBox txtEmail;
+        private TextBox txtPhone;
+        private TextBox txtAddress;
         private TextBox txtUsername;
         private TextBox txtPassword;
-        private Label label1;
-        private Label label2;
-        private Label label3;
-        private Label label4;
-        private Label label5;
-        private Label label6;
         private TextBox txtConfirmPassword;
-        private Label label7;
         private Button btnUpdate;
-        private Label label8;
-        private Button button1;
+        private Button btnBack;
     }
 }
