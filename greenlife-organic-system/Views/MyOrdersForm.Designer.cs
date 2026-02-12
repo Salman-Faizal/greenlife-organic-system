@@ -38,8 +38,8 @@
             flpReviewActions = new Panel();
             label1 = new Label();
             panel1 = new Panel();
-            label2 = new Label();
             btnCancelOrder = new Button();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvOrders).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvOrderItems).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numRating).BeginInit();
@@ -142,15 +142,6 @@
             panel1.Size = new Size(505, 92);
             panel1.TabIndex = 4;
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(23, 13);
-            label2.Name = "label2";
-            label2.Size = new Size(133, 20);
-            label2.TabIndex = 5;
-            label2.Text = "Order Cancellation";
-            // 
             // btnCancelOrder
             // 
             btnCancelOrder.Location = new Point(23, 45);
@@ -159,6 +150,16 @@
             btnCancelOrder.TabIndex = 4;
             btnCancelOrder.Text = "Cancel Order";
             btnCancelOrder.UseVisualStyleBackColor = true;
+            btnCancelOrder.Click += btnCancelOrder_Click;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(23, 13);
+            label2.Name = "label2";
+            label2.Size = new Size(133, 20);
+            label2.TabIndex = 5;
+            label2.Text = "Order Cancellation";
             // 
             // MyOrdersForm
             // 

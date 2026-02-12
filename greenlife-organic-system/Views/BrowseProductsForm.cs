@@ -34,6 +34,8 @@ namespace greenlife_organic_system.Views
             _customer = customer;
             _orderService = orderService;
 
+            picProduct.SizeMode = PictureBoxSizeMode.CenterImage;
+
             ConfigureGrid();
             ClearProductDetails();
 
@@ -164,6 +166,8 @@ namespace greenlife_organic_system.Views
         // ---------------- PRODUCT DETAILS ----------------
         private void DisplayProductDetails(Product product)
         {
+            picProduct.SizeMode = PictureBoxSizeMode.CenterImage;
+
             lblName.Text = product.Name;
             lblDescription.Text = $"Category: {product.Category}";
             lblPrice.Text = $"Price: {product.GetDiscountedPrice():0.00} LKR";
@@ -196,20 +200,11 @@ namespace greenlife_organic_system.Views
             }
 
             // ---------- IMAGE ----------
-            picProduct.Image?.Dispose();
-
             string imagePath = Path.Combine(
                 AppDomain.CurrentDomain.BaseDirectory,
                 product.ImagePath ?? string.Empty);
 
-            if (File.Exists(imagePath))
-            {
-                picProduct.Image = Image.FromFile(imagePath);
-            }
-            else
-            {
-                picProduct.Image = null;
-            }
+            SetCenteredProductImage(imagePath);
 
             // ---------- RATING ----------
             lblRating.Text = product.RatingCount == 0
@@ -218,6 +213,33 @@ namespace greenlife_organic_system.Views
 
             // ---------- REVIEWS ----------
             LoadReviews(product);
+        }
+
+        private void SetCenteredProductImage(string imagePath)
+        {
+            picProduct.Image?.Dispose();
+            picProduct.Image = null;
+
+            if (!File.Exists(imagePath))
+                return;
+
+            using FileStream stream = new FileStream(imagePath, FileMode.Open, FileAccess.Read);
+            using Image originalImage = Image.FromStream(stream);
+
+            Bitmap canvas = new Bitmap(picProduct.Width, picProduct.Height);
+
+            using (Graphics graphics = Graphics.FromImage(canvas))
+            {
+                graphics.Clear(picProduct.BackColor);
+
+                int x = (canvas.Width - originalImage.Width) / 2;
+                int y = (canvas.Height - originalImage.Height) / 2;
+
+                graphics.DrawImageUnscaled(originalImage, x, y);
+            }
+
+            picProduct.SizeMode = PictureBoxSizeMode.Normal;
+            picProduct.Image = canvas;
         }
 
         // ---------------- REVIEWS VIEW ----------------
