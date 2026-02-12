@@ -38,10 +38,29 @@ namespace greenlife_organic_system.Services
             existing.Stock = updatedProduct.Stock;
             existing.Supplier = updatedProduct.Supplier;
             existing.DiscountPercentage = updatedProduct.DiscountPercentage;
+            existing.ImagePath = updatedProduct.ImagePath;
+            existing.Reviews = updatedProduct.Reviews;
+            existing.Rating = updatedProduct.Rating;
+            existing.RatingCount = updatedProduct.RatingCount;
 
             Save();
             return true;
         }
+
+        public string GenerateNextProductId()
+        {
+            int maxId = Products
+                .Select(p => p?.ProductId)
+                .Where(id => !string.IsNullOrWhiteSpace(id)
+                    && id.StartsWith("P", System.StringComparison.OrdinalIgnoreCase)
+                    && int.TryParse(id.Substring(1), out _))
+                .Select(id => int.Parse(id.Substring(1)))
+                .DefaultIfEmpty(0)
+                .Max();
+
+            return $"P{(maxId + 1):D3}";
+        }
+
 
         public bool DeleteProduct(string productId)
         {

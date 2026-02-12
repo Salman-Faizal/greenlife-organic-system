@@ -51,6 +51,7 @@
             label8 = new Label();
             groupBox1 = new GroupBox();
             txtPrice = new TextBox();
+            label9 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picProduct).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numDiscount).BeginInit();
@@ -88,11 +89,10 @@
             // lblRating
             // 
             lblRating.AutoSize = true;
-            lblRating.Location = new Point(19, 479);
+            lblRating.Location = new Point(177, 476);
             lblRating.Name = "lblRating";
-            lblRating.Size = new Size(59, 20);
+            lblRating.Size = new Size(0, 20);
             lblRating.TabIndex = 7;
-            lblRating.Text = "Rating: ";
             // 
             // picProduct
             // 
@@ -110,6 +110,7 @@
             btnBrowseImage.TabIndex = 9;
             btnBrowseImage.Text = "Browse Image";
             btnBrowseImage.UseVisualStyleBackColor = true;
+            btnBrowseImage.Enter += btnBrowseImage_Click;
             // 
             // btnAdd
             // 
@@ -119,6 +120,7 @@
             btnAdd.TabIndex = 10;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
             // 
             // btnUpdate
             // 
@@ -138,6 +140,7 @@
             btnDelete.TabIndex = 12;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnClear
             // 
@@ -147,6 +150,7 @@
             btnClear.TabIndex = 13;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = true;
+            btnClear.Click += btnClear_Click;
             // 
             // numDiscount
             // 
@@ -243,6 +247,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(label9);
             groupBox1.Controls.Add(txtPrice);
             groupBox1.Controls.Add(label8);
             groupBox1.Controls.Add(txtName);
@@ -262,6 +267,15 @@
             txtPrice.Name = "txtPrice";
             txtPrice.Size = new Size(237, 27);
             txtPrice.TabIndex = 27;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(19, 476);
+            label9.Name = "label9";
+            label9.Size = new Size(52, 20);
+            label9.TabIndex = 28;
+            label9.Text = "Rating";
             // 
             // AdminManageProductsForm
             // 
@@ -322,5 +336,6 @@
         private Label label8;
         private GroupBox groupBox1;
         private TextBox txtPrice;
+        private Label label9;
     }
 }
