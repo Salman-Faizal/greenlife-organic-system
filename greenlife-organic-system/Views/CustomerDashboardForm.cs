@@ -66,13 +66,9 @@ namespace greenlife_organic_system.Views
 
         private void btnProfile_Click(object sender, EventArgs e)
         {
-            ViewProfileForm profileForm = new ViewProfileForm(_customer, _userService);
-            DialogResult result = profileForm.ShowDialog();
-
-            if (result == DialogResult.OK)
-            {
-                lblWelcome.Text = $"Welcome, {_customer.FullName}";
-            }
+            using ViewProfileForm profileForm = new ViewProfileForm(_customer, _userService);
+            profileForm.ShowDialog(this);
+            lblWelcome.Text = $"Welcome, {_customer.FullName}";
         }
 
         private void btnLogout_Click(object sender, EventArgs e)

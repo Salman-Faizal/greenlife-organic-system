@@ -5,124 +5,70 @@ using greenlife_organic_system.Services;
 
 namespace greenlife_organic_system.Views
 {
-    partial class ViewProfileForm : Form
+    public partial class ViewProfileForm : Form
     {
         private readonly Customer _customer;
         private readonly UserService _userService;
 
-        private readonly TextBox _txtUsername;
-        private readonly TextBox _txtPassword;
-        private readonly TextBox _txtFullName;
-        private readonly TextBox _txtEmail;
-        private readonly TextBox _txtPhone;
-        private readonly TextBox _txtAddress;
-
         public ViewProfileForm(Customer customer, UserService userService)
         {
-            _customer = customer;
-            _userService = userService;
+            _customer = customer ?? throw new ArgumentNullException(nameof(customer));
+            _userService = userService ?? throw new ArgumentNullException(nameof(userService));
 
-            Text = "My Profile";
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            StartPosition = FormStartPosition.CenterParent;
-            MinimizeBox = false;
-            MaximizeBox = false;
-            Width = 430;
-            Height = 450;
-
-            Label lblUsername = CreateLabel("Username", 20);
-            _txtUsername = CreateTextBox(20);
-
-            Label lblPassword = CreateLabel("Password", 75);
-            _txtPassword = CreateTextBox(75);
-            _txtPassword.UseSystemPasswordChar = true;
-
-            Label lblFullName = CreateLabel("Full Name", 130);
-            _txtFullName = CreateTextBox(130);
-
-            Label lblEmail = CreateLabel("Email", 185);
-            _txtEmail = CreateTextBox(185);
-
-            Label lblPhone = CreateLabel("Phone", 240);
-            _txtPhone = CreateTextBox(240);
-
-            Label lblAddress = CreateLabel("Address", 295);
-            _txtAddress = CreateTextBox(295);
-
-            Button btnSave = new Button
-            {
-                Left = 120,
-                Top = 350,
-                Width = 80,
-                Text = "Save"
-            };
-            btnSave.Click += BtnSave_Click;
-
-            Button btnCancel = new Button
-            {
-                Left = 220,
-                Top = 350,
-                Width = 80,
-                Text = "Cancel"
-            };
-            btnCancel.Click += (_, _) => Close();
-
-            Controls.AddRange(new Control[]
-            {
-                lblUsername, _txtUsername,
-                lblPassword, _txtPassword,
-                lblFullName, _txtFullName,
-                lblEmail, _txtEmail,
-                lblPhone, _txtPhone,
-                lblAddress, _txtAddress,
-                btnSave, btnCancel
-            });
-
+            InitializeComponent();
+            ConfigureForm();
             LoadProfileData();
+            WireEvents();
         }
 
-        private static Label CreateLabel(string text, int top)
+        private void ConfigureForm()
         {
-            return new Label
-            {
-                Left = 30,
-                Top = top,
-                Width = 120,
-                Text = text
-            };
+            Text = "My Profile";
+            StartPosition = FormStartPosition.CenterScreen;
+
+            txtUsername.ReadOnly = true;
+            txtPassword.UseSystemPasswordChar = true;
+            txtConfirmPassword.UseSystemPasswordChar = true;
         }
 
-        private static TextBox CreateTextBox(int top)
+        private void WireEvents()
         {
-            return new TextBox
-            {
-                Left = 160,
-                Top = top,
-                Width = 220
-            };
+            btnUpdate.Click += BtnUpdate_Click;
+            btnBack.Click += BtnBack_Click;
         }
 
         private void LoadProfileData()
         {
-            _txtUsername.Text = _customer.Username;
-            _txtPassword.Text = _customer.Password;
-            _txtFullName.Text = _customer.FullName;
-            _txtEmail.Text = _customer.Email;
-            _txtPhone.Text = _customer.PhoneNumber;
-            _txtAddress.Text = _customer.Address;
+            txtUsername.Text = _customer.Username;
+            txtPassword.Text = _customer.Password;
+            txtConfirmPassword.Text = _customer.Password;
+            txtFullName.Text = _customer.FullName;
+            txtEmail.Text = _customer.Email;
+            txtPhone.Text = _customer.PhoneNumber;
+            txtAddress.Text = _customer.Address;
         }
 
-        private void BtnSave_Click(object sender, EventArgs e)
+        private void BtnUpdate_Click(object sender, EventArgs e)
         {
+            if (!txtPassword.Text.Equals(txtConfirmPassword.Text, StringComparison.Ordinal))
+            {
+                MessageBox.Show(
+                    "Password and confirm password do not match.",
+                    "Profile Update",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
             Customer updatedCustomer = new Customer
             {
                 UserId = _customer.UserId,
-                Username = _txtUsername.Text,
-                Password = _txtPassword.Text,
-                FullName = _txtFullName.Text,
-                Email = _txtEmail.Text,
-                PhoneNumber = _txtPhone.Text,
-                Address = _txtAddress.Text
+                Username = _customer.Username,
+                Password = txtPassword.Text,
+                FullName = txtFullName.Text,
+                Email = txtEmail.Text,
+                PhoneNumber = txtPhone.Text,
+                Address = txtAddress.Text
             };
 
             bool success = _userService.UpdateCustomerProfile(updatedCustomer, out string errorMessage);
@@ -132,7 +78,6 @@ namespace greenlife_organic_system.Views
                 return;
             }
 
-            _customer.Username = updatedCustomer.Username.Trim();
             _customer.Password = updatedCustomer.Password.Trim();
             _customer.FullName = updatedCustomer.FullName.Trim();
             _customer.Email = updatedCustomer.Email.Trim();
@@ -140,8 +85,16 @@ namespace greenlife_organic_system.Views
             _customer.Address = updatedCustomer.Address.Trim();
 
             MessageBox.Show("Profile updated successfully.", "Profile Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            DialogResult = DialogResult.OK;
+        }
+
+        private void BtnBack_Click(object sender, EventArgs e)
+        {
             Close();
+        }
+
+        private void ViewProfileForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

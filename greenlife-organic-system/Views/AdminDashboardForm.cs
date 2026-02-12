@@ -75,6 +75,14 @@ namespace greenlife_organic_system.Views
             form.ShowDialog();
         }
 
+        private void btnCustomers_Click(object sender, EventArgs e)
+        {
+            AdminManageCustomersForm form =
+                new AdminManageCustomersForm(_userService);
+
+            form.ShowDialog();
+        }
+
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.Close();

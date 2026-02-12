@@ -46,6 +46,7 @@
             lblName = new Label();
             picProduct = new PictureBox();
             label1 = new Label();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numQuantity).BeginInit();
             pnlDetails.SuspendLayout();
@@ -89,25 +90,25 @@
             dgvProducts.ReadOnly = true;
             dgvProducts.RowHeadersWidth = 51;
             dgvProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvProducts.Size = new Size(687, 587);
+            dgvProducts.Size = new Size(687, 645);
             dgvProducts.TabIndex = 3;
             dgvProducts.SelectionChanged += dgvProducts_SelectionChanged;
             // 
             // numQuantity
             // 
-            numQuantity.Location = new Point(32, 562);
+            numQuantity.Location = new Point(143, 596);
             numQuantity.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numQuantity.Name = "numQuantity";
-            numQuantity.Size = new Size(51, 27);
+            numQuantity.Size = new Size(74, 27);
             numQuantity.TabIndex = 4;
             numQuantity.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // btnAddToCart
             // 
             btnAddToCart.Enabled = false;
-            btnAddToCart.Location = new Point(80, 562);
+            btnAddToCart.Location = new Point(25, 631);
             btnAddToCart.Name = "btnAddToCart";
-            btnAddToCart.Size = new Size(141, 29);
+            btnAddToCart.Size = new Size(192, 29);
             btnAddToCart.TabIndex = 5;
             btnAddToCart.Text = "Add to Cart";
             btnAddToCart.UseVisualStyleBackColor = true;
@@ -123,6 +124,7 @@
             // 
             // pnlDetails
             // 
+            pnlDetails.Controls.Add(label2);
             pnlDetails.Controls.Add(btnViewCart);
             pnlDetails.Controls.Add(lblReviews);
             pnlDetails.Controls.Add(flpReviews);
@@ -137,15 +139,15 @@
             pnlDetails.Controls.Add(numQuantity);
             pnlDetails.Location = new Point(730, 12);
             pnlDetails.Name = "pnlDetails";
-            pnlDetails.Size = new Size(323, 697);
+            pnlDetails.Size = new Size(323, 766);
             pnlDetails.TabIndex = 7;
             pnlDetails.Paint += pnlDetails_Paint;
             // 
             // btnViewCart
             // 
-            btnViewCart.Location = new Point(32, 631);
+            btnViewCart.Location = new Point(25, 689);
             btnViewCart.Name = "btnViewCart";
-            btnViewCart.Size = new Size(189, 29);
+            btnViewCart.Size = new Size(192, 29);
             btnViewCart.TabIndex = 13;
             btnViewCart.Text = "> Proceed To Cart";
             btnViewCart.UseVisualStyleBackColor = true;
@@ -166,7 +168,7 @@
             flpReviews.FlowDirection = FlowDirection.TopDown;
             flpReviews.Location = new Point(25, 399);
             flpReviews.Name = "flpReviews";
-            flpReviews.Size = new Size(230, 108);
+            flpReviews.Size = new Size(230, 121);
             flpReviews.TabIndex = 12;
             flpReviews.WrapContents = false;
             // 
@@ -227,11 +229,20 @@
             label1.TabIndex = 12;
             label1.Text = "Categories";
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(25, 598);
+            label2.Name = "label2";
+            label2.Size = new Size(112, 20);
+            label2.TabIndex = 14;
+            label2.Text = "Select Quantity:";
+            // 
             // BrowseProductsForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1051, 708);
+            ClientSize = new Size(1051, 771);
             Controls.Add(label1);
             Controls.Add(dgvProducts);
             Controls.Add(btnSearch);
@@ -270,5 +281,6 @@
         private FlowLayoutPanel flpReviews;
         private Label lblReviews;
         private Button btnViewCart;
+        private Label label2;
     }
 }

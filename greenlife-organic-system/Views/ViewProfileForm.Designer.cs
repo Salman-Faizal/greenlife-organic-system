@@ -210,6 +210,7 @@
             Controls.Add(lblTitle);
             Name = "ViewProfileForm";
             Text = "Profile";
+            Load += ViewProfileForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

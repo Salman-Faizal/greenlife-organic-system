@@ -36,6 +36,7 @@
             btnOrders = new Button();
             btnReports = new Button();
             btnLogout = new Button();
+            btnCustomers = new Button();
             SuspendLayout();
             // 
             // lblTitle
@@ -96,7 +97,7 @@
             // 
             // btnReports
             // 
-            btnReports.Location = new Point(23, 317);
+            btnReports.Location = new Point(23, 362);
             btnReports.Name = "btnReports";
             btnReports.Size = new Size(197, 29);
             btnReports.TabIndex = 6;
@@ -106,7 +107,7 @@
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(23, 381);
+            btnLogout.Location = new Point(23, 434);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(197, 29);
             btnLogout.TabIndex = 7;
@@ -114,11 +115,22 @@
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += btnLogout_Click;
             // 
+            // btnCustomers
+            // 
+            btnCustomers.Location = new Point(23, 316);
+            btnCustomers.Name = "btnCustomers";
+            btnCustomers.Size = new Size(197, 29);
+            btnCustomers.TabIndex = 8;
+            btnCustomers.Text = "Manage Customers";
+            btnCustomers.UseVisualStyleBackColor = true;
+            btnCustomers.Click += btnCustomers_Click;
+            // 
             // AdminDashboardForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 459);
+            ClientSize = new Size(874, 519);
+            Controls.Add(btnCustomers);
             Controls.Add(btnLogout);
             Controls.Add(btnReports);
             Controls.Add(btnOrders);
@@ -144,5 +156,6 @@
         private Button btnOrders;
         private Button btnReports;
         private Button btnLogout;
+        private Button btnCustomers;
     }
 }
