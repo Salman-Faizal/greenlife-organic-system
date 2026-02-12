@@ -10,7 +10,7 @@ namespace greenlife_organic_system.Models
         public string OrderId { get; set; }
         public string CustomerId { get; set; }
         public DateTime OrderDate { get; set; }
-        public string Status { get; set; } // Pending, Shipped, Delivered
+        public string Status { get; set; } // Pending, Shipped, Delivered, or Cancelled
         public List<OrderItem> Items { get; set; }
 
         public Order()

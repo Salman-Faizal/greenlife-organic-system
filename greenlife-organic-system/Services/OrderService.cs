@@ -84,7 +84,34 @@ namespace greenlife_organic_system.Services
             return true;
         }
 
-        /* ------------------ Persistence ------------------ */
+        public bool CancelPendingOrder(string orderId, string customerId)
+        {
+            Order order = Orders.FirstOrDefault(o =>
+                o.OrderId == orderId
+                && o.CustomerId == customerId);
+
+            if (order == null)
+                return false;
+
+            if (!string.Equals(order.Status, "Pending", System.StringComparison.OrdinalIgnoreCase))
+                return false;
+
+            foreach (OrderItem item in order.Items ?? new List<OrderItem>())
+            {
+                if (item?.Product == null || item.Quantity <= 0)
+                    continue;
+
+                // If the product no longer exists in the catalog,
+                // stock cannot be restored and we continue safely.
+                _productService.IncreaseStock(item.Product.ProductId, item.Quantity);
+            }
+
+            order.Status = "Cancelled";
+            SaveOrders();
+            return true;
+        }
+
+        /* ------------------ Data consistency ------------------ */
 
         public void SaveOrders()
         {

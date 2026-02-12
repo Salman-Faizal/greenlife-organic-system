@@ -12,6 +12,7 @@ namespace greenlife_organic_system.Views
 {
     public partial class AdminManageProductsForm : Form
     {
+        private const int LowStockThreshold = 5;
         private readonly ProductService _productService;
         private Product _selectedProduct;
         private string _pendingImagePath;
@@ -31,6 +32,7 @@ namespace greenlife_organic_system.Views
             dgvProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProducts.MultiSelect = false;
             dgvProducts.AutoGenerateColumns = true;
+            dgvProducts.RowPrePaint += dgvProducts_RowPrePaint;
 
             numDiscount.Minimum = 0;
             numDiscount.Maximum = 100;
@@ -40,6 +42,19 @@ namespace greenlife_organic_system.Views
             numStock.Maximum = 100000;
 
             picProduct.SizeMode = PictureBoxSizeMode.Zoom;
+        }
+
+        private void dgvProducts_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            DataGridViewRow row = dgvProducts.Rows[e.RowIndex];
+            int stock = Convert.ToInt32(row.Cells["Stock"].Value ?? 0);
+
+            row.DefaultCellStyle.ForeColor = stock <= LowStockThreshold
+                ? Color.Red
+                : dgvProducts.DefaultCellStyle.ForeColor;
         }
 
         private void LoadProducts()
@@ -89,13 +104,13 @@ namespace greenlife_organic_system.Views
 
         private static decimal ToBoundedDecimal(double value, decimal min, decimal max)
         {
-            
-                decimal converted = (decimal)value;
-                if (converted < min)
-                    return min;
-                if (converted > max)
-                    return max;
-                return converted;
+
+            decimal converted = (decimal)value;
+            if (converted < min)
+                return min;
+            if (converted > max)
+                return max;
+            return converted;
         }
 
         private static decimal ToBoundedDecimal(int value, decimal min, decimal max)
@@ -303,6 +318,11 @@ namespace greenlife_organic_system.Views
 
             dgvProducts.ClearSelection();
             dgvProducts.CurrentCell = null;
+        }
+
+        private void AdminManageProductsForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

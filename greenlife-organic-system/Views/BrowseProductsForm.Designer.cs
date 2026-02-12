@@ -36,6 +36,7 @@
             btnAddToCart = new Button();
             lblCartTotal = new Label();
             pnlDetails = new Panel();
+            label2 = new Label();
             btnViewCart = new Button();
             lblReviews = new Label();
             flpReviews = new FlowLayoutPanel();
@@ -46,7 +47,6 @@
             lblName = new Label();
             picProduct = new PictureBox();
             label1 = new Label();
-            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numQuantity).BeginInit();
             pnlDetails.SuspendLayout();
@@ -143,6 +143,15 @@
             pnlDetails.TabIndex = 7;
             pnlDetails.Paint += pnlDetails_Paint;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(25, 598);
+            label2.Name = "label2";
+            label2.Size = new Size(112, 20);
+            label2.TabIndex = 14;
+            label2.Text = "Select Quantity:";
+            // 
             // btnViewCart
             // 
             btnViewCart.Location = new Point(25, 689);
@@ -214,9 +223,11 @@
             // 
             // picProduct
             // 
+            picProduct.BackColor = SystemColors.ControlLight;
             picProduct.Location = new Point(25, 44);
             picProduct.Name = "picProduct";
             picProduct.Size = new Size(230, 152);
+            picProduct.SizeMode = PictureBoxSizeMode.CenterImage;
             picProduct.TabIndex = 6;
             picProduct.TabStop = false;
             // 
@@ -228,15 +239,6 @@
             label1.Size = new Size(80, 20);
             label1.TabIndex = 12;
             label1.Text = "Categories";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(25, 598);
-            label2.Name = "label2";
-            label2.Size = new Size(112, 20);
-            label2.TabIndex = 14;
-            label2.Text = "Select Quantity:";
             // 
             // BrowseProductsForm
             // 

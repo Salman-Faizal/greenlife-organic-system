@@ -15,6 +15,9 @@ namespace greenlife_organic_system.Models
 
         public decimal GetSubtotal()
         {
+            if (Product == null || Quantity <= 0)
+                return 0;
+
             return Product.GetDiscountedPrice() * Quantity;
         }
     }

@@ -15,7 +15,6 @@ namespace greenlife_organic_system.Views
         private readonly BindingList<CustomerGridRow> _customerRows;
 
         private Customer _selectedCustomer;
-        private bool _isEditMode;
 
         public AdminManageCustomersForm(UserService userService)
         {
@@ -28,7 +27,6 @@ namespace greenlife_organic_system.Views
         private void AdminManageCustomersForm_Load(object sender, EventArgs e)
         {
             ConfigureCustomerGrid();
-            SetEditMode(false);
             LoadCustomers();
         }
 
@@ -91,10 +89,6 @@ namespace greenlife_organic_system.Views
 
         private void dgvCustomers_SelectionChanged(object sender, EventArgs e)
         {
-            if (_isEditMode)
-            {
-                return;
-            }
 
             LoadSelectedCustomerToDetails();
         }
@@ -140,12 +134,6 @@ namespace greenlife_organic_system.Views
                 return;
             }
 
-            if (!_isEditMode)
-            {
-                SetEditMode(true);
-                return;
-            }
-
             if (!ValidateCustomerInputs(out string validationError))
             {
                 MessageBox.Show(validationError, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -171,8 +159,6 @@ namespace greenlife_organic_system.Views
             }
 
             MessageBox.Show("Customer details updated successfully.", "Manage Customers", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            SetEditMode(false);
             LoadCustomers(updatedCustomer.UserId);
         }
 
@@ -207,20 +193,6 @@ namespace greenlife_organic_system.Views
             }
 
             return true;
-        }
-
-        private void SetEditMode(bool isEditMode)
-        {
-            _isEditMode = isEditMode;
-
-            txtUsername.ReadOnly = !isEditMode;
-            txtFullName.ReadOnly = !isEditMode;
-            txtEmail.ReadOnly = !isEditMode;
-            txtPhoneNumber.ReadOnly = !isEditMode;
-            txtAddress.ReadOnly = !isEditMode;
-            dgvCustomers.Enabled = !isEditMode;
-
-            btnEditCustomer.Text = isEditMode ? "Save Changes" : "Edit Customer";
         }
 
         private void ClearDetails()

@@ -50,8 +50,8 @@
             label7 = new Label();
             label8 = new Label();
             groupBox1 = new GroupBox();
-            txtPrice = new TextBox();
             label9 = new Label();
+            txtPrice = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picProduct).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numDiscount).BeginInit();
@@ -96,9 +96,11 @@
             // 
             // picProduct
             // 
+            picProduct.BackColor = SystemColors.ControlLight;
             picProduct.Location = new Point(894, 111);
             picProduct.Name = "picProduct";
             picProduct.Size = new Size(237, 141);
+            picProduct.SizeMode = PictureBoxSizeMode.CenterImage;
             picProduct.TabIndex = 8;
             picProduct.TabStop = false;
             // 
@@ -261,13 +263,6 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Product Details";
             // 
-            // txtPrice
-            // 
-            txtPrice.Location = new Point(177, 334);
-            txtPrice.Name = "txtPrice";
-            txtPrice.Size = new Size(237, 27);
-            txtPrice.TabIndex = 27;
-            // 
             // label9
             // 
             label9.AutoSize = true;
@@ -276,6 +271,13 @@
             label9.Size = new Size(52, 20);
             label9.TabIndex = 28;
             label9.Text = "Rating";
+            // 
+            // txtPrice
+            // 
+            txtPrice.Location = new Point(177, 334);
+            txtPrice.Name = "txtPrice";
+            txtPrice.Size = new Size(237, 27);
+            txtPrice.TabIndex = 27;
             // 
             // AdminManageProductsForm
             // 
@@ -301,6 +303,7 @@
             Controls.Add(groupBox1);
             Name = "AdminManageProductsForm";
             Text = "AdminManageProductsForm";
+            Load += AdminManageProductsForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvProducts).EndInit();
             ((System.ComponentModel.ISupportInitialize)picProduct).EndInit();
             ((System.ComponentModel.ISupportInitialize)numDiscount).EndInit();

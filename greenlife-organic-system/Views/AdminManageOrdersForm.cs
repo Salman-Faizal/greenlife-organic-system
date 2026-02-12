@@ -71,6 +71,7 @@ namespace greenlife_organic_system.Views
             cmbStatus.Items.Add("Pending");
             cmbStatus.Items.Add("Shipped");
             cmbStatus.Items.Add("Delivered");
+            cmbStatus.Items.Add("Cancelled");
         }
 
         // ---------------- ORDER SELECTION ----------------
@@ -98,8 +99,8 @@ namespace greenlife_organic_system.Views
         {
             dgvOrderItems.DataSource = order.Items.Select(i => new
             {
-                Product = i.Product.Name,
-                Price = i.Product.GetDiscountedPrice(),
+                Product = i.Product?.Name ?? "[Removed Product]",
+                Price = i.Product?.GetDiscountedPrice(),
                 Quantity = i.Quantity,
                 Subtotal = i.GetSubtotal()
             }).ToList();
@@ -126,6 +127,11 @@ namespace greenlife_organic_system.Views
 
             MessageBox.Show("Order status updated.");
             LoadOrders();
+        }
+
+        private void AdminManageOrdersForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

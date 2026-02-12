@@ -37,10 +37,14 @@
             btnSubmit = new Button();
             flpReviewActions = new Panel();
             label1 = new Label();
+            panel1 = new Panel();
+            label2 = new Label();
+            btnCancelOrder = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvOrders).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvOrderItems).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numRating).BeginInit();
             flpReviewActions.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // dgvOrders
@@ -49,7 +53,7 @@
             dgvOrders.Location = new Point(33, 70);
             dgvOrders.Name = "dgvOrders";
             dgvOrders.RowHeadersWidth = 51;
-            dgvOrders.Size = new Size(426, 342);
+            dgvOrders.Size = new Size(426, 468);
             dgvOrders.TabIndex = 0;
             dgvOrders.SelectionChanged += dgvOrders_SelectionChanged;
             // 
@@ -129,11 +133,39 @@
             label1.TabIndex = 3;
             label1.Text = "Rating (1-5)";
             // 
+            // panel1
+            // 
+            panel1.Controls.Add(btnCancelOrder);
+            panel1.Controls.Add(label2);
+            panel1.Location = new Point(529, 446);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(505, 92);
+            panel1.TabIndex = 4;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(23, 13);
+            label2.Name = "label2";
+            label2.Size = new Size(133, 20);
+            label2.TabIndex = 5;
+            label2.Text = "Order Cancellation";
+            // 
+            // btnCancelOrder
+            // 
+            btnCancelOrder.Location = new Point(23, 45);
+            btnCancelOrder.Name = "btnCancelOrder";
+            btnCancelOrder.Size = new Size(150, 31);
+            btnCancelOrder.TabIndex = 4;
+            btnCancelOrder.Text = "Cancel Order";
+            btnCancelOrder.UseVisualStyleBackColor = true;
+            // 
             // MyOrdersForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1070, 450);
+            ClientSize = new Size(1070, 571);
+            Controls.Add(panel1);
             Controls.Add(flpReviewActions);
             Controls.Add(lblOrderDetails);
             Controls.Add(lblOrdersTitle);
@@ -147,6 +179,8 @@
             ((System.ComponentModel.ISupportInitialize)numRating).EndInit();
             flpReviewActions.ResumeLayout(false);
             flpReviewActions.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -162,5 +196,8 @@
         private Button btnSubmit;
         private Panel flpReviewActions;
         private Label label1;
+        private Panel panel1;
+        private Button btnCancelOrder;
+        private Label label2;
     }
 }

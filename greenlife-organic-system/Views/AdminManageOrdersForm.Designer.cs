@@ -117,6 +117,7 @@
             Controls.Add(dgvOrders);
             Name = "AdminManageOrdersForm";
             Text = "Manage Orders";
+            Load += AdminManageOrdersForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvOrders).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvOrderItems).EndInit();
             ResumeLayout(false);

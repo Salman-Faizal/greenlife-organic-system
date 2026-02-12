@@ -56,7 +56,7 @@
             dgvCustomers.Location = new Point(12, 75);
             dgvCustomers.Name = "dgvCustomers";
             dgvCustomers.RowHeadersWidth = 51;
-            dgvCustomers.Size = new Size(496, 628);
+            dgvCustomers.Size = new Size(552, 628);
             dgvCustomers.TabIndex = 0;
             dgvCustomers.SelectionChanged += dgvCustomers_SelectionChanged;
             // 
@@ -73,7 +73,7 @@
             grpCustomerDetails.Controls.Add(txtEmail);
             grpCustomerDetails.Controls.Add(txtPhoneNumber);
             grpCustomerDetails.Controls.Add(txtUsername);
-            grpCustomerDetails.Location = new Point(660, 118);
+            grpCustomerDetails.Location = new Point(693, 118);
             grpCustomerDetails.Name = "grpCustomerDetails";
             grpCustomerDetails.Size = new Size(372, 473);
             grpCustomerDetails.TabIndex = 1;
@@ -181,7 +181,7 @@
             // 
             // btnBack
             // 
-            btnBack.Location = new Point(896, 12);
+            btnBack.Location = new Point(947, 12);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(136, 29);
             btnBack.TabIndex = 3;

@@ -14,6 +14,7 @@ namespace greenlife_organic_system.Views
         private readonly Customer _customer;
         private readonly OrderService _orderService;
         private readonly ProductService _productService;
+        private string _selectedOrderId;
 
         public MyOrdersForm(
             Customer customer,
@@ -57,6 +58,15 @@ namespace greenlife_organic_system.Views
             }).ToList();
 
             dgvOrders.Columns["OrderId"].Visible = false;
+
+            if (dgvOrders.Rows.Count == 0)
+            {
+                _selectedOrderId = null;
+                dgvOrderItems.DataSource = null;
+                flpReviewActions.Controls.Clear();
+            }
+
+            UpdateCancelOrderButtonState();
         }
 
         // ---------------- ORDER SELECTION ----------------
@@ -68,12 +78,18 @@ namespace greenlife_organic_system.Views
             string orderId =
                 dgvOrders.CurrentRow.Cells["OrderId"].Value.ToString();
 
+            _selectedOrderId = orderId;
+
             var order = _orderService
                 .GetOrdersByCustomer(_customer.UserId)
                 .FirstOrDefault(o => o.OrderId == orderId);
 
             if (order != null)
+            {
                 LoadOrderItems(order);
+            }
+
+            UpdateCancelOrderButtonState();
         }
 
         // ---------------- LOAD ORDER ITEMS ----------------
@@ -97,11 +113,11 @@ namespace greenlife_organic_system.Views
                 for (int i = 0; i < order.Items.Count; i++)
                 {
                     var item = order.Items[i];
-                    // Assign the correct value based on the field label
+                    // Assigning the correct value based on the field label
                     row[i + 1] = field switch
                     {
-                        "Product" => item.Product.Name,
-                        "Price" => item.Product.GetDiscountedPrice().ToString("C"),
+                        "Product" => item.Product?.Name ?? "[Removed Product]",
+                        "Price" => item.Product?.GetDiscountedPrice().ToString("C") ?? "N/A",
                         "Quantity" => item.Quantity.ToString(),
                         "Subtotal" => item.GetSubtotal().ToString("C"),
                         _ => ""
@@ -117,16 +133,7 @@ namespace greenlife_organic_system.Views
             dgvOrderItems.DefaultCellStyle.SelectionForeColor = dgvOrderItems.DefaultCellStyle.ForeColor;
             dgvOrderItems.ClearSelection();
 
-
             dgvOrderItems.DataSource = dtInverted;
-
-            //dgvOrderItems.DataSource = order.Items.Select(i => new
-            //{
-            //    Product = i.Product.Name,
-            //    Price = i.Product.GetDiscountedPrice(),
-            //    Quantity = i.Quantity,
-            //    Subtotal = i.GetSubtotal()
-            //}).ToList();
 
             flpReviewActions.Controls.Clear();
 
@@ -135,6 +142,9 @@ namespace greenlife_organic_system.Views
 
             foreach (var item in order.Items)
             {
+                if (item?.Product == null)
+                    continue;
+
                 Product matchingProduct = _productService.Products
                     .FirstOrDefault(p => p.ProductId == item.Product.ProductId);
 
@@ -219,7 +229,21 @@ namespace greenlife_organic_system.Views
 
                 flpReviewActions.Controls.Add(grp);
             }
+        }
 
+        private void UpdateCancelOrderButtonState()
+        {
+            if (dgvOrders.CurrentRow == null)
+            {
+                btnCancelOrder.Enabled = false;
+                return;
+            }
+
+            string status = dgvOrders.CurrentRow.Cells["Status"]?.Value?.ToString();
+            btnCancelOrder.Enabled = string.Equals(
+                status,
+                "Pending",
+                StringComparison.OrdinalIgnoreCase);
         }
 
         private void dgvOrderItems_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -229,6 +253,35 @@ namespace greenlife_organic_system.Views
             {
                 e.CellStyle.Font = new Font(dgvOrderItems.Font, FontStyle.Bold);
             }
+        }
+
+        private void btnCancelOrder_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(_selectedOrderId))
+            {
+                MessageBox.Show("Please select an order first.");
+                return;
+            }
+
+            DialogResult confirmation = MessageBox.Show(
+                "Cancel this order? This can only be done while order status is pending.",
+                "Confirm Cancellation",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (confirmation != DialogResult.Yes)
+                return;
+
+            bool cancelled = _orderService.CancelPendingOrder(_selectedOrderId, _customer.UserId);
+            if (!cancelled)
+            {
+                MessageBox.Show("Unable to cancel order. It may have already been shipped.");
+                LoadOrders();
+                return;
+            }
+
+            MessageBox.Show("Order cancelled successfully.");
+            LoadOrders();
         }
 
         private void lblOrderDetails_Click(object sender, EventArgs e)
