@@ -1,6 +1,6 @@
 ﻿namespace greenlife_organic_system.Views
 {
-    public partial class AdminReportsForm : Form
+    partial class AdminReportsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -34,6 +34,12 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
             dtpFrom = new DateTimePicker();
             dtpTo = new DateTimePicker();
             btnGenerate = new Button();
@@ -46,9 +52,20 @@
             label5 = new Label();
             label6 = new Label();
             groupBox1 = new GroupBox();
+            lblCustomerOrders = new Label();
+            lblTotalRevenueValue = new Label();
+            lblAverageOrderValue = new Label();
+            chartTopSelling = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            chartOrderStatus = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            dgvCustomerOrders = new DataGridView();
+            txtUsername = new TextBox();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)chartSales).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chartStock).BeginInit();
             groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)chartTopSelling).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)chartOrderStatus).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvCustomerOrders).BeginInit();
             SuspendLayout();
             // 
             // dtpFrom
@@ -115,7 +132,6 @@
             chartStock.Size = new Size(557, 375);
             chartStock.TabIndex = 5;
             chartStock.Text = "chart2";
-            chartStock.Click += chartStock_Click;
             // 
             // label1
             // 
@@ -143,7 +159,6 @@
             label4.Size = new Size(140, 20);
             label4.TabIndex = 9;
             label4.Text = "Stock Balance Chart";
-            label4.Click += label4_Click;
             // 
             // label5
             // 
@@ -173,11 +188,103 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Download Order Data";
             // 
+            // lblCustomerOrders
+            // 
+            lblCustomerOrders.AutoSize = true;
+            lblCustomerOrders.Location = new Point(46, 731);
+            lblCustomerOrders.Name = "lblCustomerOrders";
+            lblCustomerOrders.Size = new Size(165, 20);
+            lblCustomerOrders.TabIndex = 13;
+            lblCustomerOrders.Text = "Customer Order History";
+            // 
+            // lblTotalRevenueValue
+            // 
+            lblTotalRevenueValue.AutoSize = true;
+            lblTotalRevenueValue.Location = new Point(576, 59);
+            lblTotalRevenueValue.Name = "lblTotalRevenueValue";
+            lblTotalRevenueValue.Size = new Size(102, 20);
+            lblTotalRevenueValue.TabIndex = 14;
+            lblTotalRevenueValue.Text = "Total Revenue";
+            // 
+            // lblAverageOrderValue
+            // 
+            lblAverageOrderValue.AutoSize = true;
+            lblAverageOrderValue.Location = new Point(576, 91);
+            lblAverageOrderValue.Name = "lblAverageOrderValue";
+            lblAverageOrderValue.Size = new Size(146, 20);
+            lblAverageOrderValue.TabIndex = 15;
+            lblAverageOrderValue.Text = "Average Order Value";
+            // 
+            // chartTopSelling
+            // 
+            chartArea7.Name = "ChartArea1";
+            chartTopSelling.ChartAreas.Add(chartArea7);
+            legend7.Name = "Legend1";
+            chartTopSelling.Legends.Add(legend7);
+            chartTopSelling.Location = new Point(260, 714);
+            chartTopSelling.Name = "chartTopSelling";
+            series7.ChartArea = "ChartArea1";
+            series7.Legend = "Legend1";
+            series7.Name = "Series1";
+            chartTopSelling.Series.Add(series7);
+            chartTopSelling.Size = new Size(375, 375);
+            chartTopSelling.TabIndex = 16;
+            chartTopSelling.Text = "chart1";
+            // 
+            // chartOrderStatus
+            // 
+            chartArea8.Name = "ChartArea1";
+            chartOrderStatus.ChartAreas.Add(chartArea8);
+            legend8.Name = "Legend1";
+            chartOrderStatus.Legends.Add(legend8);
+            chartOrderStatus.Location = new Point(682, 714);
+            chartOrderStatus.Name = "chartOrderStatus";
+            series8.ChartArea = "ChartArea1";
+            series8.Legend = "Legend1";
+            series8.Name = "Series1";
+            chartOrderStatus.Series.Add(series8);
+            chartOrderStatus.Size = new Size(375, 375);
+            chartOrderStatus.TabIndex = 17;
+            chartOrderStatus.Text = "chart1";
+            // 
+            // dgvCustomerOrders
+            // 
+            dgvCustomerOrders.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvCustomerOrders.Location = new Point(1092, 743);
+            dgvCustomerOrders.Name = "dgvCustomerOrders";
+            dgvCustomerOrders.RowHeadersWidth = 51;
+            dgvCustomerOrders.Size = new Size(300, 188);
+            dgvCustomerOrders.TabIndex = 18;
+            // 
+            // txtUsername
+            // 
+            txtUsername.Location = new Point(443, 155);
+            txtUsername.Name = "txtUsername";
+            txtUsername.Size = new Size(216, 27);
+            txtUsername.TabIndex = 19;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(443, 120);
+            label2.Name = "label2";
+            label2.Size = new Size(149, 20);
+            label2.TabIndex = 20;
+            label2.Text = "Customer User Name";
+            // 
             // AdminReportsForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1399, 721);
+            ClientSize = new Size(1395, 1055);
+            Controls.Add(label2);
+            Controls.Add(txtUsername);
+            Controls.Add(dgvCustomerOrders);
+            Controls.Add(chartOrderStatus);
+            Controls.Add(chartTopSelling);
+            Controls.Add(lblAverageOrderValue);
+            Controls.Add(lblTotalRevenueValue);
+            Controls.Add(lblCustomerOrders);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -190,11 +297,14 @@
             Controls.Add(dtpFrom);
             Controls.Add(groupBox1);
             Name = "AdminReportsForm";
-            Text = "Admin Reports";
+            Text = "6";
             Load += AdminReportsForm_Load;
             ((System.ComponentModel.ISupportInitialize)chartSales).EndInit();
             ((System.ComponentModel.ISupportInitialize)chartStock).EndInit();
             groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)chartTopSelling).EndInit();
+            ((System.ComponentModel.ISupportInitialize)chartOrderStatus).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvCustomerOrders).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -213,5 +323,13 @@
         private Label label5;
         private Label label6;
         private GroupBox groupBox1;
+        private Label lblCustomerOrders;
+        private Label lblTotalRevenueValue;
+        private Label lblAverageOrderValue;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartTopSelling;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartOrderStatus;
+        private DataGridView dgvCustomerOrders;
+        private TextBox txtUsername;
+        private Label label2;
     }
 }

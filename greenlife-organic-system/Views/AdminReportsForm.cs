@@ -9,12 +9,19 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using greenlife_organic_system.Services;
+using greenlife_organic_system.Models;
 
 
 namespace greenlife_organic_system.Views
 {
     public partial class AdminReportsForm : Form
     {
+        private readonly ProductService _productService;
+        private readonly OrderService _orderService;
+        private readonly ReportService _reportService;
+        private readonly ExportService _exportService;
+        private readonly UserService _userService;
+
         public AdminReportsForm()
         {
             InitializeComponent();
@@ -22,25 +29,18 @@ namespace greenlife_organic_system.Views
             _orderService = new OrderService(_productService);
             _reportService = new ReportService();
             _exportService = new ExportService();
+            _userService = new UserService();
 
             ConfigureCharts();
+            ConfigureCustomerHistoryGrid();
             btnGenerate.Click += btnGenerate_Click;
 
         }
 
-        private void AdminReportsForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private readonly ProductService _productService;
-        private readonly OrderService _orderService;
-        private readonly ReportService _reportService;
-        private readonly ExportService _exportService;
-
         public AdminReportsForm(
             ProductService productService,
-            OrderService orderService)
+            OrderService orderService,
+            UserService? userService = null)
         {
             InitializeComponent();
 
@@ -48,14 +48,29 @@ namespace greenlife_organic_system.Views
             _orderService = orderService;
             _reportService = new ReportService();
             _exportService = new ExportService();
+            _userService = userService ?? new UserService();
 
             ConfigureCharts();
+            ConfigureCustomerHistoryGrid();
             btnGenerate.Click += btnGenerate_Click;
+        }
+        private void AdminReportsForm_Load(object sender, EventArgs e)
+        {
+            lblCustomerOrders.Text = "Customer Order History";
+            lblTotalRevenueValue.Text = "0.00";
+            lblAverageOrderValue.Text = "0.00";
         }
 
         private void ConfigureCharts()
         {
-            // ---------- SALES CHART ----------
+            ConfigureSalesChart();
+            ConfigureStockChart();
+            ConfigureTopSellingChart();
+            ConfigureStatusPieChart();
+
+        }
+        private void ConfigureSalesChart()
+        {
             chartSales.Series.Clear();
             chartSales.ChartAreas.Clear();
 
@@ -81,8 +96,10 @@ namespace greenlife_organic_system.Views
             };
 
             chartSales.Series.Add(salesSeries);
+        }
 
-            // ---------- STOCK CHART ----------
+        private void ConfigureStockChart()
+        {
             chartStock.Series.Clear();
             chartStock.ChartAreas.Clear();
 
@@ -92,6 +109,22 @@ namespace greenlife_organic_system.Views
             stockArea.AxisX.Interval = 1;
             stockArea.AxisX.LabelStyle.Angle = -45;
             stockArea.AxisX.MajorGrid.Enabled = false;
+
+            stockArea.AxisY.StripLines.Clear();
+            StripLine thresholdLine = new StripLine
+            {
+                Interval = 0,
+                IntervalOffset = 5,
+                StripWidth = 0.15,
+                BorderColor = System.Drawing.Color.Red,
+                BorderWidth = 2,
+                BackColor = System.Drawing.Color.Red,
+                Text = "Low Stock Threshold (5)",
+                TextAlignment = System.Drawing.StringAlignment.Near,
+                ForeColor = System.Drawing.Color.Red,
+                Font = new System.Drawing.Font("Segoe UI", 8F)
+            };
+            stockArea.AxisY.StripLines.Add(thresholdLine);
 
             chartStock.ChartAreas.Add(stockArea);
 
@@ -105,6 +138,61 @@ namespace greenlife_organic_system.Views
             chartStock.Series.Add(stockSeries);
         }
 
+        private void ConfigureTopSellingChart()
+        {
+            chartTopSelling.Series.Clear();
+            chartTopSelling.ChartAreas.Clear();
+
+            ChartArea area = new ChartArea("TopSellingArea");
+            area.AxisX.Title = "Product";
+            area.AxisY.Title = "Quantity Sold";
+            area.AxisX.Interval = 1;
+            area.AxisX.LabelStyle.Angle = -45;
+            area.AxisX.MajorGrid.Enabled = false;
+
+            chartTopSelling.ChartAreas.Add(area);
+
+            Series series = new Series("Top Selling Products")
+            {
+                ChartType = SeriesChartType.Column,
+                XValueType = ChartValueType.String,
+                IsXValueIndexed = true
+            };
+
+            chartTopSelling.Series.Add(series);
+        }
+
+        private void ConfigureStatusPieChart()
+        {
+            chartOrderStatus.Series.Clear();
+            chartOrderStatus.ChartAreas.Clear();
+            chartOrderStatus.Legends.Clear();
+
+            ChartArea area = new ChartArea("StatusArea");
+            chartOrderStatus.ChartAreas.Add(area);
+
+            Legend legend = new Legend("StatusLegend");
+            chartOrderStatus.Legends.Add(legend);
+
+            Series series = new Series("Order Status Distribution")
+            {
+                ChartType = SeriesChartType.Pie,
+                IsValueShownAsLabel = true,
+                Legend = "StatusLegend"
+            };
+
+            chartOrderStatus.Series.Add(series);
+        }
+
+        private void ConfigureCustomerHistoryGrid()
+        {
+            dgvCustomerOrders.ReadOnly = true;
+            dgvCustomerOrders.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvCustomerOrders.MultiSelect = false;
+            dgvCustomerOrders.AutoGenerateColumns = true;
+        }
+
+
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             DateTime from = dtpFrom.Value.Date;
@@ -116,15 +204,18 @@ namespace greenlife_organic_system.Views
                 return;
             }
 
-            var orders = _orderService.GetAllOrders();
-            var filteredOrders = _reportService.GetOrdersByDateRange(
-                orders, from, to);
+            List<Order> orders = _orderService.GetAllOrders();
+            List<Order> filteredOrders = _reportService.GetOrdersByDateRange(orders, from, to);
 
             DrawSalesChart(filteredOrders);
             DrawStockChart();
+            DrawTopSellingChart(filteredOrders);
+            DrawOrderStatusPieChart(filteredOrders);
+            UpdateRevenueSummary(filteredOrders);
+            LoadCustomerOrderHistory(orders);
         }
 
-        private void DrawSalesChart(System.Collections.Generic.List<Models.Order> orders)
+        private void DrawSalesChart(List<Order> orders)
         {
             var dailySales = _reportService.GetDailySales(orders);
 
@@ -143,24 +234,7 @@ namespace greenlife_organic_system.Views
             }
 
             AdjustSalesAxisForDataDensity(series.Points.Count);
-
             chartSales.ChartAreas[0].RecalculateAxesScale();
-        }
-
-        private void AdjustSalesAxisForDataDensity(int pointCount)
-        {
-            ChartArea area = chartSales.ChartAreas[0];
-
-            if (pointCount == 0)
-            {
-                area.AxisX.Interval = 1;
-                return;
-            }
-
-            // Target around 10 labels on screen to avoid x-axis clutter.
-            int interval = Math.Max(1, (int)Math.Ceiling(pointCount / 10.0));
-            area.AxisX.Interval = interval;
-            area.AxisX.IntervalType = DateTimeIntervalType.Days;
         }
 
         private void DrawStockChart()
@@ -176,6 +250,100 @@ namespace greenlife_organic_system.Views
             }
 
             chartStock.ChartAreas[0].RecalculateAxesScale();
+        }
+
+        private void DrawTopSellingChart(List<Order> orders)
+        {
+            var topSelling = _reportService.GetTopSellingProductsByQuantity(orders, 5);
+
+            Series series = chartTopSelling.Series[0];
+            series.Points.Clear();
+
+            foreach (var entry in topSelling)
+            {
+                series.Points.AddXY(entry.Key, entry.Value);
+            }
+
+            chartTopSelling.ChartAreas[0].RecalculateAxesScale();
+        }
+
+        private void DrawOrderStatusPieChart(List<Order> orders)
+        {
+            var statusDistribution = _reportService.GetOrderStatusDistribution(orders);
+
+            Series series = chartOrderStatus.Series[0];
+            series.Points.Clear();
+
+            foreach (var entry in statusDistribution)
+            {
+                DataPoint point = new DataPoint
+                {
+                    AxisLabel = entry.Key,
+                    YValues = new[] { (double)entry.Value },
+                    LegendText = entry.Key,
+                    Label = $"{entry.Key}: {entry.Value}"
+                };
+
+                series.Points.Add(point);
+            }
+        }
+
+        private void UpdateRevenueSummary(List<Order> orders)
+        {
+            RevenueSummary summary = _reportService.GetRevenueSummary(orders);
+            lblTotalRevenueValue.Text = summary.TotalRevenue.ToString("0.00");
+            lblAverageOrderValue.Text = summary.AverageOrderValue.ToString("0.00");
+        }
+
+        private void LoadCustomerOrderHistory(List<Order> orders)
+        {
+            string username = txtUsername.Text?.Trim() ?? string.Empty;
+
+            if (string.IsNullOrWhiteSpace(username))
+            {
+                lblCustomerOrders.Text = "Customer Order History";
+                dgvCustomerOrders.DataSource = null;
+                return;
+            }
+
+            CustomerOrderHistoryResult history = _reportService.GetCustomerOrderHistory(
+                orders,
+                _userService.Customers,
+                username);
+
+            if (!history.CustomerExists)
+            {
+                lblCustomerOrders.Text = "Customer Order History";
+                dgvCustomerOrders.DataSource = null;
+                MessageBox.Show("No customer was found for the provided username.");
+                return;
+            }
+
+            lblCustomerOrders.Text = $"{history.CustomerDisplayName}'s Order History";
+            dgvCustomerOrders.DataSource = history.Orders
+                .Select(o => new
+                {
+                    o.OrderId,
+                    Date = o.OrderDate,
+                    o.Status,
+                    Total = o.CalculateTotal()
+                })
+                .ToList();
+        }
+
+        private void AdjustSalesAxisForDataDensity(int pointCount)
+        {
+            ChartArea area = chartSales.ChartAreas[0];
+
+            if (pointCount == 0)
+            {
+                area.AxisX.Interval = 1;
+                return;
+            }
+
+            int interval = Math.Max(1, (int)Math.Ceiling(pointCount / 10.0));
+            area.AxisX.Interval = interval;
+            area.AxisX.IntervalType = DateTimeIntervalType.Days;
         }
 
 
@@ -201,16 +369,6 @@ namespace greenlife_organic_system.Views
                 filteredOrders, dialog.FileName, from, to);
 
             MessageBox.Show("Report exported successfully.");
-        }
-
-        private void chartStock_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

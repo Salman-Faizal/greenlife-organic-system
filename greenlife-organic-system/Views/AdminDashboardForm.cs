@@ -64,7 +64,7 @@ namespace greenlife_organic_system.Views
         private void btnReports_Click(object sender, EventArgs e)
         {
             AdminReportsForm reportsForm =
-                new AdminReportsForm(_productService, _orderService);
+                new AdminReportsForm(_productService, _orderService, _userService);
             reportsForm.ShowDialog();
         }
 
