@@ -35,6 +35,7 @@
             dgvOrderItems = new DataGridView();
             label2 = new Label();
             label3 = new Label();
+            cbxActiveOrders = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)dgvOrders).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvOrderItems).BeginInit();
             SuspendLayout();
@@ -103,11 +104,23 @@
             label3.TabIndex = 7;
             label3.Text = "Order Items";
             // 
+            // cbxActiveOrders
+            // 
+            cbxActiveOrders.AutoSize = true;
+            cbxActiveOrders.Location = new Point(409, 30);
+            cbxActiveOrders.Name = "cbxActiveOrders";
+            cbxActiveOrders.Size = new Size(154, 24);
+            cbxActiveOrders.TabIndex = 8;
+            cbxActiveOrders.Text = "Active Orders Only";
+            cbxActiveOrders.UseVisualStyleBackColor = true;
+            cbxActiveOrders.CheckedChanged += cbxActiveOrders_CheckedChanged;
+            // 
             // AdminManageOrdersForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1204, 606);
+            Controls.Add(cbxActiveOrders);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(dgvOrderItems);
@@ -133,5 +146,6 @@
         private DataGridView dgvOrderItems;
         private Label label2;
         private Label label3;
+        private CheckBox cbxActiveOrders;
     }
 }

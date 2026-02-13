@@ -41,8 +41,16 @@ namespace greenlife_organic_system.Views
         // ---------------- LOAD DATA ----------------
         private void LoadOrders()
         {
-            dgvOrders.DataSource = _orderService
-                .GetAllOrders()
+            var orders = _orderService.GetAllOrders().AsEnumerable();
+
+            if (cbxActiveOrders.Checked)
+            {
+                orders = orders.Where(o =>
+                    string.Equals(o.Status, "Pending", StringComparison.OrdinalIgnoreCase) ||
+                    string.Equals(o.Status, "Shipped", StringComparison.OrdinalIgnoreCase));
+            }
+
+            dgvOrders.DataSource = orders
                 .Select(o => new
                 {
                     o.OrderId,
@@ -56,6 +64,13 @@ namespace greenlife_organic_system.Views
             dgvOrders.Columns["OrderId"].Visible = false;
             dgvOrders.Columns["CustomerId"].Visible = false;
             dgvOrders.Columns["Customer"].HeaderText = "Phone";
+
+            if (dgvOrders.Rows.Count == 0)
+            {
+                _selectedOrder = null;
+                cmbStatus.SelectedItem = null;
+                dgvOrderItems.DataSource = null;
+            }
         }
 
         private string GetCustomerPhone(string customerId)
@@ -126,6 +141,11 @@ namespace greenlife_organic_system.Views
             );
 
             MessageBox.Show("Order status updated.");
+            LoadOrders();
+        }
+
+        private void cbxActiveOrders_CheckedChanged(object sender, EventArgs e)
+        {
             LoadOrders();
         }
 

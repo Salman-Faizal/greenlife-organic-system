@@ -30,13 +30,18 @@
         {
             lblTitle = new Label();
             lblOrders = new Label();
-            lblProducts = new Label();
             lblLowStock = new Label();
             btnProducts = new Button();
             btnOrders = new Button();
             btnReports = new Button();
             btnLogout = new Button();
             btnCustomers = new Button();
+            lblTotSales = new Label();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            lblProducts = new Label();
+            label4 = new Label();
             SuspendLayout();
             // 
             // lblTitle
@@ -44,40 +49,29 @@
             lblTitle.AutoSize = true;
             lblTitle.Location = new Point(23, 28);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(122, 20);
+            lblTitle.Size = new Size(157, 20);
             lblTitle.TabIndex = 0;
-            lblTitle.Text = "Welcome, Admin";
+            lblTitle.Text = "Welcome back, Admin";
             // 
             // lblOrders
             // 
             lblOrders.AutoSize = true;
-            lblOrders.Location = new Point(23, 126);
+            lblOrders.Location = new Point(156, 120);
             lblOrders.Name = "lblOrders";
-            lblOrders.Size = new Size(105, 20);
+            lblOrders.Size = new Size(0, 20);
             lblOrders.TabIndex = 1;
-            lblOrders.Text = "Active Orders: ";
-            // 
-            // lblProducts
-            // 
-            lblProducts.AutoSize = true;
-            lblProducts.Location = new Point(23, 93);
-            lblProducts.Name = "lblProducts";
-            lblProducts.Size = new Size(110, 20);
-            lblProducts.TabIndex = 2;
-            lblProducts.Text = "Total Products: ";
             // 
             // lblLowStock
             // 
             lblLowStock.AutoSize = true;
-            lblLowStock.Location = new Point(23, 158);
+            lblLowStock.Location = new Point(156, 156);
             lblLowStock.Name = "lblLowStock";
-            lblLowStock.Size = new Size(123, 20);
+            lblLowStock.Size = new Size(0, 20);
             lblLowStock.TabIndex = 3;
-            lblLowStock.Text = "Low Stock Items: ";
             // 
             // btnProducts
             // 
-            btnProducts.Location = new Point(23, 229);
+            btnProducts.Location = new Point(23, 281);
             btnProducts.Name = "btnProducts";
             btnProducts.Size = new Size(197, 29);
             btnProducts.TabIndex = 4;
@@ -87,7 +81,7 @@
             // 
             // btnOrders
             // 
-            btnOrders.Location = new Point(23, 273);
+            btnOrders.Location = new Point(23, 325);
             btnOrders.Name = "btnOrders";
             btnOrders.Size = new Size(197, 29);
             btnOrders.TabIndex = 5;
@@ -97,7 +91,7 @@
             // 
             // btnReports
             // 
-            btnReports.Location = new Point(23, 362);
+            btnReports.Location = new Point(23, 414);
             btnReports.Name = "btnReports";
             btnReports.Size = new Size(197, 29);
             btnReports.TabIndex = 6;
@@ -107,7 +101,7 @@
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(23, 434);
+            btnLogout.Location = new Point(23, 486);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(197, 29);
             btnLogout.TabIndex = 7;
@@ -117,7 +111,7 @@
             // 
             // btnCustomers
             // 
-            btnCustomers.Location = new Point(23, 316);
+            btnCustomers.Location = new Point(23, 368);
             btnCustomers.Name = "btnCustomers";
             btnCustomers.Size = new Size(197, 29);
             btnCustomers.TabIndex = 8;
@@ -125,11 +119,68 @@
             btnCustomers.UseVisualStyleBackColor = true;
             btnCustomers.Click += btnCustomers_Click;
             // 
+            // lblTotSales
+            // 
+            lblTotSales.AutoSize = true;
+            lblTotSales.Location = new Point(156, 86);
+            lblTotSales.Name = "lblTotSales";
+            lblTotSales.Size = new Size(0, 20);
+            lblTotSales.TabIndex = 9;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(23, 86);
+            label1.Name = "label1";
+            label1.Size = new Size(87, 20);
+            label1.TabIndex = 10;
+            label1.Text = "Total Sales: ";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(23, 120);
+            label2.Name = "label2";
+            label2.Size = new Size(105, 20);
+            label2.TabIndex = 11;
+            label2.Text = "Active Orders: ";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(23, 156);
+            label3.Name = "label3";
+            label3.Size = new Size(123, 20);
+            label3.TabIndex = 12;
+            label3.Text = "Low Stock Items: ";
+            // 
+            // lblProducts
+            // 
+            lblProducts.AutoSize = true;
+            lblProducts.Location = new Point(156, 191);
+            lblProducts.Name = "lblProducts";
+            lblProducts.Size = new Size(0, 20);
+            lblProducts.TabIndex = 2;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(23, 191);
+            label4.Name = "label4";
+            label4.Size = new Size(110, 20);
+            label4.TabIndex = 13;
+            label4.Text = "Total Products: ";
+            // 
             // AdminDashboardForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(874, 519);
+            ClientSize = new Size(874, 536);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(lblTotSales);
             Controls.Add(btnCustomers);
             Controls.Add(btnLogout);
             Controls.Add(btnReports);
@@ -150,12 +201,17 @@
 
         private Label lblTitle;
         private Label lblOrders;
-        private Label lblProducts;
         private Label lblLowStock;
         private Button btnProducts;
         private Button btnOrders;
         private Button btnReports;
         private Button btnLogout;
         private Button btnCustomers;
+        private Label lblTotSales;
+        private Label label1;
+        private Label label2;
+        private Label label3;
+        private Label lblProducts;
+        private Label label4;
     }
 }

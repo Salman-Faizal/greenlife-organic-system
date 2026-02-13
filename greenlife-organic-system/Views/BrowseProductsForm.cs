@@ -232,10 +232,22 @@ namespace greenlife_organic_system.Views
             {
                 graphics.Clear(picProduct.BackColor);
 
-                int x = (canvas.Width - originalImage.Width) / 2;
-                int y = (canvas.Height - originalImage.Height) / 2;
+                // Keeping the original size for small images and only shrink
+                // overlying large images so they do not fill/stretch the box.
+                float scale = Math.Min(
+                    1f,
+                    Math.Min(
+                        (float)canvas.Width / originalImage.Width,
+                        (float)canvas.Height / originalImage.Height));
 
-                graphics.DrawImageUnscaled(originalImage, x, y);
+                int drawWidth = (int)(originalImage.Width * scale);
+                int drawHeight = (int)(originalImage.Height * scale);
+
+                int x = (canvas.Width - drawWidth) / 2;
+                int y = (canvas.Height - drawHeight) / 2;
+
+                graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                graphics.DrawImage(originalImage, new Rectangle(x, y, drawWidth, drawHeight));
             }
 
             picProduct.SizeMode = PictureBoxSizeMode.Normal;

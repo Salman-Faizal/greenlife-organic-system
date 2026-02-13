@@ -1,4 +1,6 @@
-﻿using System;
+﻿using greenlife_organic_system.Models;
+using greenlife_organic_system.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using greenlife_organic_system.Services;
 
 namespace greenlife_organic_system.Views
 {
@@ -35,19 +36,29 @@ namespace greenlife_organic_system.Views
 
         private void LoadDashboardData()
         {
-            lblProducts.Text = $"Total Products: {_productService.Products.Count}";
+            lblProducts.Text = $"{_productService.Products.Count} products";
 
             int activeOrders = _orderService
                 .GetAllOrders()
-                .Count(o => o.Status != "Delivered");
+                .Count(o =>
+                    !string.Equals(o.Status, "Delivered", StringComparison.OrdinalIgnoreCase)
+                    && !string.Equals(o.Status, "Cancelled", StringComparison.OrdinalIgnoreCase));
 
-            lblOrders.Text = $"Active Orders: {activeOrders}";
+            lblOrders.Text = activeOrders > 0 ? $"{activeOrders} orders" : "None";
+
+            decimal totalSales = _orderService
+                .GetAllOrders()
+                .Where(o => o.Status == "Delivered")
+                .Sum(o => o.CalculateTotal());
+
+            lblTotSales.Text = $"{totalSales:0.00} LKR";
+
 
             int lowStockCount = _notificationService
                 .GetLowStockProducts(_productService.Products)
                 .Count;
 
-            lblLowStock.Text = $"Low Stock Items: {lowStockCount}";
+            lblLowStock.Text = lowStockCount > 0 ? $"{lowStockCount} items" : "None";
         }
 
         private void btnReports_Click(object sender, EventArgs e)
