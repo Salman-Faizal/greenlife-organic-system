@@ -109,33 +109,42 @@ namespace greenlife_organic_system.Views
             stockArea.AxisX.Interval = 1;
             stockArea.AxisX.LabelStyle.Angle = -45;
             stockArea.AxisX.MajorGrid.Enabled = false;
-
-            stockArea.AxisY.StripLines.Clear();
-            StripLine thresholdLine = new StripLine
-            {
-                Interval = 0,
-                IntervalOffset = 5,
-                StripWidth = 0.15,
-                BorderColor = System.Drawing.Color.Red,
-                BorderWidth = 2,
-                BackColor = System.Drawing.Color.Red,
-                Text = "Low Stock Threshold (5)",
-                TextAlignment = System.Drawing.StringAlignment.Near,
-                ForeColor = System.Drawing.Color.Red,
-                Font = new System.Drawing.Font("Segoe UI", 8F)
-            };
-            stockArea.AxisY.StripLines.Add(thresholdLine);
-
+            
             chartStock.ChartAreas.Add(stockArea);
 
             Series stockSeries = new Series("Stock Levels")
             {
                 ChartType = SeriesChartType.Column,
-                XValueType = ChartValueType.String,
-                IsXValueIndexed = true
+                XValueType = ChartValueType.Double,
+                IsXValueIndexed = false
             };
 
             chartStock.Series.Add(stockSeries);
+
+            Series thresholdSeries = new Series("Low Stock Threshold")
+            {
+                ChartType = SeriesChartType.Line,
+                Color = Color.Red,
+                BorderWidth = 2,
+                XValueType = ChartValueType.String,
+                IsXValueIndexed = true,
+                IsVisibleInLegend = false
+            };
+
+            chartStock.Series.Add(thresholdSeries);
+
+            stockArea.AxisY.StripLines.Clear();
+            stockArea.AxisY.StripLines.Add(new StripLine
+            {
+                Interval = 0,
+                IntervalOffset = 5,
+                StripWidth = 0,
+                BorderWidth = 0,
+                Text = "Low Stock Threshold (5)",
+                TextAlignment = StringAlignment.Near,
+                ForeColor = Color.Red,
+                Font = new Font("Segoe UI", 8F)
+            });
         }
 
         private void ConfigureTopSellingChart()
@@ -177,7 +186,7 @@ namespace greenlife_organic_system.Views
             Series series = new Series("Order Status Distribution")
             {
                 ChartType = SeriesChartType.Pie,
-                IsValueShownAsLabel = true,
+                IsValueShownAsLabel = false,
                 Legend = "StatusLegend"
             };
 
@@ -218,6 +227,7 @@ namespace greenlife_organic_system.Views
         private void DrawSalesChart(List<Order> orders)
         {
             var dailySales = _reportService.GetDailySales(orders);
+            var orderedDates = dailySales.Keys.OrderBy(date => date).ToList();
 
             Series series = chartSales.Series[0];
             series.Points.Clear();
@@ -233,7 +243,7 @@ namespace greenlife_organic_system.Views
                 series.Points.Add(point);
             }
 
-            AdjustSalesAxisForDataDensity(series.Points.Count);
+            AdjustSalesAxisForDataDensity(orderedDates);
             chartSales.ChartAreas[0].RecalculateAxesScale();
         }
 
@@ -244,12 +254,32 @@ namespace greenlife_organic_system.Views
             Series series = chartStock.Series[0];
             series.Points.Clear();
 
+            Series thresholdSeries = chartStock.Series[1];
+            thresholdSeries.Points.Clear();
+
+            int index = 1;
             foreach (var item in stockLevels)
             {
-                series.Points.AddXY(item.Key, item.Value);
+                int pointIndex = series.Points.AddXY(index, item.Value);
+                series.Points[pointIndex].AxisLabel = item.Key;
+                index++;
             }
 
-            chartStock.ChartAreas[0].RecalculateAxesScale();
+            ChartArea stockArea = chartStock.ChartAreas[0];
+            if (series.Points.Count > 0)
+            {
+                thresholdSeries.Points.AddXY(0.5, 5);
+                thresholdSeries.Points.AddXY(series.Points.Count + 0.5, 5);
+                stockArea.AxisX.Minimum = 0.5;
+                stockArea.AxisX.Maximum = series.Points.Count + 0.5;
+            }
+            else
+            {
+                stockArea.AxisX.Minimum = double.NaN;
+                stockArea.AxisX.Maximum = double.NaN;
+            }
+
+            stockArea.RecalculateAxesScale();
         }
 
         private void DrawTopSellingChart(List<Order> orders)
@@ -280,8 +310,7 @@ namespace greenlife_organic_system.Views
                 {
                     AxisLabel = entry.Key,
                     YValues = new[] { (double)entry.Value },
-                    LegendText = entry.Key,
-                    Label = $"{entry.Key}: {entry.Value}"
+                    LegendText = entry.Key
                 };
 
                 series.Points.Add(point);
@@ -331,19 +360,53 @@ namespace greenlife_organic_system.Views
                 .ToList();
         }
 
-        private void AdjustSalesAxisForDataDensity(int pointCount)
+        private void AdjustSalesAxisForDataDensity(IReadOnlyList<DateTime> orderedDates)
         {
             ChartArea area = chartSales.ChartAreas[0];
+            int pointCount = orderedDates.Count;
 
             if (pointCount == 0)
             {
                 area.AxisX.Interval = 1;
+                area.AxisX.IntervalType = DateTimeIntervalType.Days;
+                area.AxisX.LabelStyle.Format = "dd MMM";
                 return;
             }
 
-            int interval = Math.Max(1, (int)Math.Ceiling(pointCount / 10.0));
+            DateTime minDate = orderedDates.First();
+            DateTime maxDate = orderedDates.Last();
+            double spanDays = (maxDate - minDate).TotalDays;
+
+            DateTimeIntervalType intervalType;
+            int interval;
+
+            if (spanDays <= 31)
+            {
+                intervalType = DateTimeIntervalType.Days;
+                interval = Math.Max(1, (int)Math.Ceiling(pointCount / 10.0));
+                area.AxisX.LabelStyle.Format = "dd MMM";
+            }
+            else if (spanDays <= 180)
+            {
+                intervalType = DateTimeIntervalType.Weeks;
+                interval = 1;
+                area.AxisX.LabelStyle.Format = "dd MMM";
+            }
+            else if (spanDays <= 730)
+            {
+                intervalType = DateTimeIntervalType.Months;
+                interval = 1;
+                area.AxisX.LabelStyle.Format = "MMM yy";
+            }
+            else
+            {
+                intervalType = DateTimeIntervalType.Months;
+                interval = 3;
+                area.AxisX.LabelStyle.Format = "MMM yy";
+            }
+
             area.AxisX.Interval = interval;
-            area.AxisX.IntervalType = DateTimeIntervalType.Days;
+            area.AxisX.IntervalType = intervalType;
         }
 
 
