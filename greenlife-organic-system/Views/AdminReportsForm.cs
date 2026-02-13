@@ -120,26 +120,15 @@ namespace greenlife_organic_system.Views
             };
 
             chartStock.Series.Add(stockSeries);
-
-            Series thresholdSeries = new Series("Low Stock Threshold")
-            {
-                ChartType = SeriesChartType.Line,
-                Color = Color.Red,
-                BorderWidth = 2,
-                XValueType = ChartValueType.String,
-                IsXValueIndexed = true,
-                IsVisibleInLegend = false
-            };
-
-            chartStock.Series.Add(thresholdSeries);
-
+ 
             stockArea.AxisY.StripLines.Clear();
             stockArea.AxisY.StripLines.Add(new StripLine
             {
                 Interval = 0,
                 IntervalOffset = 5,
                 StripWidth = 0,
-                BorderWidth = 0,
+                BorderColor = Color.Red,
+                BorderWidth = 2,
                 Text = "Low Stock Threshold (5)",
                 TextAlignment = StringAlignment.Near,
                 ForeColor = Color.Red,
@@ -254,9 +243,6 @@ namespace greenlife_organic_system.Views
             Series series = chartStock.Series[0];
             series.Points.Clear();
 
-            Series thresholdSeries = chartStock.Series[1];
-            thresholdSeries.Points.Clear();
-
             int index = 1;
             foreach (var item in stockLevels)
             {
@@ -268,8 +254,6 @@ namespace greenlife_organic_system.Views
             ChartArea stockArea = chartStock.ChartAreas[0];
             if (series.Points.Count > 0)
             {
-                thresholdSeries.Points.AddXY(0.5, 5);
-                thresholdSeries.Points.AddXY(series.Points.Count + 0.5, 5);
                 stockArea.AxisX.Minimum = 0.5;
                 stockArea.AxisX.Maximum = series.Points.Count + 0.5;
             }
@@ -432,6 +416,11 @@ namespace greenlife_organic_system.Views
                 filteredOrders, dialog.FileName, from, to);
 
             MessageBox.Show("Report exported successfully.");
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
