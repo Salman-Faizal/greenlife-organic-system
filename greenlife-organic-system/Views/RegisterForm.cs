@@ -56,6 +56,11 @@ namespace greenlife_organic_system.Views
             MessageBox.Show("Registration successful. You may now log in.");
             this.Close();
         }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
 

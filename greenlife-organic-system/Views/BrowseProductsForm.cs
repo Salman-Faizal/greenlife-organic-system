@@ -169,8 +169,8 @@ namespace greenlife_organic_system.Views
             picProduct.SizeMode = PictureBoxSizeMode.CenterImage;
 
             lblName.Text = product.Name;
-            lblDescription.Text = $"Category: {product.Category}";
-            lblPrice.Text = $"Price: {product.GetDiscountedPrice():0.00} LKR";
+            lblDescription.Text = $"{product.Category}";
+            lblPrice.Text = $"{product.GetDiscountedPrice():0.00} LKR";
             lblReviews.Visible = true;
             numQuantity.Visible = true;
             btnAddToCart.Visible = true;
@@ -186,7 +186,7 @@ namespace greenlife_organic_system.Views
                 numQuantity.Enabled = true;
                 btnAddToCart.Enabled = true;
 
-                lblStock.Text = $"Stock Available: {product.Stock}";
+                lblStock.Text = $"{product.Stock}";
                 lblStock.ForeColor = Color.Black;
             }
             else
@@ -209,7 +209,7 @@ namespace greenlife_organic_system.Views
             // ---------- RATING ----------
             lblRating.Text = product.RatingCount == 0
                 ? "No ratings yet"
-                : $"Rating: {product.Rating}/5 ({product.RatingCount} ratings)";
+                : $"{product.Rating}/5 ({product.RatingCount} ratings)";
 
             // ---------- REVIEWS ----------
             LoadReviews(product);
@@ -345,6 +345,11 @@ namespace greenlife_organic_system.Views
         private void pnlDetails_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

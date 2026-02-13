@@ -43,6 +43,7 @@
             label6 = new Label();
             label7 = new Label();
             lblMessage = new Label();
+            btnBack = new Button();
             SuspendLayout();
             // 
             // txtUsername
@@ -90,9 +91,9 @@
             // 
             // btnRegister
             // 
-            btnRegister.Location = new Point(353, 592);
+            btnRegister.Location = new Point(318, 573);
             btnRegister.Name = "btnRegister";
-            btnRegister.Size = new Size(94, 29);
+            btnRegister.Size = new Size(142, 29);
             btnRegister.TabIndex = 11;
             btnRegister.Text = "Register";
             btnRegister.UseVisualStyleBackColor = true;
@@ -169,11 +170,22 @@
             lblMessage.Size = new Size(0, 20);
             lblMessage.TabIndex = 19;
             // 
+            // btnBack
+            // 
+            btnBack.Location = new Point(318, 626);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(142, 29);
+            btnBack.TabIndex = 20;
+            btnBack.Text = "Login";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
+            // 
             // RegisterForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(731, 741);
+            Controls.Add(btnBack);
             Controls.Add(lblMessage);
             Controls.Add(label7);
             Controls.Add(label6);
@@ -212,5 +224,6 @@
         private Label label6;
         private Label label7;
         private Label lblMessage;
+        private Button btnBack;
     }
 }

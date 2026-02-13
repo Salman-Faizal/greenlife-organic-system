@@ -144,6 +144,11 @@ namespace greenlife_organic_system.Views
             LoadOrders();
         }
 
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
         private void cbxActiveOrders_CheckedChanged(object sender, EventArgs e)
         {
             LoadOrders();

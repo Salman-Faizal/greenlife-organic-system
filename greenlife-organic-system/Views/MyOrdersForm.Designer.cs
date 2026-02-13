@@ -40,6 +40,7 @@
             panel1 = new Panel();
             btnCancelOrder = new Button();
             label2 = new Label();
+            btnCancel = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvOrders).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvOrderItems).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numRating).BeginInit();
@@ -50,7 +51,7 @@
             // dgvOrders
             // 
             dgvOrders.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvOrders.Location = new Point(33, 70);
+            dgvOrders.Location = new Point(32, 114);
             dgvOrders.Name = "dgvOrders";
             dgvOrders.RowHeadersWidth = 51;
             dgvOrders.Size = new Size(426, 468);
@@ -60,7 +61,7 @@
             // dgvOrderItems
             // 
             dgvOrderItems.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvOrderItems.Location = new Point(529, 70);
+            dgvOrderItems.Location = new Point(528, 114);
             dgvOrderItems.Name = "dgvOrderItems";
             dgvOrderItems.RowHeadersWidth = 51;
             dgvOrderItems.Size = new Size(505, 155);
@@ -71,7 +72,7 @@
             // lblOrdersTitle
             // 
             lblOrdersTitle.AutoSize = true;
-            lblOrdersTitle.Location = new Point(33, 36);
+            lblOrdersTitle.Location = new Point(32, 80);
             lblOrdersTitle.Name = "lblOrdersTitle";
             lblOrdersTitle.Size = new Size(77, 20);
             lblOrdersTitle.TabIndex = 2;
@@ -80,7 +81,7 @@
             // lblOrderDetails
             // 
             lblOrderDetails.AutoSize = true;
-            lblOrderDetails.Location = new Point(529, 36);
+            lblOrderDetails.Location = new Point(528, 80);
             lblOrderDetails.Name = "lblOrderDetails";
             lblOrderDetails.Size = new Size(97, 20);
             lblOrderDetails.TabIndex = 3;
@@ -119,7 +120,7 @@
             flpReviewActions.Controls.Add(numRating);
             flpReviewActions.Controls.Add(txtComment);
             flpReviewActions.Controls.Add(btnSubmit);
-            flpReviewActions.Location = new Point(529, 259);
+            flpReviewActions.Location = new Point(528, 303);
             flpReviewActions.Name = "flpReviewActions";
             flpReviewActions.Size = new Size(505, 153);
             flpReviewActions.TabIndex = 4;
@@ -137,7 +138,7 @@
             // 
             panel1.Controls.Add(btnCancelOrder);
             panel1.Controls.Add(label2);
-            panel1.Location = new Point(529, 446);
+            panel1.Location = new Point(528, 490);
             panel1.Name = "panel1";
             panel1.Size = new Size(505, 92);
             panel1.TabIndex = 4;
@@ -161,11 +162,22 @@
             label2.TabIndex = 5;
             label2.Text = "Order Cancellation";
             // 
+            // btnCancel
+            // 
+            btnCancel.Location = new Point(889, 12);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(145, 29);
+            btnCancel.TabIndex = 5;
+            btnCancel.Text = "<-- Go Back";
+            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
+            // 
             // MyOrdersForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1070, 571);
+            ClientSize = new Size(1070, 622);
+            Controls.Add(btnCancel);
             Controls.Add(panel1);
             Controls.Add(flpReviewActions);
             Controls.Add(lblOrderDetails);
@@ -200,5 +212,6 @@
         private Panel panel1;
         private Button btnCancelOrder;
         private Label label2;
+        private Button btnCancel;
     }
 }

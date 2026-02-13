@@ -36,6 +36,7 @@
             label2 = new Label();
             label3 = new Label();
             cbxActiveOrders = new CheckBox();
+            btnCancel = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvOrders).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvOrderItems).BeginInit();
             SuspendLayout();
@@ -43,7 +44,7 @@
             // dgvOrders
             // 
             dgvOrders.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvOrders.Location = new Point(12, 69);
+            dgvOrders.Location = new Point(12, 101);
             dgvOrders.Name = "dgvOrders";
             dgvOrders.RowHeadersWidth = 51;
             dgvOrders.Size = new Size(551, 474);
@@ -53,14 +54,14 @@
             // cmbStatus
             // 
             cmbStatus.FormattingEnabled = true;
-            cmbStatus.Location = new Point(642, 475);
+            cmbStatus.Location = new Point(642, 507);
             cmbStatus.Name = "cmbStatus";
             cmbStatus.Size = new Size(175, 28);
             cmbStatus.TabIndex = 2;
             // 
             // btnUpdateStatus
             // 
-            btnUpdateStatus.Location = new Point(642, 514);
+            btnUpdateStatus.Location = new Point(642, 546);
             btnUpdateStatus.Name = "btnUpdateStatus";
             btnUpdateStatus.Size = new Size(94, 29);
             btnUpdateStatus.TabIndex = 3;
@@ -71,7 +72,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(642, 452);
+            label1.Location = new Point(642, 484);
             label1.Name = "label1";
             label1.Size = new Size(144, 20);
             label1.TabIndex = 4;
@@ -80,7 +81,7 @@
             // dgvOrderItems
             // 
             dgvOrderItems.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvOrderItems.Location = new Point(642, 69);
+            dgvOrderItems.Location = new Point(642, 101);
             dgvOrderItems.Name = "dgvOrderItems";
             dgvOrderItems.RowHeadersWidth = 51;
             dgvOrderItems.Size = new Size(549, 350);
@@ -89,7 +90,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 30);
+            label2.Location = new Point(12, 62);
             label2.Name = "label2";
             label2.Size = new Size(75, 20);
             label2.TabIndex = 6;
@@ -98,7 +99,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(642, 30);
+            label3.Location = new Point(642, 62);
             label3.Name = "label3";
             label3.Size = new Size(87, 20);
             label3.TabIndex = 7;
@@ -107,7 +108,7 @@
             // cbxActiveOrders
             // 
             cbxActiveOrders.AutoSize = true;
-            cbxActiveOrders.Location = new Point(409, 30);
+            cbxActiveOrders.Location = new Point(409, 62);
             cbxActiveOrders.Name = "cbxActiveOrders";
             cbxActiveOrders.Size = new Size(154, 24);
             cbxActiveOrders.TabIndex = 8;
@@ -115,11 +116,22 @@
             cbxActiveOrders.UseVisualStyleBackColor = true;
             cbxActiveOrders.CheckedChanged += cbxActiveOrders_CheckedChanged;
             // 
+            // btnCancel
+            // 
+            btnCancel.Location = new Point(1060, 12);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(132, 29);
+            btnCancel.TabIndex = 9;
+            btnCancel.Text = "<-- Go Back";
+            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
+            // 
             // AdminManageOrdersForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1204, 606);
+            ClientSize = new Size(1204, 623);
+            Controls.Add(btnCancel);
             Controls.Add(cbxActiveOrders);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -147,5 +159,6 @@
         private Label label2;
         private Label label3;
         private CheckBox cbxActiveOrders;
+        private Button btnCancel;
     }
 }

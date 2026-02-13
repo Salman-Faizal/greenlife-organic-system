@@ -78,7 +78,7 @@ namespace greenlife_organic_system.Views
             this.Show();
 
             txtPassword.Clear();
-            txtUsername.Focus(); 
+            txtUsername.Focus();
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
@@ -92,6 +92,11 @@ namespace greenlife_organic_system.Views
         private void LoginForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -324,5 +324,10 @@ namespace greenlife_organic_system.Views
         {
 
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

@@ -55,7 +55,7 @@ namespace greenlife_organic_system.Views
         // ---------------- TOTAL ----------------
         private void UpdateTotal()
         {
-            lblTotal.Text = $"Total: {_cart.GetTotal():0.00} LKR";
+            lblTotal.Text = $"Total Amount: {_cart.GetTotal():0.00} LKR";
         }
 
         private bool TryGetSelectedCartItem(out OrderItem item)
@@ -171,6 +171,11 @@ namespace greenlife_organic_system.Views
         private void lblTotal_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -115,8 +115,8 @@ namespace greenlife_organic_system.Views
             Series stockSeries = new Series("Stock Levels")
             {
                 ChartType = SeriesChartType.Column,
-                XValueType = ChartValueType.Double,
-                IsXValueIndexed = false
+                XValueType = ChartValueType.String,
+                IsXValueIndexed = true
             };
 
             chartStock.Series.Add(stockSeries);
@@ -129,10 +129,7 @@ namespace greenlife_organic_system.Views
                 StripWidth = 0,
                 BorderColor = Color.Red,
                 BorderWidth = 2,
-                Text = "Low Stock Threshold (5)",
-                TextAlignment = StringAlignment.Near,
-                ForeColor = Color.Red,
-                Font = new Font("Segoe UI", 8F)
+                Text = string.Empty
             });
         }
 
@@ -150,7 +147,7 @@ namespace greenlife_organic_system.Views
 
             chartTopSelling.ChartAreas.Add(area);
 
-            Series series = new Series("Top Selling Products")
+            Series series = new Series("Top Selling")
             {
                 ChartType = SeriesChartType.Column,
                 XValueType = ChartValueType.String,
@@ -243,27 +240,12 @@ namespace greenlife_organic_system.Views
             Series series = chartStock.Series[0];
             series.Points.Clear();
 
-            int index = 1;
             foreach (var item in stockLevels)
             {
-                int pointIndex = series.Points.AddXY(index, item.Value);
-                series.Points[pointIndex].AxisLabel = item.Key;
-                index++;
+                series.Points.AddXY(item.Key, item.Value);
             }
 
-            ChartArea stockArea = chartStock.ChartAreas[0];
-            if (series.Points.Count > 0)
-            {
-                stockArea.AxisX.Minimum = 0.5;
-                stockArea.AxisX.Maximum = series.Points.Count + 0.5;
-            }
-            else
-            {
-                stockArea.AxisX.Minimum = double.NaN;
-                stockArea.AxisX.Maximum = double.NaN;
-            }
-
-            stockArea.RecalculateAxesScale();
+            chartStock.ChartAreas[0].RecalculateAxesScale();
         }
 
         private void DrawTopSellingChart(List<Order> orders)
