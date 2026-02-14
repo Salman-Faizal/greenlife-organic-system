@@ -144,21 +144,21 @@ namespace greenlife_organic_system.Views
                 || string.IsNullOrWhiteSpace(txtCategory.Text)
                 || string.IsNullOrWhiteSpace(txtSupplier.Text))
             {
-                MessageBox.Show("Name, category and supplier are required.");
+                MessageBox.Show("Name, category and supplier are required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
 
             if (!decimal.TryParse(txtPrice.Text.Trim(), NumberStyles.Number, CultureInfo.InvariantCulture, out price)
                 && !decimal.TryParse(txtPrice.Text.Trim(), NumberStyles.Number, CultureInfo.CurrentCulture, out price))
             {
-                MessageBox.Show("Please enter a valid price.");
+                MessageBox.Show("Please enter a valid price.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtPrice.Focus();
                 return false;
             }
 
             if (price < 100m || price > 10000m)
             {
-                MessageBox.Show("Price must be between 100 and 10,000.");
+                MessageBox.Show("Price must be between 100 and 10,000.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtPrice.Focus();
                 return false;
             }
@@ -222,7 +222,7 @@ namespace greenlife_organic_system.Views
             }, price);
 
             _productService.AddProduct(created);
-            MessageBox.Show("Product added successfully.");
+            MessageBox.Show("Product added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             LoadProducts();
             ClearFormFields();
         }
@@ -231,7 +231,7 @@ namespace greenlife_organic_system.Views
         {
             if (_selectedProduct == null)
             {
-                MessageBox.Show("Please select a product first.");
+                MessageBox.Show("Please select a product first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -242,7 +242,7 @@ namespace greenlife_organic_system.Views
 
             if (_productService.UpdateProduct(updated))
             {
-                MessageBox.Show("Product updated successfully.");
+                MessageBox.Show("Product updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadProducts();
                 ClearFormFields();
             }
@@ -256,7 +256,7 @@ namespace greenlife_organic_system.Views
         {
             if (_selectedProduct == null)
             {
-                MessageBox.Show("Please select a product to delete.");
+                MessageBox.Show("Please select a product to delete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -271,13 +271,13 @@ namespace greenlife_organic_system.Views
 
             if (_productService.DeleteProduct(_selectedProduct.ProductId))
             {
-                MessageBox.Show("Product deleted successfully.");
+                MessageBox.Show("Product deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadProducts();
                 ClearFormFields();
             }
             else
             {
-                MessageBox.Show("Failed to delete product.");
+                MessageBox.Show("Failed to delete product.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 

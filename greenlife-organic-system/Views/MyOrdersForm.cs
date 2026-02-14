@@ -211,14 +211,14 @@ namespace greenlife_organic_system.Views
 
                     if (!success)
                     {
-                        MessageBox.Show("Unable to submit review.");
+                        MessageBox.Show("Unable to submit review.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         return;
                     }
 
                     item.IsReviewed = true;
                     _orderService.SaveOrders();
 
-                    MessageBox.Show("Thank you for your review!");
+                    MessageBox.Show("Thank you for your review!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     LoadOrderItems(order); // refresh UI
                 };
@@ -259,7 +259,7 @@ namespace greenlife_organic_system.Views
         {
             if (string.IsNullOrWhiteSpace(_selectedOrderId))
             {
-                MessageBox.Show("Please select an order first.");
+                MessageBox.Show("Please select an order first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -275,12 +275,12 @@ namespace greenlife_organic_system.Views
             bool cancelled = _orderService.CancelPendingOrder(_selectedOrderId, _customer.UserId);
             if (!cancelled)
             {
-                MessageBox.Show("Unable to cancel order. It may have already been shipped.");
+                MessageBox.Show("Unable to cancel order. It may have already been shipped.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 LoadOrders();
                 return;
             }
 
-            MessageBox.Show("Order cancelled successfully.");
+            MessageBox.Show("Order cancelled successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             LoadOrders();
         }
 

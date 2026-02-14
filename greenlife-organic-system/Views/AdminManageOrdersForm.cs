@@ -130,7 +130,7 @@ namespace greenlife_organic_system.Views
 
             if (_selectedOrder.Status == newStatus)
             {
-                MessageBox.Show("Order already has this status.");
+                MessageBox.Show("Order already has this status.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -139,7 +139,7 @@ namespace greenlife_organic_system.Views
                 newStatus
             );
 
-            MessageBox.Show("Order status updated.");
+            MessageBox.Show("Order status updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             LoadOrders();
         }
 

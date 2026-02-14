@@ -310,7 +310,7 @@ namespace greenlife_organic_system.Views
             {
                 lblCustomerOrders.Text = "Customer Order History";
                 dgvCustomerOrders.DataSource = null;
-                MessageBox.Show("No customer was found for the provided username.");
+                MessageBox.Show("No customer was found for the provided username.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -397,7 +397,7 @@ namespace greenlife_organic_system.Views
             _exportService.ExportOrdersToCsv(
                 filteredOrders, dialog.FileName, from, to);
 
-            MessageBox.Show("Report exported successfully.");
+            MessageBox.Show("Report exported successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnExit_Click(object sender, EventArgs e)

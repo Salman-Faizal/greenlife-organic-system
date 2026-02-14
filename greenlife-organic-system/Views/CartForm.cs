@@ -90,7 +90,7 @@ namespace greenlife_organic_system.Views
 
             if (!_productService.ReduceStock(item.Product.ProductId, 1))
             {
-                MessageBox.Show("Not enough stock available.");
+                MessageBox.Show("Not enough stock available.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -129,7 +129,7 @@ namespace greenlife_organic_system.Views
         {
             if (_cart.Items.Count == 0)
             {
-                MessageBox.Show("Your cart is empty.");
+                MessageBox.Show("Your cart is empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
