@@ -248,7 +248,7 @@ namespace greenlife_organic_system.Views
 
         private void dgvOrderItems_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            // Check if we are in the FIRST COLUMN (Index 0)
+            // Checking if we are in the FIRST COLUMN (Index 0)
             if (e.ColumnIndex == 0 && e.RowIndex >= 0)
             {
                 e.CellStyle.Font = new Font(dgvOrderItems.Font, FontStyle.Bold);
@@ -282,26 +282,6 @@ namespace greenlife_organic_system.Views
 
             MessageBox.Show("Order cancelled successfully.");
             LoadOrders();
-        }
-
-        private void lblOrderDetails_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void MyOrdersForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnSubmit_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dgvOrderItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

@@ -13,13 +13,11 @@ namespace greenlife_organic_system.Views
     public partial class BrowseProductsForm : Form
     {
         private bool _isFormReady = false;
-
         private readonly ProductService _productService;
         private readonly Cart _cart;
         private Product _selectedProduct;
         private readonly OrderService _orderService;
         private readonly Customer _customer;
-
 
         public BrowseProductsForm(
             ProductService productService,
@@ -176,7 +174,7 @@ namespace greenlife_organic_system.Views
             btnAddToCart.Visible = true;
             lblCartTotal.Visible = true;
 
-            // ---------- STOCK & QUANTITY (SAFE) ----------
+            // ---------- STOCK & QUANTITY ----------
             numQuantity.Minimum = 0;
             numQuantity.Maximum = product.Stock;
 
@@ -232,7 +230,6 @@ namespace greenlife_organic_system.Views
             {
                 graphics.Clear(picProduct.BackColor);
 
-                // Keeping the original size for small images and only shrink
                 // overlying large images so they do not fill/stretch the box.
                 float scale = Math.Min(
                     1f,
@@ -334,17 +331,6 @@ namespace greenlife_organic_system.Views
         {
             CartForm cartForm = new CartForm(_cart, _productService, _customer, _orderService);
             cartForm.ShowDialog();
-        }
-
-
-        private void BrowseProductsForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pnlDetails_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

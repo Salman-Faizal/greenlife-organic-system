@@ -167,12 +167,6 @@ namespace greenlife_organic_system.Views
             this.Close();
         }
 
-
-        private void lblTotal_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnBack_Click(object sender, EventArgs e)
         {
             Close();

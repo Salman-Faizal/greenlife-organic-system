@@ -77,7 +77,7 @@ namespace greenlife_organic_system.Services
 
         /* ------------------ Search Operations ------------------ */
 
-        // Search by product name (partial match)
+        // Search by product name
         public List<Product> SearchByName(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
@@ -104,7 +104,7 @@ namespace greenlife_organic_system.Services
                 .ToList();
         }
 
-        // Search by price range
+        // Search by price range (not yet implemented)
         public List<Product> SearchByPrice(decimal minPrice, decimal maxPrice)
         {
             return Products
@@ -139,13 +139,6 @@ namespace greenlife_organic_system.Services
             product.Stock += quantity;
             Save();
             return true;
-        }
-
-        /* ------------------ Ensuring data consistency ------------------ */
-
-        public void Save()
-        {
-            JsonDataManager.SaveToFile(ProductFile, Products);
         }
 
         /* ------------------ Add Review functionality ------------------ */
@@ -192,6 +185,12 @@ namespace greenlife_organic_system.Services
 
             Save();
             return true;
+        }
+
+        /* ------------------ database deploy ------------------ */
+        public void Save()
+        {
+            JsonDataManager.SaveToFile(ProductFile, Products);
         }
     }
 }

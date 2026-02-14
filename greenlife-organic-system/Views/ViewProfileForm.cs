@@ -91,10 +91,5 @@ namespace greenlife_organic_system.Views
         {
             Close();
         }
-
-        private void ViewProfileForm_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

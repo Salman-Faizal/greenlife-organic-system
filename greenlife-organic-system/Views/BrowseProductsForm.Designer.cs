@@ -78,12 +78,15 @@
             // 
             // btnSearch
             // 
-            btnSearch.Location = new Point(180, 96);
+            btnSearch.BackColor = Color.CornflowerBlue;
+            btnSearch.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            btnSearch.ForeColor = Color.White;
+            btnSearch.Location = new Point(181, 92);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(108, 27);
+            btnSearch.Size = new Size(113, 34);
             btnSearch.TabIndex = 2;
             btnSearch.Text = "Search";
-            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.UseVisualStyleBackColor = false;
             btnSearch.Click += btnSearch_Click;
             // 
             // dgvProducts
@@ -102,7 +105,7 @@
             // 
             // numQuantity
             // 
-            numQuantity.Location = new Point(143, 596);
+            numQuantity.Location = new Point(143, 588);
             numQuantity.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numQuantity.Name = "numQuantity";
             numQuantity.Size = new Size(74, 27);
@@ -111,13 +114,16 @@
             // 
             // btnAddToCart
             // 
+            btnAddToCart.BackColor = Color.CornflowerBlue;
             btnAddToCart.Enabled = false;
-            btnAddToCart.Location = new Point(25, 631);
+            btnAddToCart.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            btnAddToCart.ForeColor = Color.White;
+            btnAddToCart.Location = new Point(25, 621);
             btnAddToCart.Name = "btnAddToCart";
-            btnAddToCart.Size = new Size(192, 29);
+            btnAddToCart.Size = new Size(192, 35);
             btnAddToCart.TabIndex = 5;
             btnAddToCart.Text = "Add to Cart";
-            btnAddToCart.UseVisualStyleBackColor = true;
+            btnAddToCart.UseVisualStyleBackColor = false;
             btnAddToCart.Click += btnAddToCart_Click;
             // 
             // lblCartTotal
@@ -137,6 +143,7 @@
             pnlDetails.Controls.Add(label2);
             pnlDetails.Controls.Add(btnViewCart);
             pnlDetails.Controls.Add(lblReviews);
+            pnlDetails.Controls.Add(btnAddToCart);
             pnlDetails.Controls.Add(flpReviews);
             pnlDetails.Controls.Add(lblCartTotal);
             pnlDetails.Controls.Add(lblStock);
@@ -145,17 +152,17 @@
             pnlDetails.Controls.Add(lblPrice);
             pnlDetails.Controls.Add(lblName);
             pnlDetails.Controls.Add(picProduct);
-            pnlDetails.Controls.Add(btnAddToCart);
             pnlDetails.Controls.Add(numQuantity);
+            pnlDetails.ForeColor = Color.FromArgb(27, 94, 32);
             pnlDetails.Location = new Point(778, 72);
             pnlDetails.Name = "pnlDetails";
-            pnlDetails.Size = new Size(323, 766);
+            pnlDetails.Size = new Size(323, 744);
             pnlDetails.TabIndex = 7;
-            pnlDetails.Paint += pnlDetails_Paint;
             // 
             // label7
             // 
             label7.AutoSize = true;
+            label7.ForeColor = Color.CornflowerBlue;
             label7.Location = new Point(25, 327);
             label7.Name = "label7";
             label7.Size = new Size(114, 20);
@@ -165,6 +172,7 @@
             // label6
             // 
             label6.AutoSize = true;
+            label6.ForeColor = Color.CornflowerBlue;
             label6.Location = new Point(25, 294);
             label6.Name = "label6";
             label6.Size = new Size(55, 20);
@@ -174,6 +182,7 @@
             // label5
             // 
             label5.AutoSize = true;
+            label5.ForeColor = Color.CornflowerBlue;
             label5.Location = new Point(25, 257);
             label5.Name = "label5";
             label5.Size = new Size(44, 20);
@@ -183,6 +192,7 @@
             // label4
             // 
             label4.AutoSize = true;
+            label4.ForeColor = Color.CornflowerBlue;
             label4.Location = new Point(25, 222);
             label4.Name = "label4";
             label4.Size = new Size(72, 20);
@@ -192,7 +202,8 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(25, 598);
+            label2.ForeColor = Color.CornflowerBlue;
+            label2.Location = new Point(25, 588);
             label2.Name = "label2";
             label2.Size = new Size(112, 20);
             label2.TabIndex = 14;
@@ -200,18 +211,22 @@
             // 
             // btnViewCart
             // 
-            btnViewCart.Location = new Point(25, 689);
+            btnViewCart.BackColor = Color.FromArgb(27, 94, 32);
+            btnViewCart.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold);
+            btnViewCart.ForeColor = Color.White;
+            btnViewCart.Location = new Point(25, 678);
             btnViewCart.Name = "btnViewCart";
-            btnViewCart.Size = new Size(192, 29);
+            btnViewCart.Size = new Size(192, 40);
             btnViewCart.TabIndex = 13;
             btnViewCart.Text = "> Proceed To Cart";
-            btnViewCart.UseVisualStyleBackColor = true;
+            btnViewCart.UseVisualStyleBackColor = false;
             btnViewCart.Click += btnViewCart_Click;
             // 
             // lblReviews
             // 
             lblReviews.AutoSize = true;
             lblReviews.Font = new Font("Segoe UI Variable Display Semib", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblReviews.ForeColor = Color.CornflowerBlue;
             lblReviews.Location = new Point(25, 376);
             lblReviews.Name = "lblReviews";
             lblReviews.Size = new Size(64, 20);
@@ -231,6 +246,7 @@
             // lblStock
             // 
             lblStock.AutoSize = true;
+            lblStock.ForeColor = Color.FromArgb(27, 94, 32);
             lblStock.Location = new Point(143, 327);
             lblStock.Name = "lblStock";
             lblStock.Size = new Size(0, 20);
@@ -239,6 +255,7 @@
             // lblDescription
             // 
             lblDescription.AutoSize = true;
+            lblDescription.ForeColor = Color.FromArgb(27, 94, 32);
             lblDescription.Location = new Point(143, 222);
             lblDescription.Name = "lblDescription";
             lblDescription.Size = new Size(0, 20);
@@ -247,6 +264,7 @@
             // lblRating
             // 
             lblRating.AutoSize = true;
+            lblRating.ForeColor = Color.FromArgb(27, 94, 32);
             lblRating.Location = new Point(143, 294);
             lblRating.Name = "lblRating";
             lblRating.Size = new Size(0, 20);
@@ -255,6 +273,7 @@
             // lblPrice
             // 
             lblPrice.AutoSize = true;
+            lblPrice.ForeColor = Color.FromArgb(27, 94, 32);
             lblPrice.Location = new Point(143, 257);
             lblPrice.Name = "lblPrice";
             lblPrice.Size = new Size(0, 20);
@@ -264,6 +283,7 @@
             // 
             lblName.AutoSize = true;
             lblName.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblName.ForeColor = Color.FromArgb(27, 94, 32);
             lblName.Location = new Point(25, 0);
             lblName.Name = "lblName";
             lblName.Size = new Size(0, 20);
@@ -282,27 +302,33 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.CornflowerBlue;
             label1.Location = new Point(423, 99);
             label1.Name = "label1";
-            label1.Size = new Size(80, 20);
+            label1.Size = new Size(81, 20);
             label1.TabIndex = 12;
             label1.Text = "Categories";
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(961, 12);
+            btnCancel.BackColor = Color.FromArgb(27, 94, 32);
+            btnCancel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            btnCancel.ForeColor = Color.White;
+            btnCancel.Location = new Point(955, 12);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(131, 29);
+            btnCancel.Size = new Size(137, 33);
             btnCancel.TabIndex = 13;
             btnCancel.Text = "<-- Go Back";
-            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Click += btnCancel_Click;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Historic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(290, 34);
+            label3.ForeColor = Color.FromArgb(27, 94, 32);
+            label3.Location = new Point(290, 26);
             label3.Name = "label3";
             label3.Size = new Size(235, 28);
             label3.TabIndex = 14;
@@ -316,14 +342,13 @@
             Controls.Add(label3);
             Controls.Add(btnCancel);
             Controls.Add(label1);
-            Controls.Add(dgvProducts);
             Controls.Add(btnSearch);
             Controls.Add(cmbCategory);
             Controls.Add(txtSearch);
             Controls.Add(pnlDetails);
+            Controls.Add(dgvProducts);
             Name = "BrowseProductsForm";
             Text = "Products";
-            Load += BrowseProductsForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvProducts).EndInit();
             ((System.ComponentModel.ISupportInitialize)numQuantity).EndInit();
             pnlDetails.ResumeLayout(false);

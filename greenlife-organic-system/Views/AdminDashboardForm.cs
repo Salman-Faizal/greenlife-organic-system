@@ -77,7 +77,6 @@ namespace greenlife_organic_system.Views
             LoadDashboardData();
         }
 
-
         private void btnOrders_Click(object sender, EventArgs e)
         {
             AdminManageOrdersForm form =
@@ -98,11 +97,6 @@ namespace greenlife_organic_system.Views
         {
             this.Close();
             Application.Restart();
-        }
-
-        private void AdminDashboardForm_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

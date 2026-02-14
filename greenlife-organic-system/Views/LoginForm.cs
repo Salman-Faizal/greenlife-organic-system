@@ -89,11 +89,6 @@ namespace greenlife_organic_system.Views
             _userService.ReloadCustomers();
         }
 
-        private void LoginForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnExit_Click(object sender, EventArgs e)
         {
             Close();

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             dgvCustomers = new DataGridView();
             grpCustomerDetails = new GroupBox();
             btnEditCustomer = new Button();
@@ -44,10 +43,8 @@
             txtUsername = new TextBox();
             label6 = new Label();
             btnBack = new Button();
-            errorProvider1 = new ErrorProvider(components);
             ((System.ComponentModel.ISupportInitialize)dgvCustomers).BeginInit();
             grpCustomerDetails.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // dgvCustomers
@@ -57,11 +54,12 @@
             dgvCustomers.Name = "dgvCustomers";
             dgvCustomers.RowHeadersWidth = 51;
             dgvCustomers.Size = new Size(552, 628);
-            dgvCustomers.TabIndex = 0;
+            dgvCustomers.TabIndex = 2;
             dgvCustomers.SelectionChanged += dgvCustomers_SelectionChanged;
             // 
             // grpCustomerDetails
             // 
+            grpCustomerDetails.BackColor = Color.FromArgb(200, 230, 201);
             grpCustomerDetails.Controls.Add(btnEditCustomer);
             grpCustomerDetails.Controls.Add(label5);
             grpCustomerDetails.Controls.Add(label4);
@@ -76,32 +74,39 @@
             grpCustomerDetails.Location = new Point(693, 118);
             grpCustomerDetails.Name = "grpCustomerDetails";
             grpCustomerDetails.Size = new Size(372, 473);
-            grpCustomerDetails.TabIndex = 1;
+            grpCustomerDetails.TabIndex = 0;
             grpCustomerDetails.TabStop = false;
             grpCustomerDetails.Text = "Customer Details";
             // 
             // btnEditCustomer
             // 
-            btnEditCustomer.Location = new Point(87, 413);
+            btnEditCustomer.BackColor = Color.FromArgb(27, 94, 32);
+            btnEditCustomer.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnEditCustomer.ForeColor = SystemColors.Control;
+            btnEditCustomer.Location = new Point(78, 403);
             btnEditCustomer.Name = "btnEditCustomer";
-            btnEditCustomer.Size = new Size(209, 29);
-            btnEditCustomer.TabIndex = 10;
+            btnEditCustomer.Size = new Size(226, 46);
+            btnEditCustomer.TabIndex = 5;
             btnEditCustomer.Text = "Update Customer Details";
-            btnEditCustomer.UseVisualStyleBackColor = true;
+            btnEditCustomer.UseVisualStyleBackColor = false;
             btnEditCustomer.Click += btnEditCustomer_Click;
             // 
             // label5
             // 
             label5.AutoSize = true;
+            label5.BackColor = Color.FromArgb(200, 230, 201);
+            label5.ForeColor = Color.CornflowerBlue;
             label5.Location = new Point(21, 122);
             label5.Name = "label5";
             label5.Size = new Size(76, 20);
-            label5.TabIndex = 9;
+            label5.TabIndex = 7;
             label5.Text = "Full Name";
             // 
             // label4
             // 
             label4.AutoSize = true;
+            label4.BackColor = Color.FromArgb(200, 230, 201);
+            label4.ForeColor = Color.CornflowerBlue;
             label4.Location = new Point(21, 186);
             label4.Name = "label4";
             label4.Size = new Size(46, 20);
@@ -111,33 +116,39 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(21, 257);
+            label3.BackColor = Color.FromArgb(200, 230, 201);
+            label3.ForeColor = Color.CornflowerBlue;
+            label3.Location = new Point(21, 253);
             label3.Name = "label3";
             label3.Size = new Size(50, 20);
-            label3.TabIndex = 7;
+            label3.TabIndex = 9;
             label3.Text = "Phone";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(21, 329);
+            label2.BackColor = Color.FromArgb(200, 230, 201);
+            label2.ForeColor = Color.CornflowerBlue;
+            label2.Location = new Point(21, 325);
             label2.Name = "label2";
             label2.Size = new Size(62, 20);
-            label2.TabIndex = 6;
+            label2.TabIndex = 10;
             label2.Text = "Address";
             // 
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.FromArgb(200, 230, 201);
+            label1.ForeColor = Color.CornflowerBlue;
             label1.Location = new Point(21, 67);
             label1.Name = "label1";
             label1.Size = new Size(75, 20);
-            label1.TabIndex = 5;
+            label1.TabIndex = 6;
             label1.Text = "Username";
             // 
             // txtAddress
             // 
-            txtAddress.Location = new Point(145, 326);
+            txtAddress.Location = new Point(145, 322);
             txtAddress.Name = "txtAddress";
             txtAddress.Size = new Size(209, 27);
             txtAddress.TabIndex = 4;
@@ -147,7 +158,7 @@
             txtFullName.Location = new Point(145, 119);
             txtFullName.Name = "txtFullName";
             txtFullName.Size = new Size(209, 27);
-            txtFullName.TabIndex = 3;
+            txtFullName.TabIndex = 1;
             // 
             // txtEmail
             // 
@@ -158,10 +169,10 @@
             // 
             // txtPhoneNumber
             // 
-            txtPhoneNumber.Location = new Point(145, 254);
+            txtPhoneNumber.Location = new Point(145, 250);
             txtPhoneNumber.Name = "txtPhoneNumber";
             txtPhoneNumber.Size = new Size(209, 27);
-            txtPhoneNumber.TabIndex = 1;
+            txtPhoneNumber.TabIndex = 3;
             // 
             // txtUsername
             // 
@@ -173,25 +184,26 @@
             // label6
             // 
             label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI Emoji", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.FromArgb(27, 94, 32);
             label6.Location = new Point(12, 39);
             label6.Name = "label6";
-            label6.Size = new Size(98, 20);
-            label6.TabIndex = 2;
+            label6.Size = new Size(131, 24);
+            label6.TabIndex = 3;
             label6.Text = "Customer List";
             // 
             // btnBack
             // 
-            btnBack.Location = new Point(947, 12);
+            btnBack.BackColor = Color.FromArgb(27, 94, 32);
+            btnBack.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnBack.ForeColor = SystemColors.Control;
+            btnBack.Location = new Point(938, 12);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(136, 29);
-            btnBack.TabIndex = 3;
+            btnBack.Size = new Size(145, 37);
+            btnBack.TabIndex = 1;
             btnBack.Text = "<-- Go Back";
-            btnBack.UseVisualStyleBackColor = true;
+            btnBack.UseVisualStyleBackColor = false;
             btnBack.Click += btnCancel_Click;
-            // 
-            // errorProvider1
-            // 
-            errorProvider1.ContainerControl = this;
             // 
             // AdminManageCustomersForm
             // 
@@ -208,7 +220,6 @@
             ((System.ComponentModel.ISupportInitialize)dgvCustomers).EndInit();
             grpCustomerDetails.ResumeLayout(false);
             grpCustomerDetails.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -230,6 +241,5 @@
         private Label label1;
         private Label label6;
         private Button btnBack;
-        private ErrorProvider errorProvider1;
     }
 }

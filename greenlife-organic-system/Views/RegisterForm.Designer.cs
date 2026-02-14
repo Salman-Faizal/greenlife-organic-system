@@ -51,28 +51,28 @@
             txtUsername.Location = new Point(273, 183);
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(301, 27);
-            txtUsername.TabIndex = 5;
+            txtUsername.TabIndex = 0;
             // 
             // txtEmail
             // 
             txtEmail.Location = new Point(273, 354);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(301, 27);
-            txtEmail.TabIndex = 6;
+            txtEmail.TabIndex = 3;
             // 
             // txtPhone
             // 
             txtPhone.Location = new Point(273, 416);
             txtPhone.Name = "txtPhone";
             txtPhone.Size = new Size(301, 27);
-            txtPhone.TabIndex = 7;
+            txtPhone.TabIndex = 4;
             // 
             // txtFullName
             // 
             txtFullName.Location = new Point(273, 292);
             txtFullName.Name = "txtFullName";
             txtFullName.Size = new Size(301, 27);
-            txtFullName.TabIndex = 8;
+            txtFullName.TabIndex = 2;
             // 
             // txtPassword
             // 
@@ -80,111 +80,133 @@
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
             txtPassword.Size = new Size(301, 27);
-            txtPassword.TabIndex = 9;
+            txtPassword.TabIndex = 1;
             // 
             // txtAddress
             // 
             txtAddress.Location = new Point(273, 480);
             txtAddress.Name = "txtAddress";
             txtAddress.Size = new Size(301, 27);
-            txtAddress.TabIndex = 10;
+            txtAddress.TabIndex = 5;
             // 
             // btnRegister
             // 
-            btnRegister.Location = new Point(318, 573);
+            btnRegister.BackColor = Color.FromArgb(27, 94, 32);
+            btnRegister.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnRegister.ForeColor = Color.White;
+            btnRegister.Location = new Point(318, 560);
             btnRegister.Name = "btnRegister";
-            btnRegister.Size = new Size(142, 29);
-            btnRegister.TabIndex = 11;
+            btnRegister.Size = new Size(168, 42);
+            btnRegister.TabIndex = 6;
             btnRegister.Text = "Register";
-            btnRegister.UseVisualStyleBackColor = true;
+            btnRegister.UseVisualStyleBackColor = false;
             btnRegister.Click += btnRegister_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(224, 52);
+            label1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.FromArgb(27, 94, 32);
+            label1.Location = new Point(181, 70);
             label1.Name = "label1";
-            label1.Size = new Size(257, 20);
-            label1.TabIndex = 12;
+            label1.Size = new Size(333, 25);
+            label1.TabIndex = 15;
             label1.Text = "Register with GreenLife Organic Store";
             // 
             // label2
             // 
             label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            label2.ForeColor = Color.CornflowerBlue;
             label2.Location = new Point(120, 186);
             label2.Name = "label2";
-            label2.Size = new Size(75, 20);
-            label2.TabIndex = 13;
+            label2.Size = new Size(78, 20);
+            label2.TabIndex = 9;
             label2.Text = "Username";
             // 
             // label3
             // 
             label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            label3.ForeColor = Color.CornflowerBlue;
             label3.Location = new Point(120, 241);
             label3.Name = "label3";
-            label3.Size = new Size(70, 20);
-            label3.TabIndex = 14;
+            label3.Size = new Size(73, 20);
+            label3.TabIndex = 10;
             label3.Text = "Password";
             // 
             // label4
             // 
             label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            label4.ForeColor = Color.CornflowerBlue;
             label4.Location = new Point(120, 299);
             label4.Name = "label4";
-            label4.Size = new Size(76, 20);
-            label4.TabIndex = 15;
+            label4.Size = new Size(79, 20);
+            label4.TabIndex = 11;
             label4.Text = "Full Name";
             // 
             // label5
             // 
             label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            label5.ForeColor = Color.CornflowerBlue;
             label5.Location = new Point(120, 361);
             label5.Name = "label5";
             label5.Size = new Size(46, 20);
-            label5.TabIndex = 16;
+            label5.TabIndex = 12;
             label5.Text = "Email";
             // 
             // label6
             // 
             label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            label6.ForeColor = Color.CornflowerBlue;
             label6.Location = new Point(120, 423);
             label6.Name = "label6";
-            label6.Size = new Size(50, 20);
-            label6.TabIndex = 17;
+            label6.Size = new Size(53, 20);
+            label6.TabIndex = 13;
             label6.Text = "Phone";
             // 
             // label7
             // 
             label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            label7.ForeColor = Color.CornflowerBlue;
             label7.Location = new Point(120, 487);
             label7.Name = "label7";
-            label7.Size = new Size(62, 20);
-            label7.TabIndex = 18;
+            label7.Size = new Size(63, 20);
+            label7.TabIndex = 14;
             label7.Text = "Address";
             // 
             // lblMessage
             // 
             lblMessage.AutoSize = true;
+            lblMessage.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblMessage.ForeColor = Color.Coral;
             lblMessage.Location = new Point(273, 527);
             lblMessage.Name = "lblMessage";
             lblMessage.Size = new Size(0, 20);
-            lblMessage.TabIndex = 19;
+            lblMessage.TabIndex = 8;
             // 
             // btnBack
             // 
-            btnBack.Location = new Point(318, 626);
+            btnBack.BackColor = Color.CornflowerBlue;
+            btnBack.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnBack.ForeColor = Color.White;
+            btnBack.Location = new Point(318, 608);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(142, 29);
-            btnBack.TabIndex = 20;
+            btnBack.Size = new Size(168, 42);
+            btnBack.TabIndex = 7;
             btnBack.Text = "Login";
-            btnBack.UseVisualStyleBackColor = true;
+            btnBack.UseVisualStyleBackColor = false;
             btnBack.Click += btnBack_Click;
             // 
             // RegisterForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(731, 741);
+            ClientSize = new Size(731, 697);
             Controls.Add(btnBack);
             Controls.Add(lblMessage);
             Controls.Add(label7);
@@ -201,8 +223,9 @@
             Controls.Add(txtPhone);
             Controls.Add(txtEmail);
             Controls.Add(txtUsername);
+            ForeColor = Color.Coral;
             Name = "RegisterForm";
-            Text = "Form1";
+            Text = "Register New Customer";
             ResumeLayout(false);
             PerformLayout();
         }

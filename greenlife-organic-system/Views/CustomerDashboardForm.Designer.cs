@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerDashboardForm));
             lblTitle = new Label();
             lblWelcome = new Label();
             btnBrowse = new Button();
@@ -35,81 +36,112 @@
             btnProfile = new Button();
             btnLogout = new Button();
             btnViewCart = new Button();
+            panel1 = new Panel();
             SuspendLayout();
             // 
             // lblTitle
             // 
             lblTitle.AutoSize = true;
+            lblTitle.BackColor = SystemColors.Control;
+            lblTitle.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitle.ForeColor = Color.FromArgb(27, 94, 32);
             lblTitle.Location = new Point(12, 19);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(149, 20);
+            lblTitle.Size = new Size(210, 28);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Customer Dashboard";
             // 
             // lblWelcome
             // 
             lblWelcome.AutoSize = true;
+            lblWelcome.Font = new Font("Segoe UI Emoji", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblWelcome.ForeColor = Color.CornflowerBlue;
             lblWelcome.Location = new Point(12, 97);
             lblWelcome.Name = "lblWelcome";
-            lblWelcome.Size = new Size(78, 20);
+            lblWelcome.Size = new Size(88, 20);
             lblWelcome.TabIndex = 1;
             lblWelcome.Text = "Welcome, ";
             // 
             // btnBrowse
             // 
+            btnBrowse.BackColor = Color.CornflowerBlue;
+            btnBrowse.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            btnBrowse.ForeColor = Color.White;
             btnBrowse.Location = new Point(12, 150);
             btnBrowse.Name = "btnBrowse";
-            btnBrowse.Size = new Size(168, 29);
-            btnBrowse.TabIndex = 2;
+            btnBrowse.Size = new Size(168, 37);
+            btnBrowse.TabIndex = 0;
             btnBrowse.Text = "Browse Products";
-            btnBrowse.UseVisualStyleBackColor = true;
+            btnBrowse.UseVisualStyleBackColor = false;
             btnBrowse.Click += btnBrowse_Click;
             // 
             // btnOrders
             // 
-            btnOrders.Location = new Point(12, 242);
+            btnOrders.BackColor = Color.CornflowerBlue;
+            btnOrders.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            btnOrders.ForeColor = Color.White;
+            btnOrders.Location = new Point(12, 236);
             btnOrders.Name = "btnOrders";
-            btnOrders.Size = new Size(168, 29);
-            btnOrders.TabIndex = 3;
+            btnOrders.Size = new Size(168, 37);
+            btnOrders.TabIndex = 2;
             btnOrders.Text = "My Orders";
-            btnOrders.UseVisualStyleBackColor = true;
+            btnOrders.UseVisualStyleBackColor = false;
             btnOrders.Click += btnOrders_Click;
             // 
             // btnProfile
             // 
-            btnProfile.Location = new Point(12, 292);
+            btnProfile.BackColor = Color.CornflowerBlue;
+            btnProfile.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            btnProfile.ForeColor = Color.White;
+            btnProfile.Location = new Point(12, 279);
             btnProfile.Name = "btnProfile";
-            btnProfile.Size = new Size(168, 29);
-            btnProfile.TabIndex = 4;
+            btnProfile.Size = new Size(168, 37);
+            btnProfile.TabIndex = 3;
             btnProfile.Text = "My Profile";
-            btnProfile.UseVisualStyleBackColor = true;
+            btnProfile.UseVisualStyleBackColor = false;
             btnProfile.Click += btnProfile_Click;
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(12, 359);
+            btnLogout.BackColor = Color.FromArgb(27, 94, 32);
+            btnLogout.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLogout.ForeColor = Color.White;
+            btnLogout.Location = new Point(12, 347);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(168, 29);
-            btnLogout.TabIndex = 5;
+            btnLogout.Size = new Size(168, 41);
+            btnLogout.TabIndex = 4;
             btnLogout.Text = "Logout";
-            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.UseVisualStyleBackColor = false;
             btnLogout.Click += btnLogout_Click;
             // 
             // btnViewCart
             // 
-            btnViewCart.Location = new Point(12, 194);
+            btnViewCart.BackColor = Color.CornflowerBlue;
+            btnViewCart.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            btnViewCart.ForeColor = Color.White;
+            btnViewCart.Location = new Point(12, 193);
             btnViewCart.Name = "btnViewCart";
-            btnViewCart.Size = new Size(168, 29);
-            btnViewCart.TabIndex = 6;
+            btnViewCart.Size = new Size(168, 37);
+            btnViewCart.TabIndex = 1;
             btnViewCart.Text = "View Cart";
-            btnViewCart.UseVisualStyleBackColor = true;
+            btnViewCart.UseVisualStyleBackColor = false;
             btnViewCart.Click += btnViewCart_Click;
+            // 
+            // panel1
+            // 
+            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
+            panel1.BackgroundImageLayout = ImageLayout.Center;
+            panel1.Location = new Point(465, -6);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(247, 455);
+            panel1.TabIndex = 7;
             // 
             // CustomerDashboardForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(701, 442);
+            Controls.Add(panel1);
             Controls.Add(btnViewCart);
             Controls.Add(btnLogout);
             Controls.Add(btnProfile);
@@ -119,7 +151,6 @@
             Controls.Add(lblTitle);
             Name = "CustomerDashboardForm";
             Text = "Dashboard";
-            Load += CustomerDashboardForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -133,5 +164,6 @@
         private Button btnProfile;
         private Button btnLogout;
         private Button btnViewCart;
+        private Panel panel1;
     }
 }

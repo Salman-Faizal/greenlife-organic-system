@@ -63,7 +63,7 @@
             btnIncreaseQty.Location = new Point(29, 26);
             btnIncreaseQty.Name = "btnIncreaseQty";
             btnIncreaseQty.Size = new Size(180, 29);
-            btnIncreaseQty.TabIndex = 1;
+            btnIncreaseQty.TabIndex = 0;
             btnIncreaseQty.Text = "Increase (+1)";
             btnIncreaseQty.UseVisualStyleBackColor = false;
             btnIncreaseQty.Click += btnIncreaseQty_Click;
@@ -74,7 +74,7 @@
             btnDecreaseQty.Location = new Point(29, 72);
             btnDecreaseQty.Name = "btnDecreaseQty";
             btnDecreaseQty.Size = new Size(180, 29);
-            btnDecreaseQty.TabIndex = 2;
+            btnDecreaseQty.TabIndex = 1;
             btnDecreaseQty.Text = "Decrease (-1)";
             btnDecreaseQty.UseVisualStyleBackColor = false;
             btnDecreaseQty.Click += btnDecreaseQty_Click;
@@ -85,7 +85,7 @@
             btnRemoveItem.Location = new Point(29, 120);
             btnRemoveItem.Name = "btnRemoveItem";
             btnRemoveItem.Size = new Size(180, 29);
-            btnRemoveItem.TabIndex = 3;
+            btnRemoveItem.TabIndex = 2;
             btnRemoveItem.Text = "Remove Item";
             btnRemoveItem.UseVisualStyleBackColor = false;
             btnRemoveItem.Click += btnRemoveItem_Click;
@@ -98,7 +98,7 @@
             btnCheckout.Location = new Point(17, 232);
             btnCheckout.Name = "btnCheckout";
             btnCheckout.Size = new Size(209, 35);
-            btnCheckout.TabIndex = 4;
+            btnCheckout.TabIndex = 1;
             btnCheckout.Text = "Checkout";
             btnCheckout.UseVisualStyleBackColor = false;
             btnCheckout.Click += btnCheckout_Click;
@@ -113,17 +113,16 @@
             lblTotal.Size = new Size(50, 20);
             lblTotal.TabIndex = 5;
             lblTotal.Text = "Total: ";
-            lblTotal.Click += lblTotal_Click;
             // 
             // btnBack
             // 
             btnBack.BackColor = Color.FromArgb(27, 94, 32);
             btnBack.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnBack.ForeColor = Color.White;
-            btnBack.Location = new Point(767, 12);
+            btnBack.Location = new Point(760, 12);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(126, 30);
-            btnBack.TabIndex = 6;
+            btnBack.Size = new Size(133, 38);
+            btnBack.TabIndex = 0;
             btnBack.Text = "<-- Go Back";
             btnBack.UseVisualStyleBackColor = false;
             btnBack.Click += btnBack_Click;
@@ -148,7 +147,7 @@
             panel1.Location = new Point(617, 101);
             panel1.Name = "panel1";
             panel1.Size = new Size(276, 295);
-            panel1.TabIndex = 16;
+            panel1.TabIndex = 0;
             // 
             // groupBox1
             // 
@@ -158,7 +157,7 @@
             groupBox1.Location = new Point(17, 22);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(250, 168);
-            groupBox1.TabIndex = 17;
+            groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Modify Item";
             // 

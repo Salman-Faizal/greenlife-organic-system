@@ -82,10 +82,5 @@ namespace greenlife_organic_system.Views
             CartForm cartForm = new CartForm(_cart, _productService, _customer, _orderService);
             cartForm.ShowDialog();
         }
-
-        private void CustomerDashboardForm_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

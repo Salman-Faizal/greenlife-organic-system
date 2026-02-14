@@ -51,10 +51,10 @@
             // dgvOrders
             // 
             dgvOrders.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvOrders.Location = new Point(32, 114);
+            dgvOrders.Location = new Point(32, 69);
             dgvOrders.Name = "dgvOrders";
             dgvOrders.RowHeadersWidth = 51;
-            dgvOrders.Size = new Size(426, 468);
+            dgvOrders.Size = new Size(426, 513);
             dgvOrders.TabIndex = 0;
             dgvOrders.SelectionChanged += dgvOrders_SelectionChanged;
             // 
@@ -66,27 +66,29 @@
             dgvOrderItems.RowHeadersWidth = 51;
             dgvOrderItems.Size = new Size(505, 155);
             dgvOrderItems.TabIndex = 1;
-            dgvOrderItems.CellContentClick += dgvOrderItems_CellContentClick;
             dgvOrderItems.CellFormatting += dgvOrderItems_CellFormatting;
             // 
             // lblOrdersTitle
             // 
             lblOrdersTitle.AutoSize = true;
-            lblOrdersTitle.Location = new Point(32, 80);
+            lblOrdersTitle.Font = new Font("Segoe UI Emoji", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblOrdersTitle.ForeColor = Color.FromArgb(27, 94, 32);
+            lblOrdersTitle.Location = new Point(32, 34);
             lblOrdersTitle.Name = "lblOrdersTitle";
-            lblOrdersTitle.Size = new Size(77, 20);
+            lblOrdersTitle.Size = new Size(103, 24);
             lblOrdersTitle.TabIndex = 2;
             lblOrdersTitle.Text = "My Orders";
             // 
             // lblOrderDetails
             // 
             lblOrderDetails.AutoSize = true;
+            lblOrderDetails.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblOrderDetails.ForeColor = Color.FromArgb(27, 94, 32);
             lblOrderDetails.Location = new Point(528, 80);
             lblOrderDetails.Name = "lblOrderDetails";
-            lblOrderDetails.Size = new Size(97, 20);
+            lblOrderDetails.Size = new Size(99, 20);
             lblOrderDetails.TabIndex = 3;
             lblOrderDetails.Text = "Order Details";
-            lblOrderDetails.Click += lblOrderDetails_Click;
             // 
             // numRating
             // 
@@ -101,18 +103,20 @@
             txtComment.Multiline = true;
             txtComment.Name = "txtComment";
             txtComment.PlaceholderText = "Optional review...";
-            txtComment.Size = new Size(228, 97);
+            txtComment.Size = new Size(228, 104);
             txtComment.TabIndex = 1;
             // 
             // btnSubmit
             // 
+            btnSubmit.BackColor = Color.FromArgb(27, 94, 32);
+            btnSubmit.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            btnSubmit.ForeColor = Color.White;
             btnSubmit.Location = new Point(23, 86);
             btnSubmit.Name = "btnSubmit";
-            btnSubmit.Size = new Size(150, 31);
+            btnSubmit.Size = new Size(150, 38);
             btnSubmit.TabIndex = 2;
             btnSubmit.Text = "Submit Review";
-            btnSubmit.UseVisualStyleBackColor = true;
-            btnSubmit.Click += btnSubmit_Click;
+            btnSubmit.UseVisualStyleBackColor = false;
             // 
             // flpReviewActions
             // 
@@ -128,9 +132,11 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            label1.ForeColor = Color.FromArgb(27, 94, 32);
             label1.Location = new Point(23, 16);
             label1.Name = "label1";
-            label1.Size = new Size(88, 20);
+            label1.Size = new Size(87, 20);
             label1.TabIndex = 3;
             label1.Text = "Rating (1-5)";
             // 
@@ -145,31 +151,39 @@
             // 
             // btnCancelOrder
             // 
-            btnCancelOrder.Location = new Point(23, 45);
+            btnCancelOrder.BackColor = Color.FromArgb(27, 94, 32);
+            btnCancelOrder.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            btnCancelOrder.ForeColor = Color.White;
+            btnCancelOrder.Location = new Point(23, 36);
             btnCancelOrder.Name = "btnCancelOrder";
-            btnCancelOrder.Size = new Size(150, 31);
+            btnCancelOrder.Size = new Size(150, 36);
             btnCancelOrder.TabIndex = 4;
             btnCancelOrder.Text = "Cancel Order";
-            btnCancelOrder.UseVisualStyleBackColor = true;
+            btnCancelOrder.UseVisualStyleBackColor = false;
             btnCancelOrder.Click += btnCancelOrder_Click;
             // 
             // label2
             // 
             label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            label2.ForeColor = Color.FromArgb(27, 94, 32);
             label2.Location = new Point(23, 13);
             label2.Name = "label2";
-            label2.Size = new Size(133, 20);
+            label2.Size = new Size(137, 20);
             label2.TabIndex = 5;
             label2.Text = "Order Cancellation";
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(889, 12);
+            btnCancel.BackColor = Color.FromArgb(27, 94, 32);
+            btnCancel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            btnCancel.ForeColor = Color.White;
+            btnCancel.Location = new Point(875, 12);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(145, 29);
+            btnCancel.Size = new Size(159, 36);
             btnCancel.TabIndex = 5;
             btnCancel.Text = "<-- Go Back";
-            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Click += btnCancel_Click;
             // 
             // MyOrdersForm
@@ -185,8 +199,7 @@
             Controls.Add(dgvOrderItems);
             Controls.Add(dgvOrders);
             Name = "MyOrdersForm";
-            Text = "My Orders";
-            Load += MyOrdersForm_Load;
+            Text = "Orders";
             ((System.ComponentModel.ISupportInitialize)dgvOrders).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvOrderItems).EndInit();
             ((System.ComponentModel.ISupportInitialize)numRating).EndInit();

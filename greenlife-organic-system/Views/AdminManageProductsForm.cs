@@ -320,11 +320,6 @@ namespace greenlife_organic_system.Views
             dgvProducts.CurrentCell = null;
         }
 
-        private void AdminManageProductsForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Close();

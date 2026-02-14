@@ -79,7 +79,6 @@ namespace greenlife_organic_system.Views
             return customer?.PhoneNumber ?? "Unknown";
         }
 
-
         private void LoadStatuses()
         {
             cmbStatus.Items.Clear();
@@ -144,19 +143,14 @@ namespace greenlife_organic_system.Views
             LoadOrders();
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
         private void cbxActiveOrders_CheckedChanged(object sender, EventArgs e)
         {
             LoadOrders();
         }
 
-        private void AdminManageOrdersForm_Load(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
-
+            Close();
         }
     }
 }

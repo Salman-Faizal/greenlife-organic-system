@@ -111,7 +111,7 @@ namespace greenlife_organic_system.Services
             return true;
         }
 
-        /* ------------------ Data consistency ------------------ */
+        /* ------------------ Database save ------------------ */
 
         public void SaveOrders()
         {

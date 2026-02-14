@@ -16,7 +16,7 @@ namespace greenlife_organic_system.Services
         {
             StringBuilder sb = new StringBuilder();
 
-            // Optional report header (great for clarity)
+            // report header
             sb.AppendLine("GreenLife Organic Store - Order History Report");
 
             if (fromDate.HasValue && toDate.HasValue)
@@ -47,7 +47,7 @@ namespace greenlife_organic_system.Services
             if (string.IsNullOrEmpty(value))
                 return "";
 
-            // Escape commas and quotes for CSV safety
+            // Escape commas and quotes for CSV
             value = value.Replace("\"", "\"\"");
             return value.Contains(",") ? $"\"{value}\"" : value;
         }

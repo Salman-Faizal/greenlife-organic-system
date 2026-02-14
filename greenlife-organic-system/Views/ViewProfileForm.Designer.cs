@@ -50,24 +50,31 @@
             // lblTitle
             // 
             lblTitle.AutoSize = true;
+            lblTitle.BackColor = SystemColors.Control;
+            lblTitle.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.FromArgb(27, 94, 32);
             lblTitle.Location = new Point(160, 59);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(102, 20);
+            lblTitle.Size = new Size(136, 22);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Profile Details";
             // 
             // lblFullName
             // 
             lblFullName.AutoSize = true;
+            lblFullName.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            lblFullName.ForeColor = Color.CornflowerBlue;
             lblFullName.Location = new Point(160, 145);
             lblFullName.Name = "lblFullName";
-            lblFullName.Size = new Size(72, 20);
+            lblFullName.Size = new Size(75, 20);
             lblFullName.TabIndex = 1;
             lblFullName.Text = "FullName";
             // 
             // lblEmail
             // 
             lblEmail.AutoSize = true;
+            lblEmail.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            lblEmail.ForeColor = Color.CornflowerBlue;
             lblEmail.Location = new Point(160, 190);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(46, 20);
@@ -77,45 +84,55 @@
             // lblPhone
             // 
             lblPhone.AutoSize = true;
+            lblPhone.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            lblPhone.ForeColor = Color.CornflowerBlue;
             lblPhone.Location = new Point(160, 241);
             lblPhone.Name = "lblPhone";
-            lblPhone.Size = new Size(50, 20);
+            lblPhone.Size = new Size(53, 20);
             lblPhone.TabIndex = 3;
             lblPhone.Text = "Phone";
             // 
             // lblAddress
             // 
             lblAddress.AutoSize = true;
+            lblAddress.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            lblAddress.ForeColor = Color.CornflowerBlue;
             lblAddress.Location = new Point(160, 292);
             lblAddress.Name = "lblAddress";
-            lblAddress.Size = new Size(62, 20);
+            lblAddress.Size = new Size(63, 20);
             lblAddress.TabIndex = 4;
             lblAddress.Text = "Address";
             // 
             // lblUsername
             // 
             lblUsername.AutoSize = true;
+            lblUsername.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            lblUsername.ForeColor = Color.CornflowerBlue;
             lblUsername.Location = new Point(157, 344);
             lblUsername.Name = "lblUsername";
-            lblUsername.Size = new Size(75, 20);
+            lblUsername.Size = new Size(78, 20);
             lblUsername.TabIndex = 5;
             lblUsername.Text = "Username";
             // 
             // lblPassword
             // 
             lblPassword.AutoSize = true;
+            lblPassword.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            lblPassword.ForeColor = Color.CornflowerBlue;
             lblPassword.Location = new Point(160, 389);
             lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(70, 20);
+            lblPassword.Size = new Size(73, 20);
             lblPassword.TabIndex = 6;
             lblPassword.Text = "Password";
             // 
             // lblConfirmPassword
             // 
             lblConfirmPassword.AutoSize = true;
+            lblConfirmPassword.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            lblConfirmPassword.ForeColor = Color.CornflowerBlue;
             lblConfirmPassword.Location = new Point(157, 437);
             lblConfirmPassword.Name = "lblConfirmPassword";
-            lblConfirmPassword.Size = new Size(127, 20);
+            lblConfirmPassword.Size = new Size(132, 20);
             lblConfirmPassword.TabIndex = 7;
             lblConfirmPassword.Text = "Confirm Password";
             // 
@@ -170,21 +187,27 @@
             // 
             // btnUpdate
             // 
+            btnUpdate.BackColor = Color.FromArgb(27, 94, 32);
+            btnUpdate.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnUpdate.ForeColor = Color.White;
             btnUpdate.Location = new Point(384, 501);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(143, 29);
+            btnUpdate.Size = new Size(143, 43);
             btnUpdate.TabIndex = 15;
             btnUpdate.Text = "Update Profile";
-            btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.UseVisualStyleBackColor = false;
             // 
             // btnBack
             // 
+            btnBack.BackColor = Color.FromArgb(27, 94, 32);
+            btnBack.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnBack.ForeColor = Color.White;
             btnBack.Location = new Point(651, 12);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(137, 29);
+            btnBack.Size = new Size(137, 34);
             btnBack.TabIndex = 16;
             btnBack.Text = "<-- Go Back";
-            btnBack.UseVisualStyleBackColor = true;
+            btnBack.UseVisualStyleBackColor = false;
             // 
             // ViewProfileForm
             // 
@@ -210,7 +233,6 @@
             Controls.Add(lblTitle);
             Name = "ViewProfileForm";
             Text = "Profile";
-            Load += ViewProfileForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
