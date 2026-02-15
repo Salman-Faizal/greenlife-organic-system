@@ -71,6 +71,7 @@
             // btnDecreaseQty
             // 
             btnDecreaseQty.BackColor = Color.CornflowerBlue;
+            btnDecreaseQty.ForeColor = Color.White;
             btnDecreaseQty.Location = new Point(29, 72);
             btnDecreaseQty.Name = "btnDecreaseQty";
             btnDecreaseQty.Size = new Size(180, 29);
@@ -82,6 +83,7 @@
             // btnRemoveItem
             // 
             btnRemoveItem.BackColor = Color.CornflowerBlue;
+            btnRemoveItem.ForeColor = Color.White;
             btnRemoveItem.Location = new Point(29, 120);
             btnRemoveItem.Name = "btnRemoveItem";
             btnRemoveItem.Size = new Size(180, 29);
@@ -172,7 +174,7 @@
             Controls.Add(btnBack);
             Controls.Add(lblTotal);
             Controls.Add(dgvCart);
-            ForeColor = Color.White;
+            ForeColor = SystemColors.ControlText;
             Name = "CartForm";
             Text = "Cart";
             ((System.ComponentModel.ISupportInitialize)dgvCart).EndInit();

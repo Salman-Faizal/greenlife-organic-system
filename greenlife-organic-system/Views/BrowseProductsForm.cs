@@ -311,7 +311,7 @@ namespace greenlife_organic_system.Views
             int quantity = (int)numQuantity.Value;
             if (!_productService.ReduceStock(_selectedProduct.ProductId, quantity))
             {
-                MessageBox.Show("Unable to add item due to insufficient stock.");
+                MessageBox.Show("Unable to add item due to insufficient stock.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -319,7 +319,7 @@ namespace greenlife_organic_system.Views
             UpdateCartTotal();
             DisplayProductDetails(_selectedProduct);
 
-            MessageBox.Show("Product added to cart.");
+            MessageBox.Show("Product added to cart.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void UpdateCartTotal()

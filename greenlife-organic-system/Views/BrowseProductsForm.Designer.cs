@@ -105,7 +105,7 @@
             // 
             // numQuantity
             // 
-            numQuantity.Location = new Point(143, 588);
+            numQuantity.Location = new Point(143, 561);
             numQuantity.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numQuantity.Name = "numQuantity";
             numQuantity.Size = new Size(74, 27);
@@ -129,7 +129,7 @@
             // lblCartTotal
             // 
             lblCartTotal.AutoSize = true;
-            lblCartTotal.Location = new Point(32, 608);
+            lblCartTotal.Location = new Point(25, 598);
             lblCartTotal.Name = "lblCartTotal";
             lblCartTotal.Size = new Size(0, 20);
             lblCartTotal.TabIndex = 6;
@@ -203,7 +203,7 @@
             // 
             label2.AutoSize = true;
             label2.ForeColor = Color.CornflowerBlue;
-            label2.Location = new Point(25, 588);
+            label2.Location = new Point(25, 561);
             label2.Name = "label2";
             label2.Size = new Size(112, 20);
             label2.TabIndex = 14;

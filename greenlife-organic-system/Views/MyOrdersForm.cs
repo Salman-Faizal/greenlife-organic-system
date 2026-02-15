@@ -98,7 +98,7 @@ namespace greenlife_organic_system.Views
             var fields = new[] { "Product", "Price", "Quantity", "Subtotal" };
 
             DataTable dtInverted = new DataTable();
-            dtInverted.Columns.Add("Field Name"); // The left-hand labels
+            dtInverted.Columns.Add("Field Name"); // The labels
 
             for (int i = 0; i < order.Items.Count; i++)
             {
@@ -117,9 +117,9 @@ namespace greenlife_organic_system.Views
                     row[i + 1] = field switch
                     {
                         "Product" => item.Product?.Name ?? "[Removed Product]",
-                        "Price" => item.Product?.GetDiscountedPrice().ToString("C") ?? "N/A",
+                        "Price" => item.Product?.GetDiscountedPrice().ToString("0.00") ?? "N/A",
                         "Quantity" => item.Quantity.ToString(),
-                        "Subtotal" => item.GetSubtotal().ToString("C"),
+                        "Subtotal" => item.GetSubtotal().ToString("0.00"),
                         _ => ""
                     };
                 }
