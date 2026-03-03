@@ -7,9 +7,11 @@ namespace greenlife_organic_system.Services
 {
     public class OrderService
     {
+        // Loads existing orders from JSON file
         private const string OrderFile = @"DataFiles\orders.json";
         private List<Order> Orders;
 
+        // Reference to ProductService
         private readonly ProductService _productService;
 
         public OrderService(ProductService productService)
@@ -45,6 +47,8 @@ namespace greenlife_organic_system.Services
             Order order = new Order
             {
                 CustomerId = customer.UserId,
+
+                // Creates a shallow copy of cart items to decouple order from cart state.
                 Items = cart.Items.ToList()
             };
 
@@ -79,6 +83,7 @@ namespace greenlife_organic_system.Services
             if (order == null)
                 return false;
 
+            // Updates order lifecycle state (e.g., Pending → Shipped → Delivered).
             order.Status = newStatus;
             SaveOrders();
             return true;
@@ -93,6 +98,7 @@ namespace greenlife_organic_system.Services
             if (order == null)
                 return false;
 
+            // Return false if order status is not "Pending" (case-insensitive)
             if (!string.Equals(order.Status, "Pending", System.StringComparison.OrdinalIgnoreCase))
                 return false;
 
@@ -101,7 +107,7 @@ namespace greenlife_organic_system.Services
                 if (item?.Product == null || item.Quantity <= 0)
                     continue;
 
-                // If the product no longer exists in the catalog,
+                // If the product no longer exists in the catalog or,
                 // stock cannot be restored and we continue safely.
                 _productService.IncreaseStock(item.Product.ProductId, item.Quantity);
             }

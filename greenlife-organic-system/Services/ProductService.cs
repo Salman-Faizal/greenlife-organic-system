@@ -13,6 +13,7 @@ namespace greenlife_organic_system.Services
 
         public ProductService()
         {
+            // Loads existing product data from JSON into memory at startup.
             Products = JsonDataManager.LoadFromFile<Product>(ProductFile);
         }
 
@@ -49,6 +50,7 @@ namespace greenlife_organic_system.Services
 
         public string GenerateNextProductId()
         {
+            // Finds the highest numeric ProductId (for example "P100") and generates the next sequential ID.
             int maxId = Products
                 .Select(p => p?.ProductId)
                 .Where(id => !string.IsNullOrWhiteSpace(id)
@@ -86,7 +88,7 @@ namespace greenlife_organic_system.Services
             string normalized = name.Trim();
             return Products
                 .Where(p => !string.IsNullOrWhiteSpace(p.Name)
-                    && p.Name.Contains(normalized, System.StringComparison.OrdinalIgnoreCase))
+                    && p.Name.Contains(normalized, System.StringComparison.OrdinalIgnoreCase))      // Performs case-insensitive partial matching on product names.
                 .ToList();
         }
 
@@ -162,6 +164,7 @@ namespace greenlife_organic_system.Services
 
             product.Reviews ??= new List<Review>();
 
+            // Prevents duplicate reviews for the same product within the same order by the same customer.
             bool alreadyReviewed = product.Reviews.Any(r =>
                 r.CustomerId == review.CustomerId
                 && r.OrderId == review.OrderId
@@ -178,6 +181,7 @@ namespace greenlife_organic_system.Services
                 .Select(r => r.Rating)
                 .ToList();
 
+            // Recalculates rating summary from all valid review ratings after adding a new review.
             product.RatingCount = validRatings.Count;
             product.Rating = product.RatingCount == 0
                 ? 0

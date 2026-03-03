@@ -43,6 +43,7 @@ namespace greenlife_organic_system.Services
 
         public RevenueSummary GetRevenueSummary(List<Order> orders)
         {
+            // Revenue is calculated only from Delivered orders
             var deliveredOrders = orders
                 .Where(o => string.Equals(o.Status, "Delivered", StringComparison.OrdinalIgnoreCase))
                 .ToList();
@@ -63,7 +64,7 @@ namespace greenlife_organic_system.Services
         public Dictionary<DateTime, decimal> GetDailySales(List<Order> orders)
         {
             return orders
-                .Where(o => !string.Equals(o.Status, "Cancelled", StringComparison.OrdinalIgnoreCase))
+                .Where(o => !string.Equals(o.Status, "Cancelled", StringComparison.OrdinalIgnoreCase))   // Excludes Cancelled orders to avoid inflating daily sales totals.
                 .GroupBy(o => o.OrderDate.Date)
                 .ToDictionary(
                     g => g.Key,
@@ -74,6 +75,7 @@ namespace greenlife_organic_system.Services
         public Dictionary<string, int> GetTopSellingProductsByQuantity(List<Order> orders, int topCount = 5)
         {
             return orders
+                // Flattens all order items across orders and excludes Cancelled orders.
                 .Where(o => !string.Equals(o.Status, "Cancelled", StringComparison.OrdinalIgnoreCase))
                 .SelectMany(o => o.Items ?? new List<OrderItem>())
                 .Where(i => i?.Product != null)
@@ -91,7 +93,7 @@ namespace greenlife_organic_system.Services
         public Dictionary<string, int> GetOrderStatusDistribution(List<Order> orders)
         {
             return orders
-                .GroupBy(o => string.IsNullOrWhiteSpace(o.Status) ? "Unknown" : o.Status)
+                .GroupBy(o => string.IsNullOrWhiteSpace(o.Status) ? "Unknown" : o.Status)   // Treats missing/blank status values as "Unknown" for safer reporting.
                 .ToDictionary(g => g.Key, g => g.Count());
         }
 
@@ -114,6 +116,7 @@ namespace greenlife_organic_system.Services
         {
             string normalizedUsername = username?.Trim() ?? string.Empty;
 
+            // Empty username means return all customers' orders (no filtering applied).
             if (string.IsNullOrWhiteSpace(normalizedUsername))
             {
                 return new CustomerOrderHistoryResult
@@ -122,6 +125,7 @@ namespace greenlife_organic_system.Services
                 };
             }
 
+            // Case-insensitive username lookup to match user input reliably.
             Customer customer = customers.FirstOrDefault(c =>
                 string.Equals(c.Username, normalizedUsername, StringComparison.OrdinalIgnoreCase));
 

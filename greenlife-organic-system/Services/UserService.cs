@@ -18,6 +18,7 @@ namespace greenlife_organic_system.Services
             Admins = JsonDataManager.LoadFromFile<Admin>(AdminFile);
             Customers = JsonDataManager.LoadFromFile<Customer>(CustomerFile);
 
+            // Ensures there is always at least one admin account available for initial login.
             EnsureDefaultAdmin();
         }
 
@@ -38,6 +39,7 @@ namespace greenlife_organic_system.Services
             }
         }
 
+        // Checks Admins first, then Customers, and returns the matched user (role decided by type).
         public User Authenticate(string username, string password)
         {
             Admin admin = Admins
@@ -48,7 +50,6 @@ namespace greenlife_organic_system.Services
 
             Customer customer = Customers
                 .FirstOrDefault(c => c.ValidateLogin(username, password));
-
             return customer;
         }
 
@@ -57,12 +58,14 @@ namespace greenlife_organic_system.Services
             if (customer == null)
                 return false;
 
+            // Normalizes inputs to prevent validation issues caused by leading/trailing spaces.
             customer.Username = customer.Username?.Trim() ?? string.Empty;
             customer.FullName = customer.FullName?.Trim() ?? string.Empty;
             customer.Email = customer.Email?.Trim() ?? string.Empty;
             customer.PhoneNumber = customer.PhoneNumber?.Trim() ?? string.Empty;
             customer.Address = customer.Address?.Trim() ?? string.Empty;
 
+            // Enforces unique usernames (case-insensitive) across customers.
             bool exists = Customers.Any(c =>
                 c.Username.Equals(customer.Username, System.StringComparison.OrdinalIgnoreCase));
             if (exists)
@@ -78,6 +81,7 @@ namespace greenlife_organic_system.Services
             return Customers.FirstOrDefault(c => c.UserId == customerId);
         }
 
+        // Outputing a user-friendly validation message without throwing exceptions.
         public bool UpdateCustomerProfile(Customer updatedCustomer, out string errorMessage)
         {
             errorMessage = string.Empty;
@@ -147,6 +151,7 @@ namespace greenlife_organic_system.Services
             JsonDataManager.SaveToFile(CustomerFile, Customers);
         }
 
+        // Reloads customer list from JSON to reflect latest persisted changes.
         public void ReloadCustomers()
         {
             Customers = JsonDataManager.LoadFromFile<Customer>(CustomerFile);

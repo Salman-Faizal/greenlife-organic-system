@@ -16,6 +16,7 @@ namespace greenlife_organic_system.Models
 
         protected User()
         {
+            // Globally Unique Identifier module
             UserId = Guid.NewGuid().ToString();
         }
 

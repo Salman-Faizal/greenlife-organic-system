@@ -12,6 +12,7 @@ namespace greenlife_organic_system.Models
         {
         }
 
+        //  expression-bodied member: Only returns a value
         public string Role => "Admin";
     }
 }

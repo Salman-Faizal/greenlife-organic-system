@@ -11,27 +11,29 @@ namespace greenlife_organic_system.Services
         public void ExportOrdersToCsv(
             List<Order> orders,
             string filePath,
-            DateTime? fromDate = null,
+            DateTime? fromDate = null,  // Optional
             DateTime? toDate = null)
         {
+            // StringBuilder is used for efficient string concatenation, since strings in C# are immutable
             StringBuilder sb = new StringBuilder();
 
             // report header
             sb.AppendLine("GreenLife Organic Store - Order History Report");
 
+            // Optional date filtering metadata (does not filter here, only displays range)
             if (fromDate.HasValue && toDate.HasValue)
             {
                 sb.AppendLine(
                     $"Date Range: {fromDate.Value:yyyy-MM-dd} to {toDate.Value:yyyy-MM-dd}");
             }
 
-            sb.AppendLine();
+            sb.AppendLine(); // Empty line
             sb.AppendLine("OrderId,CustomerId,OrderDate,Status,Total");
 
             foreach (var order in orders)
             {
                 sb.AppendLine(
-                    $"{Escape(order.OrderId)}," +
+                    $"{Escape(order.OrderId)}," +  // Using Escape() for string fields that may contain commas or quotes.
                     $"{Escape(order.CustomerId)}," +
                     $"{order.OrderDate:yyyy-MM-dd}," +
                     $"{Escape(order.Status)}," +
@@ -39,9 +41,11 @@ namespace greenlife_organic_system.Services
                 );
             }
 
+            // Writes entire CSV content in a single I/O operation
             File.WriteAllText(filePath, sb.ToString());
         }
 
+        // Ensures CSV validity by escaping quotes and wrapping values
         private string Escape(string value)
         {
             if (string.IsNullOrEmpty(value))
